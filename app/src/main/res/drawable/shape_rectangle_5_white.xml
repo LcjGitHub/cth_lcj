@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <corners
+        android:radius="@dimen/dp_5"
+
+        />
+
+    <!--// 圆角半径，该值设置时下面四个属性失效-->
+    <!--android:bottomLeftRadius="integer"  // 左下角圆角半径-->
+    <!--android:bottomRightRadius="integer" // 右下角圆角半径-->
+    <!--android:topLeftRadius="integer"     // 左上角圆角半径-->
+    <!--android:topRightRadius="integer"    // 右上角圆角半径-->
+
+<solid android:color="@color/white"/>
+
+
+</shape>
+

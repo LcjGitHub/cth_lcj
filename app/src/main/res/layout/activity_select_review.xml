@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/f9"
+    android:orientation="vertical"
+    tools:context=".activity.SelectReviewActivity">
+
+    <com.chetuhui.lcj.myapplication.view.titlebar.CommonTitleBar
+        android:background="@color/white"
+        android:id="@+id/titlebar_sr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerText="选择审核方式"
+        app:centerTextColor="@color/black"
+
+        app:centerType="textView"
+        app:fillStatusBar="false"
+       app:leftImageResource="@drawable/back"
+        app:leftType="imageButton"
+
+        app:showBottomLine="false"
+        app:titleBarColor="@color/transparent" />
+    <RelativeLayout
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/shape_rectangle_5_white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:layout_centerVertical="true"
+            android:id="@+id/cb_sr_fuwuzhan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CustomCheckBoxTheme"/>
+        <LinearLayout
+            android:layout_marginLeft="@dimen/dp_10"
+          android:layout_toLeftOf="@+id/iv_sr_1"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/cb_sr_fuwuzhan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服务站点审核"
+                android:textColor="@color/_3"
+                android:textSize="@dimen/dp_16"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="需要您开车到我们指定的服务站点进行车辆审核"
+                android:textColor="@color/_6"
+                android:textSize="@dimen/dp_12"
+
+                />
+
+
+        </LinearLayout>
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/iv_sr_1"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xzshfs_img1"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_margin="@dimen/dp_10"
+        android:background="@drawable/shape_rectangle_5_white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <CheckBox
+            android:layout_centerVertical="true"
+            android:id="@+id/cb_sr_shenheyuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CustomCheckBoxTheme"/>
+        <LinearLayout
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_toLeftOf="@+id/iv_sr_2"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/cb_sr_shenheyuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="审核员上门审核"
+                android:textColor="@color/_3"
+                android:textSize="@dimen/dp_16"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="需要检测人员上门为您提供审核服务"
+                android:textColor="@color/_6"
+                android:textSize="@dimen/dp_12"
+
+                />
+
+
+        </LinearLayout>
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/iv_sr_2"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xzshfs_img"/>
+
+
+    </RelativeLayout>
+   <RelativeLayout
+
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <com.chetuhui.lcj.myapplication.view.supertextview.SuperTextView
+           android:layout_width="match_parent"
+           android:id="@+id/tv_sr_queding"
+           android:layout_height="wrap_content"
+           android:text="确定"
+           android:layout_alignParentBottom="true"
+           android:textColor="@color/white"
+           android:textSize="@dimen/dp_15"
+           android:gravity="center"
+           android:paddingTop="@dimen/dp_10"
+           android:paddingBottom="@dimen/dp_10"
+           app:stv_solid="@color/home_button"
+           />
+
+   </RelativeLayout>
+
+
+</LinearLayout>

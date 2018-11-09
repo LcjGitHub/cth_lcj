@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <corners
+        android:radius="@dimen/dp_50"
+
+        />
+
+    <!--// 圆角半径，该值设置时下面四个属性失效-->
+    <!--android:bottomLeftRadius="integer"  // 左下角圆角半径-->
+    <!--android:bottomRightRadius="integer" // 右下角圆角半径-->
+    <!--android:topLeftRadius="integer"     // 左上角圆角半径-->
+    <!--android:topRightRadius="integer"    // 右上角圆角半径-->
+
+<solid android:color="@color/white"/>
+    <stroke
+        android:color="@color/home_button"
+        android:width="@dimen/dp_1"/>
+
+    <!-- 描边 -->
+    <!--<stroke-->
+    <!--android:color="color"       // 描边的颜色-->
+    <!--android:width="integer"     // 描边的宽度-->
+    <!--android:dashGap="integer"   // 虚线间隔-->
+    <!--android:dashWidth="integer" // 虚线宽度-->
+
+</shape>
+

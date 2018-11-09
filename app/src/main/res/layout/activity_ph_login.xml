@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".activity.PhLoginActivity">
+
+    <ImageView
+        android:id="@+id/iv_phlogin_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10"
+        android:src="@drawable/back"/>
+    <TextView
+        android:layout_margin="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/dp_20"
+        android:textColor="@color/_3"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="手机号登录"/>
+    <RelativeLayout
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginRight="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_40"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_phlogin_ph"
+            android:textSize="@dimen/dp_15"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="手机号"
+            android:padding="@dimen/dp_10"
+
+            android:inputType="number"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:background="@drawable/shape_rectangle_5_f5"
+            />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/iv_registered_ph_clear"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp_10"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_clear"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginRight="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:background="@drawable/shape_rectangle_5_f5"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/et_phlogin_pw"
+            android:textSize="@dimen/dp_15"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="密码"
+            android:padding="@dimen/dp_10"
+
+            android:inputType="textPassword"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:background="@null"
+            android:layout_toLeftOf="@+id/iv_registered_pw_eye"
+            android:layout_marginRight="@dimen/dp_5"
+            />
+        <ImageView
+            android:id="@+id/iv_phlogin_pw_eye"
+            android:padding="@dimen/dp_10"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/closeeye"/>
+
+
+    </RelativeLayout>
+    <TextView
+        android:layout_margin="@dimen/dp_40"
+        android:id="@+id/tv_phlogin_denglu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_rectangle_50_home_button"
+        android:gravity="center_horizontal"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_100"
+        android:paddingRight="@dimen/dp_100"
+        android:paddingTop="@dimen/dp_10"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_16"
+        android:textStyle="bold"
+
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textSize="@dimen/dp_15"
+            android:textColor="@color/_9"
+            android:id="@+id/tv_phlogin_zhuce"
+                android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="还没有账号？马上注册"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

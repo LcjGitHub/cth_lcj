@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+
+    tools:context=".activity.SelectCarActivity">
+    <com.chetuhui.lcj.myapplication.view.titlebar.CommonTitleBar
+        android:id="@+id/titlebar_select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerText="选择车辆"
+        app:centerType="textView"
+        app:fillStatusBar="false"
+        app:leftImageResource="@drawable/back"
+        app:leftType="imageButton"
+        app:rightText=""
+        app:rightType="textView"
+        app:showBottomLine="false"
+        app:titleBarColor="@color/transparent" />
+
+    <LinearLayout
+
+        android:id="@+id/ll_select_null"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xzcar_none"/>
+        <TextView
+            android:layout_margin="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您还没有任何车辆哦，快去添加车辆吧！"
+            android:textColor="@color/_9"
+            android:textSize="@dimen/dp_13"
+            />
+        <TextView
+            android:id="@+id/tv_select_tianjiachengliang"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加车辆"
+            android:textColor="@color/home_button"
+
+            android:textSize="@dimen/dp_16"
+            />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_select_centent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_above="@+id/tv_select_queding"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/et_select_sousuo"
+                android:layout_margin="@dimen/dp_15"
+                android:background="@drawable/shape_rectangle_50_f6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入车牌号搜索"
+                android:padding="@dimen/dp_5"
+                android:gravity="center"
+                />
+
+            <RelativeLayout
+                android:background="@color/f9"
+                android:layout_below="@+id/et_select_sousuo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_10"
+                    android:textSize="@dimen/dp_16"
+                    android:textColor="@color/_3"
+                    android:text="车辆列表"/>
+                <CheckBox
+                    android:id="@+id/cb_select_quanxuan"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_5"
+                    style="@style/CustomCheckBoxTheme_item"
+                    android:layout_alignParentRight="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="全选"
+                    android:layout_toLeftOf="@+id/cb_select_quanxuan"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dp_5"/>
+
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:background="@color/f9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+
+
+
+
+        <TextView
+            android:id="@+id/tv_select_queding"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/home_button"
+            android:text="确定"
+            android:layout_alignParentBottom="true"
+            android:textSize="@dimen/dp_16"
+            android:textColor="@color/white"
+            />
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+
+              android:orientation="horizontal">
+
+    <ImageView
+        android:padding="@dimen/dp_10"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/find_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/huzhu_heart"/>
+    <ImageView
+        android:layout_gravity="center_vertical"
+        android:padding="@dimen/dp_10"
+        android:id="@+id/find_messg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/home_message"/>
+
+</LinearLayout>
+

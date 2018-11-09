@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    tools:context=".activity.AuditStationActivity">
+    <com.chetuhui.lcj.myapplication.view.titlebar.CommonTitleBar
+        android:background="@color/white"
+        android:id="@+id/titlebar_as"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerText="服务站审核"
+        app:centerTextColor="@color/black"
+
+        app:centerType="textView"
+        app:fillStatusBar="false"
+        app:leftImageResource="@drawable/back"
+        app:leftType="imageButton"
+        app:rightType="textView"
+        app:rightText="审核流程"
+        app:rightTextSize="@dimen/dp_12"
+        app:rightTextColor="@color/black"
+        app:showBottomLine="false"
+        app:titleBarColor="@color/transparent" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_above="@+id/tv_as_xiayibu"
+        android:layout_below="@+id/titlebar_as"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    </android.support.v7.widget.RecyclerView>
+
+    <com.chetuhui.lcj.myapplication.view.supertextview.SuperTextView
+        android:layout_width="match_parent"
+        android:id="@+id/tv_as_xiayibu"
+        android:layout_height="wrap_content"
+        android:text="下一步"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_15"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        app:stv_solid="@color/home_button"
+        />
+
+
+
+</RelativeLayout>

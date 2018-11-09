@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:background="@color/f9">
+
+    <ImageView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@drawable/home_bg" />
+
+    <com.chetuhui.lcj.myapplication.view.titlebar.CommonTitleBar
+        android:id="@+id/titlebar_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        app:centerText=""
+        app:centerType="textView"
+        app:fillStatusBar="false"
+        app:rightImageResource="@drawable/home_message"
+        app:rightText=""
+        app:rightType="imageButton"
+        app:showBottomLine="false"
+        app:titleBarColor="@color/transparent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titlebar_home">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:id="@+id/ll_home_money_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerHorizontal="true"
+
+                android:background="@drawable/home_circle"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="维修互助基金池金额"
+                    android:textColor="@color/e9fffb"
+
+                    android:textSize="@dimen/dp_14" />
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="¥ "
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp_17" />
+
+                    <TextView
+                        android:id="@+id/tv_home_money_"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="123456"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/dp_30" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_home_liangche"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:text="已有23423辆车加入"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/dp_16" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_home_scroll"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_home_money_center"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_10"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="用户138****2325加入了车助宝互助平台，获得1年1500元的维修基金" />
+
+            <LinearLayout
+                android:id="@+id/ll_home_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_home_scroll"
+                android:layout_margin="@dimen/dp_10"
+                android:background="@drawable/shape_rectangle_5_white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_home_zhanghugongshi"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/home_zhgs"
+                    android:gravity="center"
+                    android:text="账户公式"
+                    android:textColor="@color/_6" />
+
+                <TextView
+                    android:id="@+id/tv_home_huzhushijian"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/home_hzsj"
+                    android:gravity="center"
+                    android:text="互助事件"
+                    android:textColor="@color/_6" />
+
+                <TextView
+                    android:id="@+id/tv_home_yonghuliebiao"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/home_yhlb"
+                    android:gravity="center"
+                    android:text="用户列表"
+                    android:textColor="@color/_6" />
+
+                <TextView
+                    android:id="@+id/tv_home_remenshijian"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_weight="1"
+                    android:drawableTop="@drawable/home_rmwt"
+                    android:gravity="center"
+                    android:text="热门问题"
+                    android:textColor="@color/_6" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_10"
+                android:id="@+id/tv_home_shenqinghuzhu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_home_2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:background="@drawable/shape_rectangle_50_home_button"
+                android:drawableLeft="@drawable/home_add"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_80"
+
+                android:paddingRight="@dimen/dp_80"
+                android:paddingTop="@dimen/dp_10"
+                android:text="申请互助"
+                android:textColor="@color/white"
+                android:textSize="@dimen/dp_15"
+
+                />
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
