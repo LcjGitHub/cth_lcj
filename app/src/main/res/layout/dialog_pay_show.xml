@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_above="@+id/tv_dg_pay_cancel"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape_round_white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_dg_pay_wx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@drawable/wx_log"
+            android:drawablePadding="@dimen/dp_20"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="微信"
+            android:textColor="@color/home_button"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/e" />
+
+        <TextView
+            android:id="@+id/tv_dg_pay_zfb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@drawable/zfb_log"
+            android:drawablePadding="@dimen/dp_5"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="支付宝"
+            android:textColor="@color/home_button"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:id="@+id/tv_dg_pay_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_round_white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:text="取消"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+
+</RelativeLayout>

@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:background="@color/white"
     tools:context=".activity.AuditStationActivity">
-    <com.chetuhui.lcj.myapplication.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
         android:background="@color/white"
         android:id="@+id/titlebar_as"
         android:layout_width="match_parent"
@@ -25,18 +25,78 @@
         app:rightTextColor="@color/black"
         app:showBottomLine="false"
         app:titleBarColor="@color/transparent" />
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="@dimen/dp_10"
-        android:layout_above="@+id/tv_as_xiayibu"
+    <RelativeLayout
+        android:visibility="visible"
         android:layout_below="@+id/titlebar_as"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="@dimen/dp_90">
+        <CheckBox
+            android:id="@+id/cb_item_as"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/dp_15"
+            style="@style/CustomCheckBoxTheme"
+
+          />
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_item_select_car_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/_3"
+                android:textSize="@dimen/dp_15"
+                android:text="审核服务站名称"/>
+            <TextView
+                android:layout_marginTop="@dimen/dp_5"
+                android:id="@+id/tv_item_select_car_cod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/_6"
+                android:textSize="@dimen/dp_13"
+                android:text="电话：028-12434242 "/>
+            <TextView
+                android:id="@+id/tv_item_select_car_co"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/_6"
+                android:textSize="@dimen/dp_13"
+                android:text="高新区环球中心S2三楼"/>
+
+        </LinearLayout>
 
 
 
-    </android.support.v7.widget.RecyclerView>
 
-    <com.chetuhui.lcj.myapplication.view.supertextview.SuperTextView
+
+    </RelativeLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:visibility="gone"
+        android:id="@+id/sl_as_"
+        android:layout_above="@+id/tv_as_xiayibu"
+        android:layout_below="@+id/titlebar_as"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_as_"
+            android:layout_marginTop="@dimen/dp_10"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
         android:layout_width="match_parent"
         android:id="@+id/tv_as_xiayibu"
         android:layout_height="wrap_content"

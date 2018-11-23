@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">车助宝</string>
     <string name="titlebar_search_hint">Search</string>
 </resources>

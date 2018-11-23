@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:background="@color/white"
     tools:context=".activity.PopularActivity">
-    <com.chetuhui.lcj.myapplication.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
         android:background="@color/white"
         android:id="@+id/titlebar_popular"
         android:layout_width="match_parent"
@@ -142,7 +142,7 @@
     android:layout_alignParentBottom="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <com.chetuhui.lcj.myapplication.view.supertextview.SuperTextView
+    <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="联系客服"

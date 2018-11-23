@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+
     tools:context=".activity.AddCarActivity">
     <RelativeLayout
 
@@ -12,7 +13,7 @@
         android:background="@color/home_button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_200">
-        <com.chetuhui.lcj.myapplication.view.titlebar.CommonTitleBar
+        <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
             android:id="@+id/titlebar_addcar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,8 +34,9 @@
             android:layout_below="@+id/titlebar_addcar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:src="@drawable/addcar_photo"/>
-        <com.chetuhui.lcj.myapplication.view.supertextview.SuperTextView
+        <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
             android:text="重新拍摄"
             android:visibility="gone"
             android:id="@+id/tv_addcar_cxps"
@@ -90,7 +92,7 @@
                     android:layout_marginRight="@dimen/dp_25"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:hint="请上传行驶证照片"
+                    android:hint="请输入"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     />
@@ -130,7 +132,7 @@
                     android:layout_marginRight="@dimen/dp_25"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:hint="请上传行驶证照片"
+                    android:hint="请输入"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     />
@@ -170,7 +172,7 @@
                     android:layout_marginRight="@dimen/dp_25"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:hint="请上传行驶证照片"
+                    android:hint="请输入"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     />
@@ -210,7 +212,7 @@
                     android:layout_marginRight="@dimen/dp_25"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:hint="请上传行驶证照片"
+                    android:hint="请输入"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     />
@@ -250,7 +252,7 @@
                     android:layout_marginRight="@dimen/dp_25"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:hint="请上传行驶证照片"
+                    android:hint="请输入"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     />
@@ -277,8 +279,8 @@
 
    <TextView
        android:id="@+id/tv_addcar_qrww"
-       android:textColor="@color/_9"
-       android:background="@color/c6"
+       android:textColor="@color/white"
+       android:background="@color/home_button"
        android:layout_alignParentBottom="true"
        android:gravity="center"
        android:layout_width="match_parent"

@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context=".activity.SelectReviewActivity">
 
-    <com.chetuhui.lcj.myapplication.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
         android:background="@color/white"
         android:id="@+id/titlebar_sr"
         android:layout_width="match_parent"
@@ -127,7 +127,7 @@
 
        android:layout_width="match_parent"
        android:layout_height="match_parent">
-       <com.chetuhui.lcj.myapplication.view.supertextview.SuperTextView
+       <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
            android:layout_width="match_parent"
            android:id="@+id/tv_sr_queding"
            android:layout_height="wrap_content"

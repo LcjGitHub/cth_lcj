@@ -8,7 +8,7 @@
     android:background="@color/f9"
     tools:context=".activity.ConfirmActivity">
 
-    <com.chetuhui.lcj.myapplication.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
         android:background="@color/white"
         android:id="@+id/titlebar_confirm"
         android:layout_width="match_parent"
@@ -182,7 +182,7 @@
 
 
 
-    <com.chetuhui.lcj.myapplication.view.supertextview.SuperTextView
+    <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
         android:layout_width="match_parent"
         android:id="@+id/tv_confirm_quzhifu"
         android:layout_height="wrap_content"

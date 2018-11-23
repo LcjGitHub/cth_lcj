@@ -20,11 +20,11 @@
         android:alpha="0.6"
         android:background="@android:color/darker_gray"
         />
-    <com.chetuhui.lcj.myapplication.view.tabview.CustomTabView
+    <com.chetuhui.lcj.chezhubao.view.tabview.CustomTabView
         android:id="@+id/custom_tab_container"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_50">
 
-    </com.chetuhui.lcj.myapplication.view.tabview.CustomTabView>
+    </com.chetuhui.lcj.chezhubao.view.tabview.CustomTabView>
 
 </LinearLayout>

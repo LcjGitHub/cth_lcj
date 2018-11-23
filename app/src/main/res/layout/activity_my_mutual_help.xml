@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/f9"
+    tools:context=".activity.MyMutualHelpActivity">
+    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+        android:id="@+id/titlebar_mmh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerText="我的互助单"
+        app:centerType="textView"
+        app:fillStatusBar="false"
+        app:leftImageResource="@drawable/back"
+
+        app:leftType="imageButton"
+
+        app:showBottomLine="false"
+        app:titleBarColor="@color/transparent" />
+    <LinearLayout
+        android:layout_below="@+id/titlebar_mmh"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_margin="@dimen/dp_10"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"
+                android:src="@drawable/huzhu_listpic"
+                android:layout_alignParentRight="true"
+                />
+            <TextView
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已保障\n20天"
+                />
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/dp_10"
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="99元享受每年2次维修机会"
+                    android:textSize="@dimen/dp_15"
+                    android:textColor="@color/_3"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="互助车辆：川A2342"
+                    android:textSize="@dimen/dp_13"
+                    android:textColor="@color/_6"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="剩余次数：2"
+                    android:textSize="@dimen/dp_13"
+                    android:textColor="@color/_6"
+                    />
+                <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="保障期限：2018-09-21 至2019-09-21"
+                android:textSize="@dimen/dp_13"
+                android:textColor="@color/_6"
+                />
+
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

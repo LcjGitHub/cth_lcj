@@ -73,11 +73,12 @@
             android:layout_height="wrap_content"
 
 
+
             android:hint="验证码"
             android:padding="@dimen/dp_10"
 
             android:inputType="text"
-            android:maxLength="11"
+            android:maxLength="8"
             android:singleLine="true"
             android:layout_marginRight="@dimen/dp_10"
             android:background="@drawable/shape_rectangle_5_f5"
@@ -120,7 +121,7 @@
             android:padding="@dimen/dp_10"
 
             android:inputType="textPassword"
-            android:maxLength="11"
+            android:maxLength="20"
             android:singleLine="true"
             android:background="@null"
             android:layout_toLeftOf="@+id/iv_registered_pw_eye"
@@ -155,7 +156,7 @@
             android:padding="@dimen/dp_10"
 
             android:inputType="textPassword"
-            android:maxLength="11"
+            android:maxLength="20"
             android:singleLine="true"
             android:background="@null"
             android:layout_toLeftOf="@+id/iv_registered_pw_eye2"
