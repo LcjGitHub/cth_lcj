@@ -46,7 +46,7 @@ public class AdvertiseActivity extends ActivityBase {
         mImageView.setOnClickListener(new OnRepeatClickListener() {
             @Override
             public void onRepeatClick(View v) {
-                getN_saveHitCount(String.valueOf(adverBean.getData().getId()));
+//                getN_saveHitCount(String.valueOf(adverBean.getData().getId()));
 
             }
         });
@@ -60,8 +60,8 @@ public class AdvertiseActivity extends ActivityBase {
                     startActivity(new Intent(AdvertiseActivity.this, LoginActivity.class));
                     finish();
                 }else {
-                    startActivity(new Intent(AdvertiseActivity.this, CityActivity.class));
-                    finish();
+//                    startActivity(new Intent(AdvertiseActivity.this, CityActivity.class));
+//                    finish();
                 }
 
             }

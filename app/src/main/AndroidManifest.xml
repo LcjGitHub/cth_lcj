@@ -53,11 +53,6 @@
         <activity
             android:name=".activity.HomeActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.MessageActivity" />
         <activity android:name=".activity.LoginActivity" />
@@ -71,7 +66,14 @@
         <activity android:name=".activity.AuditorActivity" />
         <activity android:name=".activity.ConfirmActivity" />
         <activity android:name=".activity.PopularActivity" />
-        <activity android:name=".activity.AdvertiseActivity" />
+        <activity android:name=".activity.AdvertiseActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".activity.CityActivity" />
         <activity android:name=".activity.UserListActivity" />
         <activity android:name=".activity.AccountActivity" />

@@ -26,7 +26,7 @@
         app:showBottomLine="false"
         app:titleBarColor="@color/transparent" />
     <RelativeLayout
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_below="@+id/titlebar_as"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_90">
@@ -77,7 +77,7 @@
 
     </RelativeLayout>
     <android.support.v4.widget.SwipeRefreshLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/sl_as_"
         android:layout_above="@+id/tv_as_xiayibu"
         android:layout_below="@+id/titlebar_as"
