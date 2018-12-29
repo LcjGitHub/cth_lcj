@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/white"
+    android:fitsSystemWindows="true"
     tools:context=".activity.UserListActivity">
 
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:id="@+id/titlebar_userlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         app:centerText="用户列表"
-        app:centerType="textView"
         app:centerTextColor="@color/black"
+        app:centerType="textView"
         app:fillStatusBar="false"
         app:leftImageResource="@drawable/back"
         app:leftType="imageButton"
@@ -23,32 +23,36 @@
         app:rightType="imageButton"
         app:showBottomLine="false"
         app:titleBarColor="@color/transparent" />
+
     <ImageView
+        android:id="@+id/iv_amc_sqt"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:src="@drawable/sqt"
         android:visibility="gone"
-        android:layout_below="@+id/titlebar_userlist"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/a3"/>
+
+        />
+
     <android.support.v4.widget.SwipeRefreshLayout
-        android:visibility="visible"
-        android:layout_below="@+id/titlebar_userlist"
         android:id="@+id/sr_userlist_"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/titlebar_userlist"
+        android:visibility="visible">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_userlist_"
-            android:layout_margin="@dimen/dp_10"
-
             android:layout_width="match_parent"
-            android:overScrollMode="never"
-            android:layout_height="match_parent">
+
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dp_10"
+            android:overScrollMode="never">
 
         </android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
-
-
-
 
 
 </RelativeLayout>

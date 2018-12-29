@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:fitsSystemWindows="true"
 
     tools:context=".activity.AddCarActivity">
     <RelativeLayout
@@ -13,11 +14,11 @@
         android:background="@color/home_button"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_200">
-        <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+        <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
             android:id="@+id/titlebar_addcar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_15"
+
             app:centerText="添加车辆"
             app:centerType="textView"
             app:centerTextColor="@color/white"
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
 
             android:src="@drawable/addcar_photo"/>
-        <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+        <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
             android:text="重新拍摄"
             android:visibility="gone"
             android:id="@+id/tv_addcar_cxps"
@@ -95,6 +96,7 @@
                     android:hint="请输入"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLength="8"
                     />
                 <ImageView
                     android:visibility="gone"
@@ -215,6 +217,7 @@
                     android:hint="请输入"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:digits="@string/alphabet_and_number"
                     />
                 <ImageView
                     android:visibility="gone"
@@ -225,6 +228,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/tjcl_greenpen"
+                    android:maxLength="17"
                     />
                 <View
                     android:layout_alignParentBottom="true"
@@ -255,6 +259,8 @@
                     android:hint="请输入"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLength="10"
+                    android:digits="@string/alphabet_and_number"
                     />
                 <ImageView
                     android:visibility="gone"

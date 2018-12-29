@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/dp_50"
+        android:layout_marginRight="@dimen/dp_50"
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <ImageView
+            android:id="@+id/iv_dg_if_hdgz_cha"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/if_cha"/>
+        <ScrollView
+            android:background="@drawable/shape_rectangle_5_white"
+            android:layout_below="@+id/iv_dg_if_hdgz_cha"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/dp_15"
+                    android:layout_marginBottom="@dimen/dp_5"
+                    android:textColor="@color/_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="活动规则"/>
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/tv_dg_if_hdgz_con"
+                    android:padding="@dimen/dp_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/_6"
+                    android:textSize="@dimen/dp_12"
+                    />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

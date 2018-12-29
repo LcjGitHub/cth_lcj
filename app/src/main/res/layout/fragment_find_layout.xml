@@ -13,7 +13,7 @@
         android:background="@color/home_button"
         android:paddingBottom="@dimen/dp_55">
 
-        <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+        <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
             android:id="@+id/titlebar_find"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +36,8 @@
         android:id="@+id/ll_home_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_home_scroll"
+
+
         android:layout_marginLeft="@dimen/dp_10"
         android:layout_marginRight="@dimen/dp_10"
         android:layout_marginTop="@dimen/dp_m_50"
@@ -114,31 +115,48 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_80"
             android:layout_marginTop="@dimen/dp_10">
+
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="@dimen/dp_5"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:visibility="gone">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/car"/>
+                    android:src="@drawable/car" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="川A***23"/>
+                    android:text="川A***23" />
 
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <ImageView
+                android:id="@+id/iv_amc_sqt"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_50"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:src="@drawable/sqt"
                 android:visibility="gone"
+
+                />
+
+
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_find_huzhucheliang"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:layout_toLeftOf="@+id/tv_find_tianjiacheliang">
+                android:layout_toLeftOf="@+id/tv_find_tianjiacheliang"
+                android:background="@color/white"
+                android:visibility="visible">
 
             </android.support.v7.widget.RecyclerView>
 
@@ -160,60 +178,12 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rl_find_fangan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_10"
-        android:background="@color/white">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/iv_find_listpic"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_find_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="100元享受每年2次维修机会"
-                android:textColor="@color/_3"
-                android:textSize="@dimen/dp_16" />
-
-            <TextView
-                android:id="@+id/tv_find_cishu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dp_5"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="剩余维修次数：2"
-                android:textColor="@color/_3"
-                android:textSize="@dimen/dp_14" />
-
-            <TextView
-                android:id="@+id/tv_find_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="保障期限：2018-09-21 至2019-09-21"
-                android:textColor="@color/_9"
-                android:textSize="@dimen/dp_12" />
-
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/iv_find_listpic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_margin="@dimen/dp_10"
-            android:src="@drawable/huzhu_listpic" />
-
-
-    </RelativeLayout>
+    </android.support.v7.widget.RecyclerView>
 
 
 </LinearLayout>

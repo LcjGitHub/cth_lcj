@@ -8,7 +8,7 @@
     android:background="@color/f9"
     tools:context=".activity.ConfirmActivity">
 
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:background="@color/white"
         android:id="@+id/titlebar_confirm"
         android:layout_width="match_parent"
@@ -44,6 +44,7 @@
                 android:layout_margin="@dimen/dp_10"
                 android:text="互助单类别"/>
             <TextView
+                android:id="@+id/tv_confirm_leibie"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,7 +53,7 @@
                 android:drawablePadding="@dimen/dp_10"
                 android:textSize="@dimen/dp_15"
                 android:layout_margin="@dimen/dp_10"
-                android:text="99元初级互助单"/>
+                android:text="请选择"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_0_5"
@@ -66,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40">
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/_3"
@@ -74,6 +76,7 @@
                 android:layout_margin="@dimen/dp_10"
                 android:text="互助车数量"/>
             <TextView
+                android:id="@+id/tv_confirm_shuliang"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,7 +85,7 @@
                 android:drawablePadding="@dimen/dp_10"
                 android:textSize="@dimen/dp_15"
                 android:layout_margin="@dimen/dp_10"
-                android:text="12辆"/>
+                android:text="0辆"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_0_5"
@@ -103,6 +106,7 @@
             android:layout_margin="@dimen/dp_10"
             android:text="互助单价"/>
         <TextView
+            android:id="@+id/tv_confirm_danjia"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,7 +115,7 @@
             android:drawablePadding="@dimen/dp_10"
             android:textSize="@dimen/dp_15"
             android:layout_margin="@dimen/dp_10"
-            android:text="￥99.00"/>
+            android:text="￥00.00"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0_5"
@@ -132,6 +136,7 @@
             android:layout_margin="@dimen/dp_10"
             android:text="红包抵扣"/>
         <TextView
+            android:id="@+id/tv_confirm_hongbao"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,7 +145,7 @@
             android:drawablePadding="@dimen/dp_10"
             android:textSize="@dimen/dp_15"
             android:layout_margin="@dimen/dp_10"
-            android:text="￥30.00"/>
+            android:text="选择红包"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0_5"
@@ -159,8 +164,9 @@
             android:textStyle="bold"
             android:textSize="@dimen/dp_15"
             android:layout_margin="@dimen/dp_10"
-            android:text="互助单类别"/>
+            android:text="总计金额"/>
         <TextView
+            android:id="@+id/tv_confirm_zongji"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -169,7 +175,7 @@
             android:drawablePadding="@dimen/dp_10"
             android:textSize="@dimen/dp_15"
             android:layout_margin="@dimen/dp_10"
-            android:text="￥111.00"/>
+            android:text="￥00.00"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_0_5"
@@ -182,7 +188,7 @@
 
 
 
-    <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+    <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
         android:layout_width="match_parent"
         android:id="@+id/tv_confirm_quzhifu"
         android:layout_height="wrap_content"

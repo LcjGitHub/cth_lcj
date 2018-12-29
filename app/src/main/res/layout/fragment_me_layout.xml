@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/me_bg">
 
-        <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+        <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
             android:id="@+id/titlebar_me"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,14 +29,25 @@
             app:rightType="imageButton"
             app:showBottomLine="false"
             app:titleBarColor="@color/transparent" />
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/titlebar_me"
+            android:layout_margin="@dimen/dp_15"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_80"
+            android:src="@drawable/morentu"
+            android:id="@+id/iv_me_tx"
+            />
 
         <TextView
             android:id="@+id/tv_me_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/titlebar_me"
-            android:layout_margin="@dimen/dp_15"
-            android:text="不加糖"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="@dimen/dp_20"
             android:textStyle="bold" />
@@ -49,20 +60,21 @@
             android:layout_marginLeft="@dimen/dp_15"
             android:drawableLeft="@drawable/user_phome"
             android:drawablePadding="@dimen/dp_5"
-            android:text="不加糖"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="@dimen/dp_14" />
 
         <TextView
+            android:visibility="visible"
             android:id="@+id/tv_me_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_me_ph"
             android:layout_marginLeft="@dimen/dp_15"
-            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginTop="@dimen/dp_5"
             android:drawableLeft="@drawable/user_day"
             android:drawablePadding="@dimen/dp_5"
-            android:text="不加糖"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="@dimen/dp_14" />
 
@@ -214,7 +226,7 @@
                     android:drawablePadding="@dimen/dp_10"
                     android:drawableTop="@drawable/user_hongbao"
                     android:gravity="center"
-                    android:text="红包卡卷"
+                    android:text="红包卡券"
                     android:textColor="@color/_6"
                     android:textSize="@dimen/dp_14" />
 
@@ -353,7 +365,7 @@
                     />
 
             </RelativeLayout>
-            <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+            <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
                 android:id="@+id/tv_me_tuichu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

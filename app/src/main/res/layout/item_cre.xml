@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="@dimen/dp_5"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/tv_item_cre_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$5"
+        android:textColor="@color/red"
+        android:textSize="@dimen/dp_20"
+        android:layout_margin="@dimen/dp_15"
+        android:textStyle="bold"
+
+        />
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_5"
+        android:id="@+id/ll_item_cre"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_item_cre_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1111111111111"
+            android:textSize="@dimen/dp_15"
+            android:textColor="@color/_3"
+
+            />
+        <TextView
+            android:id="@+id/tv_item_cre_time"
+            android:layout_margin="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="222222"
+            android:textSize="@dimen/dp_13"
+            android:textColor="@color/_6"
+
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+
+        android:id="@+id/ll_item_cre2"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_below="@+id/ll_item_cre"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/bksy"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="不可用原因"
+            android:textColor="@color/_6"
+
+            />
+        <TextView
+            android:id="@+id/tv_item_cre_yy"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="222222"
+            android:textSize="@dimen/dp_13"
+            android:textColor="@color/_6"
+
+            />
+
+
+    </LinearLayout>
+    <View
+        android:id="@+id/iv_item_cre"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_110"
+        android:background="@color/white_66"
+        />
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/f9"
+    tools:context=".activity.FeedbackActivity">
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
+        android:id="@+id/titlebar_fb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerText="意见反馈"
+        app:centerType="textView"
+        app:fillStatusBar="false"
+        app:leftImageResource="@drawable/back"
+        app:leftType="imageButton"
+
+        app:rightType="imageButton"
+        app:showBottomLine="false"
+        app:titleBarColor="@color/transparent" />
+    <EditText
+        android:id="@+id/et_fb_con"
+        android:layout_marginTop="@dimen/dp_1"
+        android:padding="@dimen/dp_5"
+        android:gravity="start"
+        android:layout_below="@+id/titlebar_fb"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_125"
+        android:textColor="@color/_3"
+        android:background="@color/white"
+        android:hint="描述你遇到的问题，帮助我们为你提供优质的服务"/>
+    <RelativeLayout
+        android:layout_below="@+id/et_fb_con"
+        android:layout_marginTop="@dimen/dp_15"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_fb_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="联系方式："
+            android:textColor="@color/_3"
+            android:textSize="@dimen/dp_15"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:padding="@dimen/dp_10"
+            />
+        <EditText
+            android:id="@+id/et_fb_lxfs"
+            android:layout_centerVertical="true"
+            android:background="@color/transparent"
+            android:layout_toRightOf="@+id/tv_fb_tv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_15"
+            android:hint="请输入手机号/邮箱"
+            android:textColor="@color/_3"
+            android:textSize="@dimen/dp_15"
+
+
+
+        />
+
+    </RelativeLayout>
+    <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
+        android:id="@+id/tv_fb_tijiao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/dp_30"
+
+        android:text="提交"
+        android:gravity="center"
+        android:textSize="@dimen/dp_15"
+        android:textColor="@color/white"
+        app:stv_corner="40dp"
+        android:padding="@dimen/dp_15"
+        app:stv_solid="@color/home_button"
+
+
+        />
+
+
+
+
+
+
+
+</RelativeLayout>

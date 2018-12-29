@@ -13,7 +13,7 @@
         android:scaleType="fitXY"
         android:src="@drawable/home_bg" />
 
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:id="@+id/titlebar_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,6 +26,19 @@
         app:rightType="imageButton"
         app:showBottomLine="false"
         app:titleBarColor="@color/transparent" />
+    <TextView
+        android:layout_marginLeft="@dimen/dp_15"
+        android:id="@+id/tv_home_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="选择城市"
+        android:textSize="@dimen/dp_15"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:drawableRight="@drawable/you"
+        android:layout_marginTop="@dimen/dp_20"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -65,7 +78,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="¥ "
+                        android:text=" "
                         android:textColor="@color/white"
                         android:textSize="@dimen/dp_17" />
 
@@ -74,7 +87,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="123456"
+                        android:text=""
                         android:textColor="@color/white"
                         android:textSize="@dimen/dp_30" />
 
@@ -85,25 +98,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_20"
-                    android:text="已有23423辆车加入"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="@dimen/dp_16" />
 
 
             </LinearLayout>
 
-            <TextView
+            <com.chetuhui.lcj.chezhubao_x.view.RunTextView
+                android:visibility="visible"
                 android:id="@+id/tv_home_scroll"
-                android:layout_width="match_parent"
 
-                android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_home_money_center"
-                android:layout_marginLeft="@dimen/dp_20"
-                android:layout_marginRight="@dimen/dp_20"
-                android:layout_marginTop="@dimen/dp_10"
-                android:ellipsize="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="用户138****2325加入了车助宝互助平台，获得1年1500元的维修基金" />
+                android:textColor="@color/black"
+                android:text="" />
 
             <LinearLayout
                 android:id="@+id/ll_home_2"
@@ -181,7 +197,7 @@
 
                 android:paddingRight="@dimen/dp_80"
                 android:paddingTop="@dimen/dp_10"
-                android:text="申请互助"
+                android:text="申请加入互助"
                 android:textColor="@color/white"
                 android:textSize="@dimen/dp_15"
 

@@ -27,7 +27,7 @@
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:text="Android的起源"
-            android:textColor="@color/blue"
+            android:textColor="@color/home_button"
             android:textSize="18dp"
             android:textStyle="bold"/>
 
@@ -62,7 +62,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="确认"
-                android:textColor="@color/_8c"
+                android:textColor="@color/black"
                 android:textSize="16dp"/>
 
         </LinearLayout>

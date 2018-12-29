@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:background="@color/f9"
     tools:context=".activity.UploadPhotosActivity">
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:id="@+id/titlebar_up"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,6 +37,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/iv_up_chetou"
 
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -49,6 +50,7 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/tv_up_chetou"
                   android:layout_centerInParent="true"
                     android:drawablePadding="@dimen/dp_5"
                     android:drawableTop="@drawable/sczp_pthoto"
@@ -73,6 +75,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:id="@+id/iv_up_chewei"
 
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -85,6 +88,45 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/tv_up_chewei"
+                    android:layout_centerInParent="true"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:drawableTop="@drawable/sczp_pthoto"
+                    android:text="受损车车尾45°"
+                    android:textColor="@color/home_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_120">
+            <RelativeLayout
+                android:layout_margin="@dimen/dp_1"
+                android:background="@drawable/shape_rectangle_5_f_b"
+                android:layout_weight="1"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_up_cypzw"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_margin="@dimen/dp_1"
+                android:layout_weight="1"
+                android:background="@drawable/shape_rectangle_5_white_b"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_up_cypzw"
                     android:layout_centerInParent="true"
                     android:drawablePadding="@dimen/dp_5"
                     android:drawableTop="@drawable/sczp_pthoto"
@@ -109,7 +151,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-
+                    android:id="@+id/iv_up_xijie"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -121,6 +163,7 @@
                 android:layout_width="@dimen/dp_0"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/tv_up_xijie"
                     android:layout_centerInParent="true"
                     android:drawablePadding="@dimen/dp_5"
                     android:drawableTop="@drawable/sczp_pthoto"

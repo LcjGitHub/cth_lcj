@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:background="@color/f9"
     tools:context=".activity.BindingActivity">
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:id="@+id/titlebar_changepw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
             android:drawableLeft="@drawable/login_weixin"
            android:drawablePadding="@dimen/dp_15"
             />
-        <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+        <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
             android:id="@+id/tv_binding_"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

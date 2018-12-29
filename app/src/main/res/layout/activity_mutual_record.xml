@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:background="@color/f9"
     tools:context=".activity.MutualRecordActivity">
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:id="@+id/titlebar_mr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,6 +21,41 @@
         app:showBottomLine="false"
         app:titleBarColor="@color/transparent" />
     <LinearLayout
+        android:layout_below="@+id/titlebar_mr"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.chetuhui.lcj.chezhubao_x.view.tabview.CustomTabViewBottom
+            android:layout_marginTop="@dimen/dp_10"
+            android:id="@+id/custom_tab_mr"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50">
+
+        </com.chetuhui.lcj.chezhubao_x.view.tabview.CustomTabViewBottom>
+        <View android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0_5"
+            android:alpha="0.6"
+            android:background="@android:color/darker_gray"
+            />
+
+        <FrameLayout
+            android:id="@+id/mr_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:visibility="gone"
         android:layout_below="@+id/titlebar_mr"
         android:orientation="vertical"
         android:layout_width="match_parent"

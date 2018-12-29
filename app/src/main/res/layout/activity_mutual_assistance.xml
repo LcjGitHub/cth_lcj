@@ -8,7 +8,7 @@
     android:background="@color/f9"
     tools:context=".activity.MutualAssistanceActivity">
 
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:id="@+id/titlebar_ma"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -260,8 +260,8 @@
     android:textSize="@dimen/dp_15"
     android:background="@color/home_button"
     android:gravity="center"
-    android:paddingTop="@dimen/dp_5"
-    android:paddingBottom="@dimen/dp_5"
+    android:paddingTop="@dimen/dp_10"
+    android:paddingBottom="@dimen/dp_10"
     android:layout_alignParentBottom="true"
     />
 </RelativeLayout>

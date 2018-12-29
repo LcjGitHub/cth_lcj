@@ -12,7 +12,7 @@
               android:paddingTop="18dp">
 
 
-    <com.vondear.rxui.view.progressing.SpinKitView
+    <com.chetuhui.lcj.chezhubao_x.view.progressing.SpinKitView
         android:id="@+id/spin_kit"
         style="@style/SpinKitView.CubeGrid"
         android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginTop="10dp"
         android:text="正在进行网络请求..."
-        android:textColor="@color/brown"
+        android:textColor="@color/home_button"
         android:textSize="16sp"/>
 
 </LinearLayout>

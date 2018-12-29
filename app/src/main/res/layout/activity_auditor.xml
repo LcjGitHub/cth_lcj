@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:background="@color/white"
     tools:context=".activity.AuditorActivity">
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:background="@color/white"
         android:id="@+id/titlebar_auditor"
         android:layout_width="match_parent"
@@ -46,6 +46,7 @@
             android:layout_width="match_parent"
             android:hint="请填写联系人姓名"
             android:padding="@dimen/dp_10"
+            android:maxLength="11"
             android:layout_height="wrap_content" />
         <LinearLayout
             android:layout_margin="@dimen/dp_15"
@@ -62,7 +63,9 @@
             <EditText
                 android:id="@+id/et_auditor_ph"
                 android:hint="请输入"
-                android:background="@color/transparent"
+                android:inputType="number"
+                android:maxLength="11"
+                android:background="@drawable/shape_rectangle_5_f5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -75,6 +78,43 @@
             android:textSize="@dimen/dp_15"
             android:textColor="@color/_3"
             android:text="请填写审核地区："/>
+        <RelativeLayout
+            android:layout_margin="@dimen/dp_15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+           <TextView
+               android:text="成都市"
+                android:id="@+id/tv_auditor_city"
+               android:textColor="@color/_3"
+               android:textSize="@dimen/dp_15"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content" />
+
+            <TextView
+                android:background="@drawable/shape_rectangle_50_f6"
+                android:id="@+id/tv_auditor_qxz"
+                android:text="请选择"
+                android:padding="@dimen/dp_5"
+              android:layout_centerInParent="true"
+                android:textColor="@color/_6"
+                android:textSize="@dimen/dp_15"
+                android:layout_width="@dimen/dp_150"
+                android:layout_height="wrap_content" />
+
+
+
+        </RelativeLayout>
+        <TextView
+
+            android:layout_marginLeft="@dimen/dp_15"
+            android:layout_marginBottom="@dimen/dp_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dp_15"
+            android:textColor="@color/_3"
+            android:text="详细地址："/>
+
         <RelativeLayout
             android:layout_marginLeft="@dimen/dp_15"
             android:layout_marginRight="@dimen/dp_15"
@@ -96,7 +136,7 @@
     </LinearLayout>
 
 
-    <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+    <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
         android:layout_width="match_parent"
         android:id="@+id/tv_auditor_xiayibu"
         android:layout_height="wrap_content"

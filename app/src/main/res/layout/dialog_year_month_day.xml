@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@drawable/shape_gray_circle_bg"
+              android:background="@drawable/shape_white"
               android:orientation="vertical">
 
     <RelativeLayout
@@ -13,8 +13,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="选择年月"
-            android:textColor="#005D9E"
+            android:text="选择时间"
+            android:textColor="@color/home_button"
             android:textSize="20sp"/>
 
         <LinearLayout
@@ -54,22 +54,29 @@
         android:layout_height="150dp"
         android:gravity="center">
 
-        <com.vondear.rxui.view.dialog.wheel.WheelView
+        <com.chetuhui.lcj.chezhubao_x.view.dialog.wheel.WheelView
             android:id="@+id/wheelView_year"
             android:layout_width="60dp"
             android:layout_height="80dp"/>
 
-        <com.vondear.rxui.view.dialog.wheel.WheelView
+        <com.chetuhui.lcj.chezhubao_x.view.dialog.wheel.WheelView
             android:id="@+id/wheelView_month"
             android:layout_width="60dp"
             android:layout_height="80dp"
             android:layout_marginLeft="20dp"/>
 
-        <com.vondear.rxui.view.dialog.wheel.WheelView
+        <com.chetuhui.lcj.chezhubao_x.view.dialog.wheel.WheelView
             android:id="@+id/wheelView_day"
             android:layout_width="60dp"
             android:layout_height="80dp"
             android:layout_marginLeft="20dp"/>
+        <com.chetuhui.lcj.chezhubao_x.view.dialog.wheel.WheelView
+            android:visibility="gone"
+            android:id="@+id/wheelView_tiem"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="20dp"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -86,7 +93,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="确定"
-            android:textColor="#595757"
+            android:textColor="@color/home_button"
             android:textSize="18sp"/>
 
         <View
@@ -104,7 +111,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="取消"
-            android:textColor="#595757"
+            android:textColor="@color/black"
             android:textSize="18sp"/>
 
     </LinearLayout>

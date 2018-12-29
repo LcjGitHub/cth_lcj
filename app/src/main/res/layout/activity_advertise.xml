@@ -6,12 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".activity.AdvertiseActivity">
     <ImageView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:id="@+id/iv_ad_"
+        android:layout_above="@+id/iv_gg"
         />
     <TextView
+        android:layout_alignParentBottom="true"
         android:id="@+id/start_skip_count_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,6 +25,17 @@
         android:background="@drawable/bg_start_page_circle"
         android:textColor="@android:color/white"
         android:textSize="14sp"
+        />
+    <ImageView
+        android:id="@+id/iv_gg"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/dp_100"
+        android:layout_marginRight="@dimen/dp_100"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gg_bg"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/dp_20"
         />
 
 

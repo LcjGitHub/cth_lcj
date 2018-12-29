@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    tools:context=".activity.MutualHelpListDetailsActivity">
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
+        android:id="@+id/titlebar_mhld"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:centerText="互助单详情"
+        app:centerType="textView"
+        app:fillStatusBar="false"
+        app:leftImageResource="@drawable/back"
+        app:leftType="imageButton"
+
+        app:rightType="imageButton"
+        app:showBottomLine="false"
+        app:titleBarColor="@color/transparent" />
+    <LinearLayout
+        android:layout_below="@+id/titlebar_mhld"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+       <RelativeLayout
+           android:layout_marginBottom="@dimen/dp_10"
+           android:background="@color/white"
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <TextView
+               android:id="@+id/tv_mhld_title"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="11"
+               android:textColor="@color/_3"
+               android:layout_margin="@dimen/dp_10"
+               android:textSize="@dimen/dp_16"/>
+           <TextView
+               android:id="@+id/tv_mhld_ddh"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="11"
+               android:textColor="@color/_6"
+                android:layout_below="@+id/tv_mhld_title"
+               android:layout_marginLeft="@dimen/dp_10"
+               android:layout_marginBottom="@dimen/dp_10"
+               android:textSize="@dimen/dp_14"/>
+           <ImageView
+               android:id="@+id/iv_mhld"
+               android:layout_alignParentRight="true"
+               android:layout_centerVertical="true"
+               android:layout_marginRight="@dimen/dp_30"
+               android:layout_width="@dimen/dp_60"
+               android:layout_height="@dimen/dp_60"
+
+               />
+
+
+       </RelativeLayout>
+        <LinearLayout
+
+
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_rectangle_50_f6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="剩余互助次数："
+                android:textColor="@color/_3"
+
+                android:textSize="@dimen/dp_14"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/_6"
+                android:id="@+id/tv_mhld_cishu"
+                android:textSize="@dimen/dp_14"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+
+
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_rectangle_50_f6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="单次互助金额上限："
+                android:textColor="@color/_3"
+
+                android:textSize="@dimen/dp_14"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/_6"
+                android:id="@+id/tv_mhld_shangxian"
+                android:textSize="@dimen/dp_14"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+
+
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_rectangle_50_f6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="互助单费用："
+                android:textColor="@color/_3"
+
+                android:textSize="@dimen/dp_14"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/_6"
+                android:id="@+id/tv_mhld_feiyong"
+                android:textSize="@dimen/dp_14"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+
+
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_rectangle_50_f6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="互助单购买时间："
+                android:textColor="@color/_3"
+
+                android:textSize="@dimen/dp_14"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/_6"
+                android:id="@+id/tv_mhld_goumai"
+                android:textSize="@dimen/dp_14"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+
+
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_rectangle_50_f6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="保障开始时间："
+                android:textColor="@color/_3"
+
+                android:textSize="@dimen/dp_14"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/_6"
+                android:id="@+id/tv_mhld_hometime"
+                android:textSize="@dimen/dp_14"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+
+
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_rectangle_50_f6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_mhld_endtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="保障结束时间："
+                android:textColor="@color/_3"
+
+                android:textSize="@dimen/dp_14"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/_6"
+
+                android:textSize="@dimen/dp_14"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+
+
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_rectangle_50_f6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="保障期限："
+                android:textColor="@color/_3"
+
+                android:textSize="@dimen/dp_14"/>
+            <TextView
+                android:id="@+id/tv_mhld_qixian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/_6"
+
+                android:textSize="@dimen/dp_14"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+
+
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_rectangle_50_f6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="互助记录："
+                android:textColor="@color/_3"
+
+                android:textSize="@dimen/dp_14"/>
+            <TextView
+                android:id="@+id/tv_mhld_chakan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="查看"
+                android:textColor="@color/home_button"
+
+                android:textSize="@dimen/dp_14"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_10"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_rectangle_50_f6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="互助车牌号："
+                android:textColor="@color/_3"
+
+                android:textSize="@dimen/dp_14"/>
+            <TextView
+                android:id="@+id/tv_mhld_cph"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/_6"
+
+                android:textSize="@dimen/dp_14"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>

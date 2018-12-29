@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/white"
+    android:fitsSystemWindows="true"
     tools:context=".activity.AuditStationActivity">
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
-        android:background="@color/white"
+
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:id="@+id/titlebar_as"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         app:centerText="服务站审核"
         app:centerTextColor="@color/black"
 
@@ -19,97 +20,110 @@
         app:fillStatusBar="false"
         app:leftImageResource="@drawable/back"
         app:leftType="imageButton"
-        app:rightType="textView"
         app:rightText="审核流程"
-        app:rightTextSize="@dimen/dp_12"
         app:rightTextColor="@color/black"
+        app:rightTextSize="@dimen/dp_12"
+        app:rightType="textView"
         app:showBottomLine="false"
         app:titleBarColor="@color/transparent" />
+
     <RelativeLayout
-        android:visibility="gone"
-        android:layout_below="@+id/titlebar_as"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_90">
+        android:layout_height="@dimen/dp_90"
+        android:layout_below="@+id/titlebar_as"
+        android:visibility="gone">
+
         <CheckBox
             android:id="@+id/cb_item_as"
-            android:layout_centerVertical="true"
+            style="@style/CustomCheckBoxTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_centerVertical="true"
             android:layout_margin="@dimen/dp_15"
-            style="@style/CustomCheckBoxTheme"
+            android:gravity="center"
 
-          />
+            />
+
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_40"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tv_item_select_car_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="审核服务站名称"
                 android:textColor="@color/_3"
-                android:textSize="@dimen/dp_15"
-                android:text="审核服务站名称"/>
+                android:textSize="@dimen/dp_15" />
+
             <TextView
-                android:layout_marginTop="@dimen/dp_5"
                 android:id="@+id/tv_item_select_car_cod"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="电话：028-12434242 "
                 android:textColor="@color/_6"
-                android:textSize="@dimen/dp_13"
-                android:text="电话：028-12434242 "/>
+                android:textSize="@dimen/dp_13" />
+
             <TextView
                 android:id="@+id/tv_item_select_car_co"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="高新区环球中心S2三楼"
                 android:textColor="@color/_6"
-                android:textSize="@dimen/dp_13"
-                android:text="高新区环球中心S2三楼"/>
+                android:textSize="@dimen/dp_13" />
 
         </LinearLayout>
 
 
-
-
-
     </RelativeLayout>
+
+
+
     <android.support.v4.widget.SwipeRefreshLayout
-        android:visibility="visible"
         android:id="@+id/sl_as_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/tv_as_xiayibu"
         android:layout_below="@+id/titlebar_as"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:visibility="visible">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_as_"
-            android:layout_marginTop="@dimen/dp_10"
-
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp_10">
 
 
         </android.support.v7.widget.RecyclerView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
-        android:layout_width="match_parent"
+    <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
         android:id="@+id/tv_as_xiayibu"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="下一步"
         android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10"
+        android:text="下一步"
         android:textColor="@color/white"
         android:textSize="@dimen/dp_15"
-        android:gravity="center"
-        android:paddingTop="@dimen/dp_10"
-        android:paddingBottom="@dimen/dp_10"
-        app:stv_solid="@color/home_button"
+        app:stv_solid="@color/home_button" />
+
+    <ImageView
+        android:id="@+id/iv_amc_sqt"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:src="@drawable/sqt"
+        android:visibility="gone"
+
         />
-
-
-
 </RelativeLayout>

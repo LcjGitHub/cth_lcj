@@ -4,32 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/f9"
+    android:fitsSystemWindows="true"
     tools:context=".activity.IHelpActivity">
 
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:id="@+id/titlebar_ihelp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:centerText="我要救助"
         app:centerType="textView"
         app:fillStatusBar="false"
-       app:leftImageResource="@drawable/back"
+        app:leftImageResource="@drawable/back"
 
         app:leftType="imageButton"
 
         app:showBottomLine="false"
         app:titleBarColor="@color/transparent" />
+
     <EditText
         android:id="@+id/et_ihelp_sousuo"
-        android:layout_below="@+id/titlebar_ihelp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_height="@dimen/dp_40"
+        android:layout_below="@+id/titlebar_ihelp"
+        android:layout_marginBottom="@dimen/dp_5"
         android:layout_marginLeft="@dimen/dp_20"
         android:layout_marginRight="@dimen/dp_20"
-        android:layout_marginBottom="@dimen/dp_5"
+        android:layout_marginTop="@dimen/dp_10"
         android:background="@drawable/shape_rectangle_5_f5"
         android:gravity="center"
         android:hint="请输入车牌号搜索"
@@ -37,95 +38,125 @@
 
 
         />
+
     <LinearLayout
 
-        android:layout_below="@+id/et_ihelp_sousuo"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_ihelp_sousuo"
+        android:orientation="vertical">
+
         <LinearLayout
-            android:background="@color/f5"
-            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/f5"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="快速救助"
                 android:layout_margin="@dimen/dp_10"
+                android:text="快速救助"
                 android:textColor="@color/_3"
-                android:textSize="@dimen/dp_15"
-                />
+                android:textSize="@dimen/dp_15" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp_15"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_marginRight="@dimen/dp_10"
-                android:textSize="@dimen/dp_13"
-                android:textColor="@color/_6"
-                android:layout_marginBottom="@dimen/dp_15"
                 android:text="拍照在线上传，无需制止材料，提交后24小时后即可到指定商家进行维修"
-                />
+                android:textColor="@color/_6"
+                android:textSize="@dimen/dp_13" />
 
         </LinearLayout>
+
         <RelativeLayout
-            android:background="@drawable/shape_rectangle_5_white"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_70">
+            android:layout_height="@dimen/dp_70"
+            android:background="@drawable/shape_rectangle_5_white"
+            android:visibility="gone">
+
             <ImageView
                 android:layout_width="@dimen/dp_50"
                 android:layout_height="@dimen/dp_50"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:src="@drawable/car_item"/>
+                android:src="@drawable/car_item" />
+
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dp_80"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="川A***12"
-                   android:textSize="@dimen/dp_15"
-                   android:textColor="@color/_3"
-                   android:layout_marginBottom="@dimen/dp_5"
-                   />
+                android:orientation="vertical">
+
                 <TextView
-                    android:layout_marginTop="@dimen/dp_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dp_5"
+                    android:text="川A***12"
+                    android:textColor="@color/_3"
+                    android:textSize="@dimen/dp_15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
                     android:text="剩余救助次数：2"
-                    android:textSize="@dimen/dp_13"
                     android:textColor="@color/_6"
-                    />
+                    android:textSize="@dimen/dp_13" />
 
             </LinearLayout>
-            <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+
+            <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
                 android:id="@+id/tv_ihelp_wyjz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="我要救助"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_20"
+                android:paddingBottom="@dimen/dp_5"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_5"
+                android:text="我要救助"
                 android:textColor="@color/home_button"
                 android:textSize="@dimen/dp_14"
                 app:stv_corner="@dimen/dp_20"
-                app:stv_solid="@color/d6f3"
-                android:paddingTop="@dimen/dp_5"
-                android:paddingBottom="@dimen/dp_5"
-                android:paddingRight="@dimen/dp_10"
-                android:paddingLeft="@dimen/dp_10"
-                />
+                app:stv_solid="@color/d6f3" />
 
         </RelativeLayout>
 
 
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/sl_ihelp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_ihelp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
     </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_amc_sqt"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:src="@drawable/sqt"
+        android:visibility="gone"
 
-
-
+        />
 
 </RelativeLayout>

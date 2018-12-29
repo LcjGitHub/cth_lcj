@@ -7,8 +7,8 @@ def releaseTime() {
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.chetuhui.lcj.chezhubao"
-        minSdkVersion 15
+        applicationId "com.chetuhui.lcj.chezhubao_x"
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -17,6 +17,16 @@ android {
         configurations {
             all*.exclude group: 'com.android.support', module: 'support-v13'
         }
+//        ndk {
+//            //选择要添加的对应 cpu 类型的 .so 库。
+//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+//            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+//        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "d687950a0aababb9d3119a53", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
     }
     buildTypes {
         release {
@@ -48,13 +58,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //https://github.com/gyf-dev/ImmersionBar   android 4.4以上沉浸式状态栏和沉浸式导航栏管理
     implementation 'com.gyf.immersionbar:immersionbar:2.3.2-beta01'
+    // 支付宝 SDK AAR 包所需的配置
+    implementation(name: 'alipaySdk-15.5.9-20181123210601', ext: 'aar')
     //沉浸式
     compileOnly 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     //Log日志格式美化包  https://github.com/orhanobut/logger
     implementation 'com.orhanobut:logger:2.2.0'
-    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
     //添加支持
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     //Glide4.x以上需要添加的支持
     implementation 'jp.wasabeef:glide-transformations:3.3.0'
     implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
@@ -64,7 +76,7 @@ dependencies {
 //    compile 'com.squareup.okhttp3:okhttp:3.8.1'
 //    compile 'com.squareup.okio:okio:1.13.0'
     //gson json工具类 google解析Json的库
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
     //Zxing核心包
     implementation 'com.google.zxing:core:3.3.0'
     //压缩与加密
@@ -75,6 +87,8 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     //
     implementation 'com.github.yalantis:ucrop:2.2.2-native'
-
+    implementation 'cn.jiguang.sdk:jpush:3.1.6'  // 此处以JPush 3.1.6 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:1.2.5'  // 此处以JCore 1.2.5 版本为例。
+    implementation 'com.github.apl-devs:appintro:v4.2.2'
 
 }

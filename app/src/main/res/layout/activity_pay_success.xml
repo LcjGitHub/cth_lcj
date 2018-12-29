@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    tools:context=".activity.PaySuccessActivity">
+
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
+        android:background="@color/white"
+        android:id="@+id/titlebar_pay_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerText="支付结果"
+        app:centerTextColor="@color/black"
+
+        app:centerType="textView"
+        app:fillStatusBar="false"
+
+        app:leftType="imageButton"
+        app:rightType="textView"
+        app:rightText="完成"
+        app:rightTextSize="@dimen/dp_12"
+        app:rightTextColor="@color/black"
+        app:showBottomLine="false"
+        app:titleBarColor="@color/transparent" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_ps_cg"
+
+            android:layout_above="@+id/tv_ps_wdhzd"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dp_16"
+            android:textColor="@color/ff57"
+            android:text="恭喜您，支付成功！"/>
+        <ImageView
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/tv_ps_cg"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/zfcg_icon"/>
+        <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
+            android:id="@+id/tv_ps_wdhzd"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_margin="@dimen/dp_30"
+            android:gravity="center"
+            android:padding="@dimen/dp_8"
+            android:layout_height="wrap_content"
+            app:stv_corner="@dimen/dp_50"
+            android:textColor="@color/home_button"
+            app:stv_stroke_width="@dimen/dp_1"
+            android:textSize="@dimen/dp_15"
+            app:stv_stroke_color="@color/home_button"
+            android:text="我的互助单"
+            />
+        <TextView
+            android:gravity="center"
+            android:textColor="@color/_6"
+            android:textSize="@dimen/dp_13"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/tv_ps_wdhzd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您可在【互助-全部互助单】中查看您的互助订单\n您的互助单将在您的车辆认证成功后开始生效"/>
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

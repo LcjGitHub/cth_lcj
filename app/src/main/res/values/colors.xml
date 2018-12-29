@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#FF000000</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
@@ -27,13 +27,18 @@
     <color name="f6">#f6f6f6</color>
     <color name="f9">#f9f9f9</color>
     <color name="d6">#d6d6d6</color>
+    <color name="cf">#cfcfcf</color>
     <color name="d">#dddddd</color>
     <color name="f0">#f0f0f0</color>
     <color name="e9fffb">#e9fffb</color>
     <color name="home_button">#13d2be</color>
     <color name="ff73">#ff732e</color>
     <color name="ff8a">#ff8a00</color>
+    <color name="fff4">#fff4ee</color>
     <color name="d6f3">#d6f3f0</color>
+    <color name="fb64">#fb6451</color>
+    <color name="feea">#feeaa5</color>
+    <color name="ffd">#ffdaa8</color>
 
 
     <color name="ef">#efefef</color>
@@ -47,6 +52,7 @@
     <color name="a9">#A9A9A9</color>
     <color name="e4">#e4e4e4</color>
     <color name="f5">#f5f5f5</color>
+    <color name="ff57">#ff5767</color>
     <color name="deep_gray">#afaeae</color>
     <color name="_9">#999999</color>
     <color name="_3">#333333</color>

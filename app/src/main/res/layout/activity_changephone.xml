@@ -8,7 +8,7 @@
     android:background="@color/f9"
     tools:context=".activity.ChangephoneActivity">
 
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:id="@+id/titlebar_changephone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,9 +51,9 @@
             android:inputType="number"
             android:hint="输入验证码"
             android:gravity="center"
-
+            android:maxLength="6"
             />
-        <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+        <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
             app:stv_solid="@color/d6f3"
             app:stv_corner="@dimen/dp_5"
             android:padding="@dimen/dp_5"
@@ -66,7 +66,7 @@
             android:textSize="@dimen/dp_15"
             android:textColor="@color/_3"
             android:text="获取验证码"/>
-        <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+        <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
             android:id="@+id/tv_changeph_yz"
             android:layout_margin="@dimen/dp_20"
             android:layout_width="match_parent"

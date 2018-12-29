@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.chetuhui.lcj.chezhubao">
+    package="com.chetuhui.lcj.chezhubao_x">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
     <uses-permission android:name="android.permission.GET_TOP_ACTIVITY_INFO" />
-    <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REORDER_TASKS" />
     <uses-permission
@@ -40,9 +39,21 @@
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
+        android:resizeableActivity="true"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        tools:replace="android:icon,android:theme,android:allowBackup">
+
+        <!-- 适配华为（huawei）刘海屏 -->
+        <meta-data
+            android:name="android.notch_support"
+            android:value="true" />
+        <!-- 适配小米（xiaomi）刘海屏 -->
+        <meta-data
+            android:name="notch.config"
+            android:value="portrait|landscape" />
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask" />
@@ -52,52 +63,177 @@
         >
         <activity
             android:name=".activity.HomeActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
         <activity android:name=".activity.MessageActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.RegisteredActivity" />
-        <activity android:name=".activity.PhLoginActivity" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.RegisteredActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.PhLoginActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.JoinActivity" />
-        <activity android:name=".activity.SelectCarActivity" />
-        <activity android:name=".activity.AddCarActivity" />
-        <activity android:name=".activity.SelectReviewActivity" />
-        <activity android:name=".activity.AuditStationActivity" />
-        <activity android:name=".activity.AuditorActivity" />
-        <activity android:name=".activity.ConfirmActivity" />
-        <activity android:name=".activity.PopularActivity" />
-        <activity android:name=".activity.AdvertiseActivity" >
+        <activity
+            android:name=".activity.SelectCarActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.AddCarActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.SelectReviewActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.AuditStationActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.AuditorActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.ConfirmActivity"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wx17b29e8bf656bf64" />
+
+
+                　　
+
+
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.PopularActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".activity.AdvertiseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".activity.CityActivity" />
-        <activity android:name=".activity.UserListActivity" />
-        <activity android:name=".activity.AccountActivity" />
-        <activity android:name=".activity.ChangephoneActivity" />
-        <activity android:name=".activity.ReplaceActivity" />
-        <activity android:name=".activity.ChangePasswordActivity" />
-        <activity android:name=".activity.BindingActivity" />
         <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:exported="true" />
+            android:name=".activity.CityActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.UserListActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.AccountActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.ChangephoneActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.ReplaceActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.ChangePasswordActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.BindingActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".activity.IHelpActivity" />
-        <activity android:name=".activity.MutualAssistanceActivity" />
-        <activity android:name=".activity.BasicInformationActivity" />
-        <activity android:name=".activity.UploadPhotosActivity" />
-        <activity android:name=".activity.ChooseBusinessActivity" />
-        <activity android:name=".activity.MutualRecordActivity" />
-        <activity android:name=".activity.MyMutualHelpActivity" />
-        <activity android:name=".activity.AccountFormulaActivity" />
-        <activity android:name=".activity.MutualEventsActivity" />
-        <activity android:name=".activity.EventDetailsActivity"></activity>
+        <activity
+            android:name=".activity.IHelpActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.MutualAssistanceActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.BasicInformationActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.UploadPhotosActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.ChooseBusinessActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.MutualRecordActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.MyMutualHelpActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.AccountFormulaActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.MutualEventsActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.EventDetailsActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.MutualHelpListDetailsActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.MutualRecordDetailsActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".activity.AllMutualCarsActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".activity.PaySuccessActivity" />
+        <activity android:name=".activity.VehicleDetailsActivity" />
+        <activity android:name=".activity.FeedbackActivity" />
+        <activity android:name=".activity.AboutusActivity" />
+        <activity android:name=".activity.PersonalInformationActivity" />
+        <activity android:name=".activity.SelectAidActivity" />
+
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:process=":multiprocess"
+            tools:node="replace" />
+
+        <receiver
+            android:name=".receiver.jPushReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION" />
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+
+                <category android:name="com.chetuhui.lcj.chezhubao_x" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".activity.AppIntroActivity" />
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wx17b29e8bf656bf64" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true" />
+
+        <!-- <receiver -->
+        <!-- android:name=".wxapi.AppRegister"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+        <activity android:name=".activity.CardCouponActivity" />
+        <activity android:name=".activity.ChooseRedEnvelopeActivity" />
+        <activity android:name=".activity.InviteFriendsActivity" />
+        <activity android:name=".activity.TxActivity"></activity>
     </application>
 
 </manifest>

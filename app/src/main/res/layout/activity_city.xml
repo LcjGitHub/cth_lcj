@@ -7,15 +7,41 @@
     android:fitsSystemWindows="true"
     android:background="@color/white"
     tools:context=".activity.CityActivity">
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
+        android:id="@+id/titlebar_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        app:centerText="城市定位"
+        app:centerType="textView"
+        app:fillStatusBar="false"
+        app:leftImageResource="@drawable/back"
+        app:leftType="imageButton"
+
+        app:rightType="imageButton"
+        app:showBottomLine="false"
+        app:titleBarColor="@color/transparent" />
+
 
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/titlebar_city"
         android:id="@+id/rv_city_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
 
-    <com.chetuhui.lcj.chezhubao.view.sidebar.WaveSideBarView
+    <com.chetuhui.lcj.chezhubao_x.view.sort.WaveSideBar
         android:id="@+id/sbvside_view"
+        android:layout_below="@+id/titlebar_city"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+
+        app:textSize="@dimen/dp_10"
+
+        app:textColor="#13d2be"
+
+
+
+        app:radius="20dp"
+        />
 </RelativeLayout>

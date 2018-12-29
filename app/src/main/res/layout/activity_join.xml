@@ -8,17 +8,18 @@
     android:fitsSystemWindows="true"
     tools:context=".activity.JoinActivity">
 
-    <com.chetuhui.lcj.chezhubao.view.titlebar.CommonTitleBar
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
         android:id="@+id/titlebar_join"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:centerText="申请加入"
+        app:centerText="申请加入互助"
         app:centerType="textView"
         app:fillStatusBar="false"
         app:leftImageResource="@drawable/back"
         app:leftType="imageButton"
 
         app:rightType="imageButton"
+        app:rightImageResource="@drawable/fenxiang"
         app:showBottomLine="false"
         app:titleBarColor="@color/transparent" />
 
@@ -65,6 +66,7 @@
                 android:textSize="@dimen/dp_16" />
 
             <LinearLayout
+                android:layout_gravity="top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_15"
@@ -72,12 +74,15 @@
                 android:orientation="horizontal">
 
                 <TextView
+
+                    android:visibility="gone"
                     android:layout_margin="@dimen/dp_5"
                     android:id="@+id/tv_join_fangan99"
                     android:layout_width="@dimen/dp_0"
-                    android:background="@drawable/shape_rectangle_5_white_b"
-
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rectangle_5_fff"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:layout_height="@dimen/dp_70"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text=""
@@ -85,16 +90,21 @@
                     android:textSize="@dimen/dp_15" />
 
                 <TextView
+
+                    android:visibility="gone"
                     android:layout_margin="@dimen/dp_5"
                     android:id="@+id/tv_join_fangan199"
                     android:layout_width="@dimen/dp_0"
-                    android:background="@drawable/shape_rectangle_5_white_b"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rectangle_5_fff"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:layout_height="@dimen/dp_70"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text=""
                     android:textColor="@color/_3"
                     android:textSize="@dimen/dp_15" />
+
 
 
             </LinearLayout>
@@ -108,11 +118,14 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:visibility="gone"
                     android:layout_margin="@dimen/dp_5"
                     android:id="@+id/tv_join_fangan399"
                     android:layout_width="@dimen/dp_0"
-                    android:background="@drawable/shape_rectangle_5_white_b"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rectangle_5_fff"
+                    android:layout_height="@dimen/dp_70"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text=""
@@ -120,11 +133,14 @@
                     android:textSize="@dimen/dp_15" />
 
                 <TextView
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:visibility="gone"
                     android:layout_margin="@dimen/dp_5"
                     android:id="@+id/tv_join_fangan599"
                     android:layout_width="@dimen/dp_0"
-                    android:background="@drawable/shape_rectangle_5_white_b"
-                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_rectangle_5_fff"
+                    android:layout_height="@dimen/dp_70"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text=""
@@ -135,15 +151,17 @@
             </LinearLayout>
 
             <TextView
-
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/dp_15"
                 android:id="@+id/tv_join_fangan799"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_70"
                 android:layout_marginLeft="@dimen/dp_15"
                 android:layout_marginRight="@dimen/dp_15"
                 android:gravity="center"
-                android:background="@drawable/shape_rectangle_5_white_b"
+                android:background="@drawable/shape_rectangle_5_fff"
                 android:text=""
                 android:textColor="@color/_3"
                 android:textSize="@dimen/dp_15" />
@@ -165,7 +183,8 @@
                 android:layout_marginRight="@dimen/dp_15"
                 android:orientation="horizontal">
 
-                <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+                <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
+                    android:visibility="gone"
                     android:id="@+id/tv_join_xuanze99"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
@@ -173,7 +192,7 @@
                     android:gravity="center"
                     android:paddingBottom="@dimen/dp_5"
                     android:paddingTop="@dimen/dp_5"
-                    android:text="99/年"
+                    android:text=""
                     android:textColor="@color/home_button"
                     android:textSize="@dimen/dp_14"
                     app:stv_corner="40dp"
@@ -182,7 +201,8 @@
                     app:stv_stroke_color="@color/home_button" />
 
 
-                <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+                <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
+                    android:visibility="gone"
                     android:id="@+id/tv_join_xuanze199"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
@@ -193,7 +213,7 @@
                     android:gravity="center"
                     android:paddingBottom="@dimen/dp_5"
                     android:paddingTop="@dimen/dp_5"
-                    android:text="199/年"
+                    android:text=""
                     android:textColor="@color/home_button"
                     android:textSize="@dimen/dp_14"
                     app:stv_corner="40dp"
@@ -201,7 +221,8 @@
                     app:stv_stroke_color="@color/home_button" />
 
 
-                <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+                <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
+                    android:visibility="gone"
                     android:id="@+id/tv_join_xuanze399"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
@@ -209,7 +230,7 @@
                     android:gravity="center"
                     android:paddingBottom="@dimen/dp_5"
                     android:paddingTop="@dimen/dp_5"
-                    android:text="399/年"
+                    android:text=""
                     app:stv_stroke_width="@dimen/dp_1"
                     android:textColor="@color/home_button"
                     android:textSize="@dimen/dp_14"
@@ -228,7 +249,8 @@
                 android:layout_marginTop="@dimen/dp_15"
                 android:orientation="horizontal">
 
-                <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+                <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
+                    android:visibility="gone"
                     android:id="@+id/tv_join_xuanze599"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
@@ -236,7 +258,7 @@
                     android:gravity="center"
                     android:paddingBottom="@dimen/dp_5"
                     android:paddingTop="@dimen/dp_5"
-                    android:text="599/年"
+                    android:text=""
                     app:stv_stroke_width="@dimen/dp_1"
                     android:textColor="@color/home_button"
                     android:textSize="@dimen/dp_14"
@@ -245,7 +267,8 @@
                     app:stv_stroke_color="@color/home_button" />
 
 
-                <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+                <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
+                    android:visibility="gone"
                     android:id="@+id/tv_join_xuanze799"
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
@@ -256,7 +279,7 @@
                     android:paddingBottom="@dimen/dp_5"
                     app:stv_stroke_width="@dimen/dp_1"
                     android:paddingTop="@dimen/dp_5"
-                    android:text="799/年"
+                    android:text=""
                     android:textColor="@color/home_button"
                     android:textSize="@dimen/dp_14"
                     app:stv_corner="40dp"
@@ -264,7 +287,7 @@
                     app:stv_stroke_color="@color/home_button" />
 
 
-                <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+                <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
                     android:layout_width="@dimen/dp_0"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -309,6 +332,7 @@
                     android:textSize="@dimen/dp_13" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_join_tiaokuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -318,6 +342,7 @@
                     android:textSize="@dimen/dp_13" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_join_xieyi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -330,7 +355,47 @@
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/iv_join_content"
+                android:id="@+id/iv_join_content1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+
+                />
+            <ImageView
+                android:id="@+id/iv_join_content2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+
+                />
+            <ImageView
+                android:id="@+id/iv_join_content3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+
+                />
+            <ImageView
+                android:id="@+id/iv_join_content4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+
+                />
+            <ImageView
+                android:id="@+id/iv_join_content5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+
+                />
+            <ImageView
+                android:id="@+id/iv_join_content6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -367,21 +432,22 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dp_70"
-            android:text="￥99"
+            android:text="￥0"
             android:textColor="@color/ff73"
             android:textSize="@dimen/dp_18"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_yue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/tv_join_yixuanjine"
-            android:text=" /年"
+            android:text=" 月"
             android:textColor="@color/_6"
             android:textSize="@dimen/dp_18" />
 
-        <com.chetuhui.lcj.chezhubao.view.supertextview.SuperTextView
+        <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
             android:id="@+id/tv_join_woyaojiaru"
             android:layout_width="@dimen/dp_150"
             android:layout_height="@dimen/dp_40"
