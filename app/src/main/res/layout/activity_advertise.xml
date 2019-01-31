@@ -4,39 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.AdvertiseActivity">
-    <ImageView
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qidongye"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp_22"
+            android:textColor="@color/_3b"
+            android:text="copyright©2019CHETUHUI"
+            />
 
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl2"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:id="@+id/iv_ad_"
-        android:layout_above="@+id/iv_gg"
-        />
-    <TextView
-        android:layout_alignParentBottom="true"
-        android:id="@+id/start_skip_count_down"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_25"
-        android:text="跳过"
-        android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:background="@drawable/bg_start_page_circle"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        />
-    <ImageView
-        android:id="@+id/iv_gg"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/dp_100"
-        android:layout_marginRight="@dimen/dp_100"
-        android:layout_height="wrap_content"
-        android:src="@drawable/gg_bg"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:padding="@dimen/dp_20"
-        />
+        android:layout_height="match_parent">
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:id="@+id/iv_ad_"
+            android:layout_above="@+id/iv_gg"
+            />
+        <TextView
+
+            android:layout_alignParentBottom="true"
+            android:id="@+id/start_skip_count_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_25"
+            android:text="跳过"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:background="@drawable/bg_start_page_circle"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            />
+        <ImageView
+            android:id="@+id/iv_gg"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dp_100"
+            android:layout_marginRight="@dimen/dp_100"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gg_bg"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:padding="@dimen/dp_20"
+            />
+
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

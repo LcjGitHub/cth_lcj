@@ -30,13 +30,15 @@
             app:showBottomLine="false"
             app:titleBarColor="@color/transparent" />
         <ImageView
+
             android:id="@+id/iv_addcar_photo"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/titlebar_addcar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
 
-            android:src="@drawable/addcar_photo"/>
+            android:src="@drawable/xsz"/>
         <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
             android:text="重新拍摄"
             android:visibility="gone"
@@ -54,7 +56,6 @@
             app:stv_solid="@color/transparent_blank_5"
 
             />
-
     </RelativeLayout>
     <ScrollView
         android:layout_below="@+id/rl_addcar_1"
@@ -93,10 +94,13 @@
                     android:layout_marginRight="@dimen/dp_25"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:text=""
                     android:hint="请输入"
+                    android:textColorHint="@color/home_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLength="8"
+
                     />
                 <ImageView
                     android:visibility="gone"
@@ -134,7 +138,10 @@
                     android:layout_marginRight="@dimen/dp_25"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    android:inputType="text"
                     android:hint="请输入"
+                    android:textColorHint="@color/home_button"
+                    android:maxLength="17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     />
@@ -175,6 +182,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:hint="请输入"
+                    android:textColorHint="@color/home_button"
+                    android:maxLength="17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     />
@@ -215,6 +224,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:hint="请输入"
+                    android:textColorHint="@color/home_button"
+                    android:maxLength="18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:digits="@string/alphabet_and_number"
@@ -228,7 +239,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/tjcl_greenpen"
-                    android:maxLength="17"
+
                     />
                 <View
                     android:layout_alignParentBottom="true"
@@ -257,9 +268,11 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:hint="请输入"
+                    android:textColorHint="@color/home_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLength="10"
+
                     android:digits="@string/alphabet_and_number"
                     />
                 <ImageView

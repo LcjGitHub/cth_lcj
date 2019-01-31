@@ -22,9 +22,12 @@ import com.chetuhui.lcj.chezhubao_x.R;
 
 import com.chetuhui.lcj.chezhubao_x.adapter.ShwzAdapter;
 import com.chetuhui.lcj.chezhubao_x.model.ShwzBean;
+import com.chetuhui.lcj.chezhubao_x.model.WeizhiBean;
 import com.chetuhui.lcj.chezhubao_x.tool.ActivityTool;
 import com.chetuhui.lcj.chezhubao_x.tool.DataTool;
+import com.chetuhui.lcj.chezhubao_x.tool.RegTool;
 import com.chetuhui.lcj.chezhubao_x.tool.SPTool;
+import com.chetuhui.lcj.chezhubao_x.tool.TimeTool;
 import com.chetuhui.lcj.chezhubao_x.utils.NetData;
 import com.chetuhui.lcj.chezhubao_x.view.BaseToast;
 import com.chetuhui.lcj.chezhubao_x.view.dialog.BaseDialog;
@@ -38,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,13 +77,14 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
      */
     private EditText mEtBiQingkuang;
     private String ih_carnum;
-    private List<ShwzBean.DataBean> mBeanList=new ArrayList<>();
+    private List<WeizhiBean.DataBean.ListBean> mBeanList=new ArrayList<>();
     private ShwzAdapter mAdapter;
     private LinearLayoutManager mLayoutManager;
     private RecyclerView mRecyclerView;
     private BaseDialog mDialog;
     private  List<String> mStringList=new ArrayList<>();
-    String model;
+    String model="",rcode="";
+    private  boolean isyy=false;
 
     private MyHandler mHandler= new MyHandler (BasicInformationActivity.this);
     private static class MyHandler extends Handler {
@@ -104,6 +109,7 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
         setContentView(R.layout.activity_basic_information);
         ih_carnum=SPTool.getString(BasicInformationActivity.this,"ih_carnum");
         initView();
+        mStringList.clear();
 
     }
 
@@ -146,7 +152,7 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
                 break;
             case R.id.tv_bi_weizhi:
 
-                N_damageLocation();
+                N_damageLocationGet();
                 break;
             case R.id.tv_bi_shijian:
 
@@ -165,14 +171,19 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
                     BaseToast.error("输入不能为空，请检查");
 
                 }else {
-                    SPTool.putString(BasicInformationActivity.this,"bi_cph",""+mEtBiChepaihao.getText().toString());
-                    SPTool.putString(BasicInformationActivity.this,"bi_lxdh",""+mEtBiLxdh.getText().toString());
-                    SPTool.putString(BasicInformationActivity.this,"bi_qk",""+mEtBiQingkuang.getText().toString());
-                    SPTool.putString(BasicInformationActivity.this,"bi_sj",""+mEtBiShijian.getText().toString());
-                    SPTool.putString(BasicInformationActivity.this,"bi_sjd",""+mEtBiShijianduan.getText().toString());
-                    SPTool.putString(BasicInformationActivity.this,"bi_wz",""+mEtBiWeizhi.getText().toString());
+                    if (RegTool.isMobile(mEtBiLxdh.getText().toString())){
+                        SPTool.putString(BasicInformationActivity.this,"bi_cph",""+mEtBiChepaihao.getText().toString());
+                        SPTool.putString(BasicInformationActivity.this,"bi_lxdh",""+mEtBiLxdh.getText().toString());
+                        SPTool.putString(BasicInformationActivity.this,"bi_qk",""+mEtBiQingkuang.getText().toString());
+                        SPTool.putString(BasicInformationActivity.this,"bi_sj",""+mEtBiShijian.getText().toString());
+                        SPTool.putString(BasicInformationActivity.this,"bi_sjd",""+mEtBiShijianduan.getText().toString());
+                        SPTool.putString(BasicInformationActivity.this,"bi_wz",""+model);
 
-                    intent = new Intent(BasicInformationActivity.this, UploadPhotosActivity.class);
+                        intent = new Intent(BasicInformationActivity.this, UploadPhotosActivity.class);
+                    }else {
+                        BaseToast.error("手机号有误");
+                    }
+
 
                 }
 
@@ -183,7 +194,7 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
             startActivity(intent);
         }
     }
-    private void N_damageLocation() {
+    private void N_damageLocationGet() {
         String s_token = SPTool.getString(BasicInformationActivity.this, "token");
         Log.d("CityActivity", s_token);
 
@@ -191,7 +202,7 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
             Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
             return;
         }
-        OkGo.<String>get(NetData.N_damageLocation)
+        OkGo.<String>get(NetData.N_damageLocationGet+"?randomCode="+rcode)
                 .tag(this)
                 .headers("token",s_token)
                 .execute(new StringCallback() {
@@ -212,8 +223,9 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
 
 
                                         mBeanList.clear();
-                                        ShwzBean bean= new Gson().fromJson(data, ShwzBean.class);
-                                        mBeanList=bean.getData();
+                                        WeizhiBean bean= new Gson().fromJson(data, WeizhiBean.class);
+                                        mBeanList=bean.getData().getList();
+                                        rcode=bean.getData().getRandomCode();
                                         showquyu(BasicInformationActivity.this);
 
 
@@ -258,13 +270,40 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+        Log.d("BasicInformationActivit", mStringList.toString());
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                mDialog.cancel();
-                mStringList.add(mBeanList.get(position).getDamageLocation());
+                isyy=false;
+                String catId = mBeanList.get(position).getDamageLocation();
+                Log.d("BasicInformationActivit", "mStringList.toString()："+mStringList.toString());
+                if (mStringList.size()!=0){
+                    for(int i = 0;i<mStringList.size();i++){
+                        if (mStringList.get(i).equals(catId)){
+                            //列表中包含改元素，做逻辑
+
+                            isyy=true;
+                            mStringList.remove(catId);
+                            break;
+
+                        }
+
+                    }
+                    if (isyy){
+                        BaseToast.success("已删除");
+
+                    }else {
+                        mStringList.add(catId);
+                    }
+
+                }else {
+                    mStringList.add(catId);
+                }
+
                  model = DataTool. ListToString(mStringList);
-                mEtBiWeizhi.setText(model);
+                Log.d("BasicInformationActivit", "model："+model);
+                N_damageLocationPut(rcode,model);
+
 //                SPTool.putInt(AuditorActivity.this,"qy_id",mBeanList.get(position).getId());
 
 
@@ -301,7 +340,7 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
         Log.d("BasicInformationActivit", ""+istime);
         final DialogWheelYearMonthDay mDialogWheelYearMonthDay;
         // ------------------------------------------------------------------选择日期开始
-        mDialogWheelYearMonthDay = new DialogWheelYearMonthDay(this, 1994, 2018);
+        mDialogWheelYearMonthDay = new DialogWheelYearMonthDay(this, 2019, 2025);
         mDialogWheelYearMonthDay.setMonthType(true);
         mDialogWheelYearMonthDay.settiemType(istime);
         mDialogWheelYearMonthDay.getSureView().setOnClickListener(
@@ -311,6 +350,23 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
                     public void onClick(View arg0) {
                         if (istime){
                             mEtBiShijianduan.setText(mDialogWheelYearMonthDay.getSelectorTime());
+                            try {
+                                if(TimeTool.IsToday(mEtBiShijian.getText().toString())){
+                                    Log.d("BasicInformationActivit", "是今天");
+                                    if (TimeTool.getorsxw().equals("下午")){
+                                        if (mEtBiShijianduan.getText().equals("上午")){
+                                            BaseToast.error("当前是下午");
+                                            mEtBiShijianduan.setText("请选择");
+                                        }
+                                    }
+
+                                }else {
+                                    Log.d("BasicInformationActivit", "不是今天");
+                                }
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
                         }else {
                             if (mDialogWheelYearMonthDay.getCheckBoxDay().isChecked()) {
                                 mEtBiShijian.setText(
@@ -318,13 +374,25 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
                                                 + mDialogWheelYearMonthDay.getSelectorMonth() + "-"
                                                 + mDialogWheelYearMonthDay.getSelectorDay() + "");
                             } else {
-                                mEtBiShijian.setText(
-                                        mDialogWheelYearMonthDay.getSelectorYear() + "-"
-                                                + mDialogWheelYearMonthDay.getSelectorMonth() + "");
+                                BaseToast.error("请选择年月日");
+//                                mEtBiShijian.setText(
+//                                        mDialogWheelYearMonthDay.getSelectorYear() + "-"
+//                                                + mDialogWheelYearMonthDay.getSelectorMonth() + "");
                             }
                         }
+                        try {
+                            if(TimeTool.IsYesterday(mEtBiShijian.getText().toString())){
+                                BaseToast.error("选择正确的预计维修日期");
 
-                        mDialogWheelYearMonthDay.cancel();
+                            }else {
+                                mDialogWheelYearMonthDay.cancel();
+                            }
+
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+
                     }
                 });
         mDialogWheelYearMonthDay.getCancleView().setOnClickListener(
@@ -341,5 +409,67 @@ public class BasicInformationActivity extends ActivityBase implements View.OnCli
         // ------------------------------------------------------------------选择日期结束
     }
 
+    private void N_damageLocationPut(String randomCode,String damageLocation) {
+        String s_token = SPTool.getString(BasicInformationActivity.this, "token");
+        Log.d("CityActivity", s_token);
+
+        if (DataTool.isNullString(s_token)) {
+            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Log.d("BasicInformationActivit", ""+randomCode+""+"   "+damageLocation);
+        OkGo.<String>post(NetData.N_damageLocationPut)
+                .tag(this)
+                .headers("token",s_token)
+                .params("randomCode",""+randomCode)
+                .params("damageLocation",""+damageLocation)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(com.lzy.okgo.model.Response<String> response) {
+                        final String data = response.body();//这个就是返回来的结果
+                        Log.d("RegisteredActivity", data);
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(data);
+                            final String msg = jsonObject.getString("msg");
+                            //BaseToast.success(msg);
+                            final int code=jsonObject.getInt("code");
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (code==0){
+
+                                        mEtBiWeizhi.setText(model);
+                                        mDialog.cancel();
+
+
+
+                                    }else if (code==1004){
+                                        ActivityTool.finishAllActivity();
+                                        SPTool.remove(BasicInformationActivity.this,"token");
+                                        startActivity(new Intent(BasicInformationActivity.this,LoginActivity.class));
+                                        BaseToast.error("登录过期，请重新登录");
+
+                                    }else {
+                                        BaseToast.success(msg);
+
+                                    }
+                                }
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                    }
+
+                    @Override
+                    public void onError(com.lzy.okgo.model.Response<String> response) {
+                        super.onError(response);
+                    }
+                });
+    }
 
 }

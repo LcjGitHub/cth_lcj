@@ -52,6 +52,8 @@ public class IHelpActivity extends ActivityBase implements View.OnClickListener 
 
     private RecyclerView mRvIhelp;
     private SwipeRefreshLayout mSlIhelp;
+    private TextView tv_sswg;
+    private boolean isss=false;
     private LinearLayoutManager mLayoutManager;
     private List<IhelpBean.DataBean> mBeanList=new ArrayList<>();
     private IhelpAdapter mAdapter;
@@ -93,6 +95,8 @@ public class IHelpActivity extends ActivityBase implements View.OnClickListener 
                 }
             }
         });
+        tv_sswg = (TextView) findViewById(R.id.tv_sswg);
+        tv_sswg.setVisibility(View.GONE);
         mEtIhelpSousuo = (EditText) findViewById(R.id.et_ihelp_sousuo);
         mEtIhelpSousuo.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -100,6 +104,7 @@ public class IHelpActivity extends ActivityBase implements View.OnClickListener 
                 if ((i==0||i==3)&&keyEvent!=null){
                     if (!DataTool.isNullString(mEtIhelpSousuo.getText().toString())){
                         getN_findMutualCar(mEtIhelpSousuo.getText().toString());
+                        isss=true;
                     }else {
                         BaseToast.success("搜索为空");
                     }
@@ -161,9 +166,20 @@ public class IHelpActivity extends ActivityBase implements View.OnClickListener 
                                             IhelpBean bean= new Gson().fromJson(data, IhelpBean.class);
                                             mBeanList=bean.getData();
                                             if (mBeanList.size()==0){
-                                                iv_amc_sqt.setVisibility(View.VISIBLE);
-                                                mRvIhelp.setVisibility(View.GONE);
+                                                if (isss){
+                                                    iv_amc_sqt.setVisibility(View.GONE);
+                                                    mRvIhelp.setVisibility(View.GONE);
+                                                    tv_sswg.setVisibility(View.VISIBLE);
+                                                }else {
+                                                    iv_amc_sqt.setVisibility(View.VISIBLE);
+                                                    mRvIhelp.setVisibility(View.GONE);
+                                                    tv_sswg.setVisibility(View.GONE);
+                                                }
+
+
                                             }else {
+                                                isss=false;
+                                                tv_sswg.setVisibility(View.GONE);
                                                 iv_amc_sqt.setVisibility(View.GONE);
                                                 mRvIhelp.setVisibility(View.VISIBLE);
                                             }

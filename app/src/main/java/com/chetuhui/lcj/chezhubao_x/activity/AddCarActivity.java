@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -24,11 +25,21 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.ocr.sdk.OCR;
+import com.baidu.ocr.sdk.OnResultListener;
+import com.baidu.ocr.sdk.exception.OCRError;
+import com.baidu.ocr.sdk.model.AccessToken;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
+import com.chetuhui.lcj.chezhubao_x.MainActivity;
 import com.chetuhui.lcj.chezhubao_x.R;
+import com.chetuhui.lcj.chezhubao_x.model.AddcarBean;
+import com.chetuhui.lcj.chezhubao_x.model.AuditStationBean;
+import com.chetuhui.lcj.chezhubao_x.ocr.CameraActivity;
+import com.chetuhui.lcj.chezhubao_x.ocr.FileUtil;
+import com.chetuhui.lcj.chezhubao_x.ocr.RecognizeService;
 import com.chetuhui.lcj.chezhubao_x.tool.ActivityTool;
 import com.chetuhui.lcj.chezhubao_x.tool.BaseTool;
 import com.chetuhui.lcj.chezhubao_x.tool.DataTool;
@@ -40,6 +51,7 @@ import com.chetuhui.lcj.chezhubao_x.view.BaseToast;
 import com.chetuhui.lcj.chezhubao_x.view.dialog.DialogChooseImage;
 import com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView;
 import com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar;
+import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.yalantis.ucrop.UCrop;
@@ -105,8 +117,18 @@ public class AddCarActivity extends ActivityBase implements View.OnClickListener
      * 确认信息无误
      */
     private TextView mTvAddcarQrww;
+
     private Uri resultUri;
     private String img_src,imgurl;
+
+
+    private boolean hasGotToken = false;
+    private AlertDialog.Builder alertDialog;
+
+
+    private static final int REQUEST_CODE_VEHICLE_LICENSE = 120;
+
+
     private MyHandler mHandler =new MyHandler(AddCarActivity.this);
 
     private static class MyHandler extends Handler {
@@ -128,7 +150,9 @@ public class AddCarActivity extends ActivityBase implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_car);
+        alertDialog = new AlertDialog.Builder(this);
         initView();
+        initAccessTokenWithAkSk();
     }
 
     private void initView() {
@@ -179,7 +203,11 @@ public class AddCarActivity extends ActivityBase implements View.OnClickListener
         mIvAddcarFdjh = (ImageView) findViewById(R.id.iv_addcar_fdjh);
         mIvAddcarFdjh.setOnClickListener(this);
         mTvAddcarQrww = (TextView) findViewById(R.id.tv_addcar_qrww);
+
         mTvAddcarQrww.setOnClickListener(this);
+
+
+
     }
 
     @Override
@@ -191,10 +219,28 @@ public class AddCarActivity extends ActivityBase implements View.OnClickListener
             default:
                 break;
             case R.id.iv_addcar_photo:
-                initDialogChooseImage();
+                if (!checkTokenStatus()) {
+                    return;
+                }
+                Intent  intent1 = new Intent(AddCarActivity.this, CameraActivity.class);
+                intent1.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
+                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
+                intent1.putExtra(CameraActivity.KEY_CONTENT_TYPE,
+                        CameraActivity.CONTENT_TYPE_GENERAL);
+                startActivityForResult(intent1, REQUEST_CODE_VEHICLE_LICENSE);
+//                initDialogChooseImage();
                 break;
             case R.id.tv_addcar_cxps:
-                initDialogChooseImage();
+                if (!checkTokenStatus()) {
+                    return;
+                }
+                Intent    intent2 = new Intent(AddCarActivity.this, CameraActivity.class);
+                intent2.putExtra(CameraActivity.KEY_OUTPUT_FILE_PATH,
+                        FileUtil.getSaveFile(getApplication()).getAbsolutePath());
+                intent2.putExtra(CameraActivity.KEY_CONTENT_TYPE,
+                        CameraActivity.CONTENT_TYPE_GENERAL);
+                startActivityForResult(intent2, REQUEST_CODE_VEHICLE_LICENSE);
+//                initDialogChooseImage();
                 break;
             case R.id.rl_addcar_1:
                 break;
@@ -225,8 +271,13 @@ public class AddCarActivity extends ActivityBase implements View.OnClickListener
                         DataTool.isNullString(mTvAddcarClsbdh.getText().toString())||DataTool.isNullString(mTvAddcarFdjh.getText().toString())){
                         BaseToast.error("填写不能为空，请检查");
                 }else {
-                    getN_confirmInformation(imgurl,mTvAddcarCph.getText().toString(),
-                            mTvAddcarSyr.getText().toString(),mTvAddcarPpxh.getText().toString(),mTvAddcarClsbdh.getText().toString(),mTvAddcarFdjh.getText().toString());
+                    if (mTvAddcarCph.getText().toString().length()!=7&mTvAddcarCph.getText().toString().length()!=8){
+                        BaseToast.error("车牌号位数有误请检查");
+                    }else {
+                        getN_confirmInformation(imgurl,mTvAddcarCph.getText().toString(),
+                                mTvAddcarSyr.getText().toString(),mTvAddcarPpxh.getText().toString(),mTvAddcarClsbdh.getText().toString(),mTvAddcarFdjh.getText().toString());
+
+                    }
 
                 }
 
@@ -338,6 +389,7 @@ public class AddCarActivity extends ActivityBase implements View.OnClickListener
                                     if (code==0){
                                         try {
                                             imgurl= finalJsonObject.getString("data");
+                                            mTvAddcarCxps.setVisibility(View.VISIBLE);
                                             ShowImageUtils.showImageView(AddCarActivity.this,imgurl,mIvAddcarPhoto);
 
                                         } catch (JSONException e) {
@@ -382,7 +434,62 @@ public class AddCarActivity extends ActivityBase implements View.OnClickListener
     }
 //
 @Override
-protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
+    // 识别成功回调，行驶证识别
+    if (requestCode == REQUEST_CODE_VEHICLE_LICENSE && resultCode == Activity.RESULT_OK) {
+        BaseToast.cancelToast();
+        BaseToast.success("正在识别");
+
+        RecognizeService.recVehicleLicense(this, FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath(),
+                new RecognizeService.ServiceListener() {
+                    @Override
+                    public void onResult(final String result) {
+//                            JsonObject object = new JsonParser().parse(result).getAsJsonObject();
+//                            Log.e("11111111",object+"");
+                        Log.d("AddCarActivity", result);
+                        Log.d("AddCarActivity", ""+data.getData());
+                        Log.d("AddCarActivity", ""+data);
+                        Log.d("AddCarActivity", ""+FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath());
+
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+
+        if (result.length()<100){
+            BaseToast.error("识别失败，请重新上传正确的行驶证");
+
+
+        }else {
+            getN_upload(new File(FileUtil.getSaveFile(getApplicationContext()).getAbsolutePath()));
+
+
+            AddcarBean bean= new Gson().fromJson(result, AddcarBean.class);
+            Log.d("AddCarActivity", "bean.getWords_result().get号牌号码():" + bean.getWords_result().get号牌号码().getWords());
+            Log.d("AddCarActivity", "bean.getWords_result().get号牌号码():" + bean.getWords_result().get所有人().getWords());
+            Log.d("AddCarActivity", "bean.getWords_result().get号牌号码():" + bean.getWords_result().get品牌型号().getWords());
+            Log.d("AddCarActivity", "bean.getWords_result().get号牌号码():" + bean.getWords_result().get车辆识别代号().getWords());
+            Log.d("AddCarActivity", "bean.getWords_result().get号牌号码():" + bean.getWords_result().get发动机号码().getWords());
+            mTvAddcarCph.setText(""+ bean.getWords_result().get号牌号码().getWords());
+            mTvAddcarSyr.setText(""+ bean.getWords_result().get所有人().getWords());
+            mTvAddcarPpxh.setText(""+ bean.getWords_result().get品牌型号().getWords());
+            mTvAddcarClsbdh.setText(""+ bean.getWords_result().get车辆识别代号().getWords());
+            mTvAddcarFdjh.setText(""+ bean.getWords_result().get发动机号码().getWords());
+
+            BaseToast.success("识别成功");
+        }
+
+
+                            }
+                        });
+
+
+
+
+//                        pplx.setText(result);
+//                            infoPopText(result);
+                    }
+                });
+    }
     switch (requestCode) {
         case PhotoTool.GET_IMAGE_FROM_PHONE://选择相册之后的处理
             if (resultCode == RESULT_OK) {
@@ -405,7 +512,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             if (resultCode == RESULT_OK) {
                 resultUri = UCrop.getOutput(data);
                 File shb=  roadImageView(resultUri, mIvAddcarPhoto);
-                getN_upload(shb);
+//                getN_upload(shb);
 
 
 
@@ -480,6 +587,48 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
                 .withMaxResultSize(1000, 1000)
                 .withOptions(options)
                 .start(this);
+    }
+
+
+    /**
+     * 用明文ak，sk初始化
+     */
+    private void initAccessTokenWithAkSk() {
+        OCR.getInstance(mContext).initAccessToken(new OnResultListener<AccessToken>() {
+            @Override
+            public void onResult(AccessToken result) {
+                // 调用成功，返回AccessToken对象
+                String token = result.getAccessToken();
+                hasGotToken = true;
+            }
+            @Override
+            public void onError(OCRError error) {
+                // 调用失败，返回OCRError子类SDKError对象
+                error.printStackTrace();
+                alertText("AK，SK方式获取token失败", error.getMessage());
+            }
+        }, getApplicationContext());
+
+
+    }
+
+    private boolean checkTokenStatus() {
+        if (!hasGotToken) {
+            Toast.makeText(getApplicationContext(), "token还未成功获取", Toast.LENGTH_LONG).show();
+        }
+        return hasGotToken;
+    }
+
+    private void alertText(final String title, final String message) {
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                alertDialog.setTitle(title)
+                        .setMessage(message)
+                        .setPositiveButton("确定", null)
+                        .show();
+            }
+        });
     }
 
 

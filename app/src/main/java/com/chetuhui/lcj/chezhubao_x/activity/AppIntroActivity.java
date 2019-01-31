@@ -38,6 +38,7 @@ public class AppIntroActivity extends ActivityBase {
     private ImageView mTwo_dot;
     private ImageView mThree_dot;
     private Button mBtn_next;
+    private RelativeLayout rl_dots;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,10 +72,13 @@ public class AppIntroActivity extends ActivityBase {
                 mLight_dots.setLayoutParams(params);
                 if(position==2){
                     mBtn_next.setVisibility(View.VISIBLE);
+                    rl_dots.setVisibility(View.GONE);
+
 
                 }
                 if(position!=2&&mBtn_next.getVisibility()==View.VISIBLE){
                     mBtn_next.setVisibility(View.GONE);
+                    rl_dots.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -87,9 +91,11 @@ public class AppIntroActivity extends ActivityBase {
                 mLight_dots.setLayoutParams(params);
                 if(position==2){
                     mBtn_next.setVisibility(View.VISIBLE);
+                    rl_dots.setVisibility(View.GONE);
                 }
                 if(position!=2&&mBtn_next.getVisibility()==View.VISIBLE){
                     mBtn_next.setVisibility(View.GONE);
+                    rl_dots.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -150,6 +156,8 @@ public class AppIntroActivity extends ActivityBase {
     }
 
     private void initView() {
+
+        rl_dots = (RelativeLayout) findViewById(R.id.rl_dots);
         mIn_vp = (ViewPager) findViewById(R.id.in_viewpager);
         mIn_ll = (LinearLayout) findViewById(R.id.in_ll);
         mLight_dots = (ImageView) findViewById(R.id.iv_light_dots);
@@ -159,7 +167,8 @@ public class AppIntroActivity extends ActivityBase {
             @Override
             public void onRepeatClick(View v) {
 
-                Intent intent = new Intent(AppIntroActivity.this, LoginActivity.class);
+//                Intent intent = new Intent(AppIntroActivity.this, LoginActivity.class);
+                Intent intent = new Intent(AppIntroActivity.this, HomeActivity.class);
                 startActivity(intent);
                 SPTool.putBoolean(AppIntroActivity.this, "isopen", true);
                 finish();
@@ -170,7 +179,7 @@ public class AppIntroActivity extends ActivityBase {
         iv_in.setOnClickListener(new OnRepeatClickListener() {
             @Override
             public void onRepeatClick(View v) {
-                Intent intent = new Intent(AppIntroActivity.this, LoginActivity.class);
+                Intent intent = new Intent(AppIntroActivity.this, HomeActivity.class);
                 startActivity(intent);
                 SPTool.putBoolean(AppIntroActivity.this, "isopen", true);
                 finish();

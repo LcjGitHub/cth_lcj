@@ -5,7 +5,7 @@ import java.util.List;
 public class MessageBean {
     /**
      * total : 1
-     * data : [{"id":1,"createTime":"2018-11-13 23:08:15","createBy":null,"updateTime":null,"updateBy":null,"version":1,"content":"第一条系统通知测试使用","target":"8888888","jumpType":null,"jumpParam":null}]
+     * data : [{"id":1,"createTime":"2018-11-13 23:08:15","createBy":"","updateTime":"","updateBy":"","version":1,"content":"商家已经拒绝您额救助","target":"8888888","jumpType":1,"type":1,"jumpParam":{"carNum":"川A5555","billCode":"5656565656"}}]
      * code : 0
      * msg : 成功
      * pageNum : 0
@@ -61,14 +61,15 @@ public class MessageBean {
         /**
          * id : 1
          * createTime : 2018-11-13 23:08:15
-         * createBy : null
-         * updateTime : null
-         * updateBy : null
+         * createBy :
+         * updateTime :
+         * updateBy :
          * version : 1
-         * content : 第一条系统通知测试使用
+         * content : 商家已经拒绝您额救助
          * target : 8888888
-         * jumpType : null
-         * jumpParam : null
+         * jumpType : 1
+         * type : 1
+         * jumpParam : {"carNum":"川A5555","billCode":"5656565656"}
          */
 
         private int id;
@@ -80,7 +81,8 @@ public class MessageBean {
         private String content;
         private String target;
         private int jumpType;
-        private String jumpParam;
+        private int type;
+        private JumpParamBean jumpParam;
 
         public int getId() {
             return id;
@@ -146,7 +148,7 @@ public class MessageBean {
             this.target = target;
         }
 
-        public int  getJumpType() {
+        public int getJumpType() {
             return jumpType;
         }
 
@@ -154,12 +156,46 @@ public class MessageBean {
             this.jumpType = jumpType;
         }
 
-        public String getJumpParam() {
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
+
+        public JumpParamBean getJumpParam() {
             return jumpParam;
         }
 
-        public void setJumpParam(String jumpParam) {
+        public void setJumpParam(JumpParamBean jumpParam) {
             this.jumpParam = jumpParam;
+        }
+
+        public static class JumpParamBean {
+            /**
+             * carNum : 川A5555
+             * billCode : 5656565656
+             */
+
+            private String carNum;
+            private String billCode;
+
+            public String getCarNum() {
+                return carNum;
+            }
+
+            public void setCarNum(String carNum) {
+                this.carNum = carNum;
+            }
+
+            public String getBillCode() {
+                return billCode;
+            }
+
+            public void setBillCode(String billCode) {
+                this.billCode = billCode;
+            }
         }
     }
 }

@@ -14,6 +14,7 @@ import com.chetuhui.lcj.chezhubao_x.R;
 import com.chetuhui.lcj.chezhubao_x.model.MmhBean;
 import com.chetuhui.lcj.chezhubao_x.model.MrBean;
 import com.chetuhui.lcj.chezhubao_x.utils.ShowImageUtils;
+import com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView;
 
 import java.util.List;
 
@@ -69,26 +70,29 @@ public class MrAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             if(mDatas.get(position).getState()==0){
                 itemViewHolder.tv_item_mr_jzzt.setText("待确认");
+                itemViewHolder.tv_item_mr_but.setVisibility(View.GONE);
 
             }else {
                 //1：救助完成 2：等待救助 3：商家拒绝
                 if(mDatas.get(position).getHelpState()==1){
                     itemViewHolder.tv_item_mr_jzzt.setText("救助完成");
-
+                    itemViewHolder.tv_item_mr_but.setVisibility(View.GONE);
 
 
                 }else if (mDatas.get(position).getHelpState()==2){
                     itemViewHolder.tv_item_mr_jzzt.setText("等待救助");
-
+                    itemViewHolder.tv_item_mr_but.setVisibility(View.VISIBLE);
+                    itemViewHolder.tv_item_mr_but.setText("填写救助结果");
 
                 }else if (mDatas.get(position).getHelpState()==3){
 
 
                     itemViewHolder.tv_item_mr_jzzt.setText("已拒绝");
-
+                    itemViewHolder.tv_item_mr_but.setVisibility(View.VISIBLE);
+                    itemViewHolder.tv_item_mr_but.setText("更换维修商家");
                 }else if (mDatas.get(position).getHelpState()==4){
 
-
+                    itemViewHolder.tv_item_mr_but.setVisibility(View.GONE);
                     itemViewHolder.tv_item_mr_jzzt.setText("已取消");
 
                 }
@@ -146,6 +150,7 @@ public class MrAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public class ItemViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_item_mr_chepai,tv_item_mr_ddh,tv_item_mr_jzzt,tv_item_mr_title;
+        SuperTextView tv_item_mr_but;
 
 
 
@@ -155,6 +160,7 @@ public class MrAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             tv_item_mr_ddh=itemView.findViewById(R.id.tv_item_mr_ddh);
             tv_item_mr_jzzt=itemView.findViewById(R.id.tv_item_mr_jzzt);
             tv_item_mr_title=itemView.findViewById(R.id.tv_item_mr_title);
+            tv_item_mr_but=itemView.findViewById(R.id.tv_item_mr_but);
 
 
 

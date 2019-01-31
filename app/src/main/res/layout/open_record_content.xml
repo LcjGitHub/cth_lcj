@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_marginLeft="@dimen/dp_25"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_item_ad_con_name"
+                android:textColor="@color/_3"
+                android:textSize="@dimen/dp_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="199互助单"/>
+            <TextView
+                android:id="@+id/tv_item_ad_con_carnum"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:textColor="@color/home_button"
+                android:textSize="@dimen/dp_13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="川A123456"/>
+
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_item_ad_con_ci"
+            android:textColor="@color/_3"
+            android:textSize="@dimen/dp_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:text="互助：11次"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_item_ad_con_money"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_20"
+        android:textColor="@color/home_button"
+        android:textSize="@dimen/dp_16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:textStyle="bold"
+        android:text="+10元"/>
+
+
+
+</RelativeLayout>

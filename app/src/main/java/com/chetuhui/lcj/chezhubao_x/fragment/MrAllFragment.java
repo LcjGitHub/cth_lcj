@@ -267,10 +267,46 @@ private ImageView iv_amc_sqt;
         mRvGsz.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(new MrAdapter.setOnItemClickListener() {
             @Override
-            public void OnItemClickListener(int pos) {
-                Intent intent =new Intent(getContext(), MutualRecordDetailsActivity.class);
-                intent.putExtra("code",""+mBeanList.get(pos).getSalvationCode());
-                startActivity(intent);
+            public void OnItemClickListener(int position) {
+                if(mBeanList.get(position).getState()==0){
+                    Intent intent =new Intent(getContext(), MutualRecordDetailsActivity.class);
+                    intent.putExtra("code",""+mBeanList.get(position).getSalvationCode());
+                    intent.putExtra("type_djz","3");
+                    startActivity(intent);
+
+                }else {
+                    //1：救助完成 2：等待救助 3：商家拒绝
+                    if(mBeanList.get(position).getHelpState()==1){
+                        Intent intent =new Intent(getContext(), MutualRecordDetailsActivity.class);
+                        intent.putExtra("code",""+mBeanList.get(position).getSalvationCode());
+                        intent.putExtra("type_djz","3");
+                        startActivity(intent);
+
+
+                    }else if (mBeanList.get(position).getHelpState()==2){
+                        Intent intent =new Intent(getContext(), MutualRecordDetailsActivity.class);
+                        intent.putExtra("code",""+mBeanList.get(position).getSalvationCode());
+                        intent.putExtra("type_djz","1");
+                        startActivity(intent);
+
+                    }else if (mBeanList.get(position).getHelpState()==3){
+
+
+                        Intent intent =new Intent(getContext(), MutualRecordDetailsActivity.class);
+                        intent.putExtra("code",""+mBeanList.get(position).getSalvationCode());
+                        intent.putExtra("type_djz","2");
+                        startActivity(intent);
+                    }else if (mBeanList.get(position).getHelpState()==4){
+
+                        Intent intent =new Intent(getContext(), MutualRecordDetailsActivity.class);
+                        intent.putExtra("code",""+mBeanList.get(position).getSalvationCode());
+                        intent.putExtra("type_djz","3");
+                        startActivity(intent);
+
+                    }
+                }
+
+
 
 
 

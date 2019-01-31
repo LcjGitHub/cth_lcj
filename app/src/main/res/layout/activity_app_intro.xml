@@ -14,21 +14,23 @@
         android:layout_marginTop="@dimen/dp_10"
         android:id="@+id/iv_in"
         android:layout_alignParentRight="true"
-        android:padding="@dimen/dp_20"
-        android:layout_width="@dimen/dp_50"
+        android:padding="@dimen/dp_10"
+        android:layout_width="@dimen/dp_40"
         android:layout_height="@dimen/dp_50"
-        android:src="@drawable/cha"
+        android:src="@drawable/guanbi"
         />
 
     <RelativeLayout
+        android:layout_alignParentBottom="true"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/rl_dots"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="30dp">
         <Button
             android:id="@+id/bt_next"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ljkq"
@@ -38,6 +40,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:id="@+id/rl_dots"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

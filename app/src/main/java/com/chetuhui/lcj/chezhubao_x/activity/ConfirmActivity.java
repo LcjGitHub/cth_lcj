@@ -61,7 +61,7 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
     private static final int SDK_PAY_FLAG = 1;
     private CommonTitleBar mTitlebarConfirm;
     /**
-     * 去支付
+     * 去充值
      */
     private SuperTextView mTvConfirmQuzhifu;
 
@@ -91,7 +91,7 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
     private TextView mTvConfirmZongji;
     private  BaseDialog rxDialog;
     private int car_size=0,or_shenhe=0,qy_id=0;
-    private  String carjosn,au_bh,auditor_name,auditor_ph,auditor_xxdz,hzbhfa,qr_data,zfb_data;
+    private  String carjosn,au_bh,auditor_name,auditor_ph,auditor_xxdz,hzbhfa,qr_data,zfb_data,selfAuditCodeList="";
     private  String fanan_jine,fanan_name,fanan_code;
     private String hb,hb_id;
     private String ticketId="0";
@@ -125,6 +125,9 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
         fanan_jine=SPTool.getString(ConfirmActivity.this,"fanan_jine");
         fanan_name=SPTool.getString(ConfirmActivity.this,"fanan_name");
         fanan_code=SPTool.getString(ConfirmActivity.this,"fanan_code");
+        selfAuditCodeList=SPTool.getString(ConfirmActivity.this,"AuditCodeList");
+        Log.d("ConfirmActivity", ""+selfAuditCodeList);
+
         hzbhfa=fanan_code;
 
         initView();
@@ -190,9 +193,12 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
                 qy_id=SPTool.getInt(ConfirmActivity.this,"qy_id");
 
                 if (or_shenhe==1){
-                    getN_confirmMutualList(ticketId,carjosn,hzbhfa,""+or_shenhe,auditor_name,auditor_ph,auditor_xxdz,""+qy_id,"");
+                    getN_confirmMutualList(ticketId,carjosn,hzbhfa,""+or_shenhe,auditor_name,auditor_ph,auditor_xxdz,""+qy_id,"","");
                 }else if (or_shenhe==2){
-                    getN_confirmMutualList(ticketId,carjosn,hzbhfa,""+or_shenhe,"","","","",au_bh);
+                    getN_confirmMutualList(ticketId,carjosn,hzbhfa,""+or_shenhe,"","","","",au_bh,"");
+
+                }else if(or_shenhe==3){
+                    getN_confirmMutualList(ticketId,carjosn,hzbhfa,""+or_shenhe,"","","","",au_bh,selfAuditCodeList);
 
                 }
 
@@ -204,6 +210,14 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
                 showFanan(ConfirmActivity.this);
                 break;
             case R.id.tv_confirm_shuliang:
+//                Intent intent1 =new Intent(mContext,SelectCarActivity.class);
+//                intent1.putExtra("fanan_code",""+hzbhfa);
+//                intent1.putExtra("tz_type","2");
+//
+//                startActivity(intent1);
+//                finish();
+
+
                 break;
             case R.id.tv_confirm_danjia:
                 break;
@@ -372,7 +386,7 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
                 rxDialog.cancel();
                 mTvConfirmLeibie.setText(mBeanList.get(position).getProgramName());
                 mTvConfirmDanjia.setText("￥"+mBeanList.get(position).getMpMoney());
-                xz_money=mBeanList.get(position).getMpMoney();
+                xz_money= Double.parseDouble(mBeanList.get(position).getMpMoney());
                 zj =(xz_money*car_size);
                 mTvConfirmZongji.setText("￥"+zj);
                 hzbhfa=mBeanList.get(position).getProgramCode();
@@ -386,7 +400,7 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
 
     }
 
-    private void getN_confirmMutualList(String ticketId_id,String carjosn, String hzbhfa, String or_shenhe, String auditor_name, String auditor_ph, String auditor_xxdz, String qy_id, String au_bh) {
+    private void getN_confirmMutualList(String ticketId_id,String carjosn, String hzbhfa, String or_shenhe, String auditor_name, String auditor_ph, String auditor_xxdz, String qy_id, String au_bh,String selfAuditCodeList) {
 
         String s_token = SPTool.getString(ConfirmActivity.this, "token");
         Log.d("CityActivity", s_token);
@@ -395,6 +409,8 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
             Toast.makeText(ConfirmActivity.this, "获取token失败", Toast.LENGTH_SHORT).show();
             return;
         }
+        Log.d("ConfirmActivity", "carjosn:"+carjosn+"   \n hzbhfa:"+hzbhfa+"   \n or_shenhe:"+or_shenhe+"  \n auditor_name："+auditor_name+"\nauditor_ph"+
+                auditor_ph+"\nqy_id"+qy_id+"\nauditor_xxdz"+auditor_xxdz+"\nau_bh"+au_bh+"\nticketId_id"+ticketId_id+"\nselfAuditCodeList"+selfAuditCodeList);
         OkGo.<String>post(NetData.N_confirmMutualList)
                 .tag(this)
                 .headers("token", s_token)
@@ -407,6 +423,10 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
                 .params("address",""+auditor_xxdz)
                 .params("businessCode",""+au_bh)
                 .params("ticketId",""+ticketId_id)
+                .params("selfAuditCodeList",""+selfAuditCodeList)
+
+
+
 
                 .execute(new StringCallback() {
                     @Override
@@ -425,12 +445,12 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
                                 public void run() {
                                     if (code == 0) {
                                         try {
-                                            qr_data= finalJsonObject.getString("data");
+                                            qr_data = finalJsonObject.getString("data");
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
 
-                                        BaseToast.success(msg);
+
                                         showView(ConfirmActivity.this);
 
 
@@ -660,7 +680,7 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
 //                        showAlert(PayDemoActivity.this, getString(R.string.pay_success) + payResult);
                     } else {
-                        BaseToast.error("支付失败，请重新支付");
+                        BaseToast.error("充值失败，请重新充值");
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
 //                        showAlert(PayDemoActivity.this, getString(R.string.pay_failed) + payResult);
                     }
@@ -686,7 +706,7 @@ public class ConfirmActivity extends ActivityBase implements View.OnClickListene
                         zj=   Double.parseDouble(fanan_jine)*car_size;
                         ticketId="0";
                     }else {
-                        zj=(zj-Double.parseDouble(hb));
+                        zj=(Double.parseDouble(fanan_jine)*car_size-Double.parseDouble(hb));
                         if (zj<0){
                             zj=0.10;
                         }

@@ -31,6 +31,7 @@
         android:inputType="textPersonName"
         android:padding="5dp"
         android:text=""
+        android:maxLength="8"
         android:textColor="@color/black"
         android:textColorHint="@color/a5"/>
 

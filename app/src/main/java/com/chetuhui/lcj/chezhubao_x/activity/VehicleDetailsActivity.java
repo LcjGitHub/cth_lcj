@@ -72,7 +72,7 @@ public class VehicleDetailsActivity extends ActivityBase {
         mTvVdPpxh.setText(mBean.getCarBrand());
         mTvVdClsbdh.setText(mBean.getCarCode());
         mTvVdFdjxh.setText(mBean.getEngineNum());
-        ShowImageUtils.showImageViewToCircle(VehicleDetailsActivity.this,mBean.getLicensePicture(),mIvVdXszzp,10);
+        ShowImageUtils.showImageViewToCircle(VehicleDetailsActivity.this,mBean.getlicensePictureNew(),mIvVdXszzp,10);
 //
 
 

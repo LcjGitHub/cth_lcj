@@ -176,7 +176,7 @@
         </LinearLayout>
         <LinearLayout
 
-
+            android:visibility="gone"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginRight="@dimen/dp_10"
             android:gravity="center_vertical"
@@ -204,7 +204,7 @@
         </LinearLayout>
         <LinearLayout
 
-
+            android:visibility="gone"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginRight="@dimen/dp_10"
             android:gravity="center_vertical"
@@ -214,7 +214,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/tv_mhld_endtime"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="保障结束时间："
@@ -222,6 +222,7 @@
 
                 android:textSize="@dimen/dp_14"/>
             <TextView
+                android:id="@+id/tv_mhld_endtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -233,7 +234,7 @@
         </LinearLayout>
         <LinearLayout
 
-
+android:visibility="gone"
             android:layout_marginLeft="@dimen/dp_10"
             android:layout_marginRight="@dimen/dp_10"
             android:gravity="center_vertical"
@@ -243,6 +244,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="保障期限："
@@ -324,6 +326,24 @@
     </LinearLayout>
 
 
+    <com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView
+        android:visibility="gone"
+       android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/dp_10"
+        android:id="@+id/tv_mhl_zcgm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginRight="@dimen/dp_50"
+        android:layout_marginLeft="@dimen/dp_50"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10"
+        android:text=""
+        android:textColor="@color/white"
+        app:stv_corner="@dimen/dp_30"
+        app:stv_solid="@color/home_button"
+        />
 
 
 

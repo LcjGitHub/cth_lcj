@@ -2,10 +2,12 @@ package com.chetuhui.lcj.chezhubao_x.utils;
 
 public class NetData {
     //内网
-//    public static final String N_HTTP ="http://192.168.0.222:8081/";
+    public static final String N_HTTP ="http://192.168.0.222:8081/";
     //外网  https://cartreasure.chetuhui.com.cn:8085/
 //    public static final String N_HTTP ="http://39.104.150.214:8085/";
-  public static final String N_HTTP ="https://cartreasure.chetuhui.com.cn:8085/";
+//    https://cartreasure.chetuhui.com.cn:8095/
+//  public static final String N_HTTP ="https://cartreasure.chetuhui.com.cn:8085/";
+//  public static final String N_HTTP ="https://cartreasure.chetuhui.com.cn:8095/";
     //验证码
     public static final String N_SMSCODE =N_HTTP+"common/getSmsCode";
     //注册
@@ -66,7 +68,7 @@ public class NetData {
     //互助记录列表
     public static final String N_applicationRecord =N_HTTP+"mutualbill/applicationRecord";
     //互助记录详情
-    public static final String N_findMutualRecord =N_HTTP+"mutualbill/findMutualRecord";
+    public static final String N_findMutualRecord =N_HTTP+"mutualbill/salvageDetails";
     //全部车辆
     public static final String N_allMutualCars =N_HTTP+"mutualbill/allMutualCars";
     //我的车辆
@@ -119,6 +121,27 @@ public class NetData {
     public static final String N_sureCars =N_HTTP+"mutualprogram/sureCars";
     //修改头像
     public static final String N_updateHeardImage =N_HTTP+"user/updateHeardImage";
+    //自动定位功能
+    public static final String N_findCitysAutomatic =N_HTTP+"common/findCitysAutomatic";
+    //上传维修确认
+    public static final String N_confirmationCompleted =N_HTTP+"mutualbill/confirmationCompleted";
+    //查询已经选了那些损坏位置
+    public static final String N_damageLocationGet =N_HTTP+"common/damageLocationGet";
+    //上传已经选了的位置
+    public static final String N_damageLocationPut =N_HTTP+"common/damageLocationPut";
+    //上传视频
+    public static final String N_uploadVideo =N_HTTP+"common/uploadVideo";
+    //自助审核信息上传接口
+    public static final String N_saveSelfAudit =N_HTTP+"mutualprogram/saveSelfAudit";
+    //互助账户列表
+    public static final String N_mutualHelpAccountList =N_HTTP+"user/mutualHelpAccountList";
+    //收银台确认支付接口
+    public static final String N_confirmPayment =N_HTTP+"mutualbill/confirmPayment";
+    //互助记录接口
+    public static final String N_mutualAidRecord =N_HTTP+"mutualbill/mutualAidRecord";
+    //验证码登录
+    public static final String N_loginByPhoneAndCode =N_HTTP+"user/loginByPhoneAndCode";
+
 
 
 

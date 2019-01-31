@@ -28,7 +28,7 @@ import java.lang.ref.WeakReference;
 
 public class BindingActivity extends ActivityBase implements View.OnClickListener {
 
-    private CommonTitleBar mTitlebarChangepw;
+    private CommonTitleBar mTitlebar;
     /**
      * 解绑
      */
@@ -58,8 +58,8 @@ public class BindingActivity extends ActivityBase implements View.OnClickListene
     }
 
     private void initView() {
-        mTitlebarChangepw = (CommonTitleBar) findViewById(R.id.titlebar_changepw);
-        mTitlebarChangepw.setListener(new CommonTitleBar.OnTitleBarListener() {
+        mTitlebar = (CommonTitleBar) findViewById(R.id.titlebar_bind);
+        mTitlebar.setListener(new CommonTitleBar.OnTitleBarListener() {
             @Override
             public void onClicked(View v, int action, String extra) {
                 if (action == CommonTitleBar.ACTION_LEFT_BUTTON) {

@@ -6,6 +6,7 @@
 
     <color name="transparent">#00000000</color><!-- 透明 黑色 -->
     <color name="transparent_blank_5">#55000000</color><!-- 半透明 黑色 -->
+    <color name="transparent_blank_3">#30000000</color><!-- 半透明 黑色 -->
     <color name="black">#FF000000</color><!-- 全黑 -->
 
     <color name="gray_80_25">#25808080</color>
@@ -23,6 +24,7 @@
 
     <color name="white">#FFFFFFFF</color><!-- 全白 -->
     <color name="white_66">#66FFFFFF</color><!-- 透明白 66 -->
+    <color name="white_30">#30FFFFFF</color><!-- 透明白 66 -->
     <color name="ivory">#FFFFF0</color><!-- 象牙色 -->
     <color name="f6">#f6f6f6</color>
     <color name="f9">#f9f9f9</color>
@@ -35,6 +37,7 @@
     <color name="ff73">#ff732e</color>
     <color name="ff8a">#ff8a00</color>
     <color name="fff4">#fff4ee</color>
+    <color name="f4a">#f4a071</color>
     <color name="d6f3">#d6f3f0</color>
     <color name="fb64">#fb6451</color>
     <color name="feea">#feeaa5</color>
@@ -57,6 +60,7 @@
     <color name="_9">#999999</color>
     <color name="_3">#333333</color>
     <color name="_8c">#8c8c8c</color>
+    <color name="_3b">#3b3b3b</color>
     <color name="c6">#c6c6c6</color>
     <color name="deep_gray_2">#636262</color>
     <color name="_6">#666666</color>

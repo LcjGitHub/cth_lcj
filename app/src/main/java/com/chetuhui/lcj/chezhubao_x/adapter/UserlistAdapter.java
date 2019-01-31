@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.chetuhui.lcj.chezhubao_x.R;
 import com.chetuhui.lcj.chezhubao_x.model.UserlistBean;
+import com.chetuhui.lcj.chezhubao_x.tool.DataTool;
 import com.chetuhui.lcj.chezhubao_x.utils.ShowImageUtils;
 
 import java.util.List;
@@ -70,9 +71,9 @@ public class UserlistAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (holder instanceof ItemViewHolder) {
 
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            itemViewHolder.tv_item_userlist_chepai.setText(mDatas.get(position).getCarCode());
+            itemViewHolder.tv_item_userlist_chepai.setText(DataTool.hideCarcode2(mDatas.get(position).getCarCode()));
             itemViewHolder.tv_item_userlist_name.setText(mDatas.get(position).getNickName());
-            itemViewHolder.tv_item_userlist_ph.setText(mDatas.get(position).getPhone());
+            itemViewHolder.tv_item_userlist_ph.setText(DataTool.hideMobilePhone4(mDatas.get(position).getPhone()));
             itemViewHolder.tv_item_userlist_time.setText("加入时间："+mDatas.get(position).getCreateTime());
 //            Glide.with(mContext).load(mDatas.get(position).getHeadimgurl()).apply(bitmapTransform(new CropCircleTransformation())).into((ImageView) itemViewHolder.iv_item_userlist);
 

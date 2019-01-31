@@ -38,6 +38,7 @@
                 android:textSize="@dimen/dp_14" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_find_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

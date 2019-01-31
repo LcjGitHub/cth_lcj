@@ -95,25 +95,25 @@ public class HomeActivity extends ActivityBase implements CustomTabView.OnTabChe
         mCustomTabView = (CustomTabView) findViewById(R.id.custom_tab_container);
         CustomTabView.Tab tabHome = new CustomTabView.Tab().setText("首页")
                 .setColor(getResources().getColor(android.R.color.darker_gray))
-                .setCheckedColor(getResources().getColor(android.R.color.black))
+                .setCheckedColor(getResources().getColor(R.color.home_button))
                 .setNormalIcon(R.drawable.tab_home1)
                 .setPressedIcon(R.drawable.tab_home2);
         mCustomTabView.addTab(tabHome);
         CustomTabView.Tab tabDis = new CustomTabView.Tab().setText("互助")
                 .setColor(getResources().getColor(android.R.color.darker_gray))
-                .setCheckedColor(getResources().getColor(android.R.color.black))
+                .setCheckedColor(getResources().getColor(R.color.home_button))
                 .setNormalIcon(R.drawable.tab_huzhu1)
                 .setPressedIcon(R.drawable.tab_huzhu2);
         mCustomTabView.addTab(tabDis);
         CustomTabView.Tab tabAttention = new CustomTabView.Tab().setText("发现")
                 .setColor(getResources().getColor(android.R.color.darker_gray))
-                .setCheckedColor(getResources().getColor(android.R.color.black))
+                .setCheckedColor(getResources().getColor(R.color.home_button))
                 .setNormalIcon(R.drawable.tab_faxian1)
                 .setPressedIcon(R.drawable.tab_faxian2);
         mCustomTabView.addTab(tabAttention);
         CustomTabView.Tab tabProfile = new CustomTabView.Tab().setText("我的")
                 .setColor(getResources().getColor(android.R.color.darker_gray))
-                .setCheckedColor(getResources().getColor(android.R.color.black))
+                .setCheckedColor(getResources().getColor(R.color.home_button))
                 .setNormalIcon(R.drawable.tab_user1)
                 .setPressedIcon(R.drawable.tab_user2);
         mCustomTabView.addTab(tabProfile);
@@ -234,17 +234,17 @@ public class HomeActivity extends ActivityBase implements CustomTabView.OnTabChe
         }
     };
     private void getN_checkAppVersion(String type) {
-        String s_token = SPTool.getString(HomeActivity.this, "token");
-        Log.d("CityActivity", s_token);
-
-        if (DataTool.isNullString(s_token)) {
-            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        String s_token = SPTool.getString(HomeActivity.this, "token");
+//        Log.d("CityActivity", s_token);
+//
+//        if (DataTool.isNullString(s_token)) {
+//            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         OkGo.<String>get(NetData.N_checkAppVersion+"?type="+type)
                 .tag(this)
-                .headers("token",s_token)
+//                .headers("token",s_token)
 
 
                 .execute(new StringCallback() {
@@ -265,19 +265,27 @@ public class HomeActivity extends ActivityBase implements CustomTabView.OnTabChe
 
                                         APPversionBean bean=new Gson().fromJson(data, APPversionBean.class);
                                         String oldnum= DeviceTool.getAppVersionName(HomeActivity.this);
+                                        int VersionNo= DeviceTool.getAppVersionNo(HomeActivity.this);
 
                                         String newnum =bean.getData().getVersionNum();
                                         if (bean.getData().getIsMust()==0){
                                             ismust=false;
                                         }else if (bean.getData().getIsMust()==1){
-                                            ismust=false;
+                                            ismust=true;
                                         }
-                                        Log.d("HomeActivity", oldnum+"-------------"+newnum);
-                                        if (oldnum.equals(newnum)){
-                                            BaseToast.success("已是最新版本");
+                                        Log.d("HomeActivity", oldnum+"-------------"+oldnum);
+                                        Log.d("HomeActivity", newnum+"-------------"+newnum);
+                                        Log.d("HomeActivity", VersionNo+"-------------"+VersionNo);
+                                        if (Double.parseDouble(String.valueOf(oldnum))>=Double.parseDouble(bean.getData().getVersionNum())){
+
                                         }else {
                                             ShowDialog(bean.getData().getContent(),bean.getData().getUrl());
                                         }
+//                                        if (oldnum.equals(newnum)){
+////                                            BaseToast.success("已是最新版本");
+//                                        }else {
+//
+//                                        }
 
 
 
@@ -340,6 +348,9 @@ public class HomeActivity extends ActivityBase implements CustomTabView.OnTabChe
 
             }
         });
+        rxDialogSureCancel.setCanceledOnTouchOutside(false);
+
+        rxDialogSureCancel.setCancelable(false);
         rxDialogSureCancel.show();
     }
 

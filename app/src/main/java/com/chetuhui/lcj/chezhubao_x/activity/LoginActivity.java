@@ -6,17 +6,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.InputType;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,13 +37,18 @@ import com.chetuhui.lcj.chezhubao_x.tool.Constants;
 import com.chetuhui.lcj.chezhubao_x.tool.DataTool;
 import com.chetuhui.lcj.chezhubao_x.tool.KeyboardTool;
 import com.chetuhui.lcj.chezhubao_x.tool.PermissionsTool;
+import com.chetuhui.lcj.chezhubao_x.tool.RegTool;
 import com.chetuhui.lcj.chezhubao_x.tool.SPTool;
+import com.chetuhui.lcj.chezhubao_x.tool.interfaces.OnRepeatClickListener;
 import com.chetuhui.lcj.chezhubao_x.utils.NetData;
 import com.chetuhui.lcj.chezhubao_x.view.BaseToast;
+import com.chetuhui.lcj.chezhubao_x.view.dialog.BaseDialog;
 import com.chetuhui.lcj.chezhubao_x.view.dialog.DialogSure;
+import com.chetuhui.lcj.chezhubao_x.view.dialog.DialogSureCancel;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -98,30 +103,57 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
     private TextView mTvLoginZhengce;
 
     private IWXAPI wxAPI;
-    private TextView tvNickname,tvAge;
-    public static final int IMAGE_SIZE=32768;//微信分享图片大小限制
+    private TextView tvNickname, tvAge;
+    public static final int IMAGE_SIZE = 32768;//微信分享图片大小限制
     private int screenHeight = 0;//屏幕高度
     private int keyHeight = 0; //软件盘弹起后所占高度
     private float scale = 0.6f; //logo缩放比例
     private int height = 0;
     private LinearLayout mLlLoginContent;
-    private  String con,title;
+    private String con, title;
+    private boolean iszc = false;
+    private DialogSureCancel rxDialogSureCancel;
+    private MyCountDownTimer mCountDownTimer;
+    /**
+     * 短信验证码登录
+     */
+    private TextView mTvLogDxdl;
+    private TextView mTvLogDxdlXian;
+    /**
+     * 密码登录
+     */
+    private TextView mTvLogMmdl;
+    private TextView mTvLogMmdlXian;
+    /**  */
+    private EditText mEtLoginMobileYzm;
+    private ImageView mIvLoginCleanPhoneYzm;
+    /**  */
+    private EditText mEtLoginYzm;
+    /**
+     * 获取验证码
+     */
+    private TextView mTvLogYzm;
+    private LinearLayout mLlYzm;
+    private LinearLayout mLlMm;
+    private boolean isonclick=true;
+    private boolean isyzm=true;
 
     private static class MyHandler extends Handler {
-            private WeakReference<LoginActivity> activityWeakReference;
+        private WeakReference<LoginActivity> activityWeakReference;
 
-            public MyHandler(LoginActivity activity) {
-                activityWeakReference = new WeakReference<LoginActivity>(activity);
-            }
+        public MyHandler(LoginActivity activity) {
+            activityWeakReference = new WeakReference<LoginActivity>(activity);
+        }
 
-            @Override
-            public void handleMessage(Message msg) {
-                LoginActivity activity = activityWeakReference.get();
-                if (activity != null) {
+        @Override
+        public void handleMessage(Message msg) {
+            LoginActivity activity = activityWeakReference.get();
+            if (activity != null) {
 
-                }
             }
         }
+    }
+
     private static final Runnable sRunnable = new Runnable() {
         @Override
         public void run() {
@@ -131,7 +163,8 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
     };
 
 
-        private MyHandler mMyHandler=new MyHandler(LoginActivity.this);
+    private MyHandler mMyHandler = new MyHandler(LoginActivity.this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,7 +173,7 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
             AndroidBug5497Workaround.assistActivity(this);
         }
         EventBus.getDefault().register(this);//注册
-        wxAPI = WXAPIFactory.createWXAPI(this,Constants.WECHAT_APPID,true);
+        wxAPI = WXAPIFactory.createWXAPI(this, Constants.WECHAT_APPID, true);
         wxAPI.registerApp(Constants.WECHAT_APPID);
         initView();
         initEvent();
@@ -152,6 +185,7 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
                 addPermission(Manifest.permission.CAMERA).
                 addPermission(Manifest.permission.CALL_PHONE).
                 addPermission(Manifest.permission.READ_PHONE_STATE).
+                addPermission(Manifest.permission.RECORD_AUDIO).
                 initPermission();
 
     }
@@ -187,6 +221,135 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
         screenHeight = this.getResources().getDisplayMetrics().heightPixels; //获取屏幕高度
         keyHeight = screenHeight / 3;//弹起高度为屏幕高度的1/3
         mLlLoginContent = (LinearLayout) findViewById(R.id.ll_login_content);
+        mTvLogDxdl = (TextView) findViewById(R.id.tv_log_dxdl);
+        mTvLogDxdlXian = (TextView) findViewById(R.id.tv_log_dxdl_xian);
+        mTvLogMmdl = (TextView) findViewById(R.id.tv_log_mmdl);
+        mTvLogMmdlXian = (TextView) findViewById(R.id.tv_log_mmdl_xian);
+        mEtLoginMobileYzm = (EditText) findViewById(R.id.et_login_mobile_yzm);
+        mIvLoginCleanPhoneYzm = (ImageView) findViewById(R.id.iv_login_clean_phone_yzm);
+        mEtLoginYzm = (EditText) findViewById(R.id.et_login_yzm);
+        mTvLogYzm = (TextView) findViewById(R.id.tv_log_yzm);
+        mLlYzm = (LinearLayout) findViewById(R.id.ll_yzm);
+        mLlMm = (LinearLayout) findViewById(R.id.ll_mm);
+        mTvLogDxdlXian.setVisibility(View.VISIBLE);
+        mLlYzm.setVisibility(View.VISIBLE);
+        mTvLogDxdl.setOnClickListener(new OnRepeatClickListener() {
+            @Override
+            public void onRepeatClick(View v) {
+                mTvLogDxdlXian.setVisibility(View.VISIBLE);
+                mLlYzm.setVisibility(View.VISIBLE);
+                mTvLogMmdlXian.setVisibility(View.GONE);
+                mLlMm.setVisibility(View.GONE);
+                isyzm=true;
+
+            }
+        });
+        mTvLogMmdl.setOnClickListener(new OnRepeatClickListener() {
+            @Override
+            public void onRepeatClick(View v) {
+                mTvLogDxdlXian.setVisibility(View.GONE);
+                mLlYzm.setVisibility(View.GONE);
+                mTvLogMmdlXian.setVisibility(View.VISIBLE);
+                mLlMm.setVisibility(View.VISIBLE);
+                isyzm=false;
+
+            }
+        });
+        mTvLogYzm.setOnClickListener(new OnRepeatClickListener() {
+            @Override
+            public void onRepeatClick(View v) {
+                if (isonclick){
+                    if (!DataTool.isNullString(mEtLoginMobileYzm.getText().toString())){
+                        if (RegTool.isMobile(mEtLoginMobileYzm.getText().toString())){
+                            getSmsCode(mEtLoginMobileYzm.getText().toString());
+
+                        }else {
+                            BaseToast.error("请输入正确的手机号");
+                        }
+                    }else {
+                        BaseToast.error("手机号不能空");
+                    }
+                }
+
+
+            }
+        });
+        mIvLoginCleanPhoneYzm.setOnClickListener(new OnRepeatClickListener() {
+            @Override
+            public void onRepeatClick(View v) {
+                mEtLoginMobileYzm.setText("");
+            }
+        });
+
+
+    }
+    private void getSmsCode(String phone) {
+
+        OkGo.<String>get(NetData.N_SMSCODE)
+                .tag(this)
+                .params("phone",phone)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(com.lzy.okgo.model.Response<String> response) {
+                        String data = response.body();//这个就是返回来的结果
+                        Log.d("RegisteredActivity", data);
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(data);
+                            String msg = jsonObject.getString("msg");
+                            int code=jsonObject.getInt("code");
+                            if (code==0){
+                                //BaseToast.success(msg);
+                                mCountDownTimer = new MyCountDownTimer(60000, 1000);
+                                mCountDownTimer.start();
+                                isonclick=false;
+                            }
+
+//                            BaseToast.info(msg);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+
+                    }
+
+                    @Override
+                    public void onError(com.lzy.okgo.model.Response<String> response) {
+                        super.onError(response);
+                    }
+                });
+    }
+    class MyCountDownTimer extends CountDownTimer {
+        /**
+         * @param millisInFuture    表示以「 毫秒 」为单位倒计时的总数
+         *                          例如 millisInFuture = 1000 表示1秒
+         * @param countDownInterval 表示 间隔 多少微秒 调用一次 onTick()
+         *                          例如: countDownInterval = 1000 ; 表示每 1000 毫秒调用一次 onTick()
+         */
+
+        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+
+        public void onFinish() {
+            mTvLogYzm.setText("重新获取验证码");
+            mMyHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    isonclick=true;
+
+//
+                }
+            });
+
+        }
+
+        public void onTick(long millisUntilFinished) {
+            mTvLogYzm.setText(millisUntilFinished / 1000 + "s ");
+        }
+
     }
 
     private void initEvent() {
@@ -288,7 +451,7 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        Intent intent =null;
+        Intent intent = null;
         switch (v.getId()) {
             default:
                 break;
@@ -319,47 +482,129 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
                 break;
             case R.id.tv_login_denglu:
                 KeyboardTool.hideSoftInput(mContext);
-                if (DataTool.isNullString(mEtLoginMobile.getText().toString())||DataTool.isNullString(mEtLoginPassword.getText().toString())){
+                if (isyzm){
+                if (DataTool.isNullString(mEtLoginMobileYzm.getText().toString()) || DataTool.isNullString(mEtLoginYzm.getText().toString())) {
                     BaseToast.error("输入有误，请检查");
 
-                }else {
-                    getLogin(mEtLoginMobile.getText().toString(),mEtLoginPassword.getText().toString());
+                } else {
+                    if (RegTool.isMobile(mEtLoginMobileYzm.getText().toString())) {
 
+                            getLoginyzm(mEtLoginMobileYzm.getText().toString(), mEtLoginYzm.getText().toString());
+
+
+                    } else {
+                        BaseToast.error("请输入正确的手机号");
+                    }
+
+                }
+                }else {
+                    if (DataTool.isNullString(mEtLoginMobile.getText().toString()) || DataTool.isNullString(mEtLoginPassword.getText().toString())) {
+                        BaseToast.error("输入有误，请检查");
+
+                    } else {
+                        if (RegTool.isMobile(mEtLoginMobile.getText().toString())) {
+
+                            getLogin(mEtLoginMobile.getText().toString(), mEtLoginPassword.getText().toString());
+
+
+                        } else {
+                            BaseToast.error("请输入正确的手机号");
+                        }
+
+
+                    }
                 }
 
                 break;
             case R.id.tv_login_regist:
-                intent=new Intent(this,RegisteredActivity.class);
-                intent.putExtra("name",1);
+
+                showdg(mContext, title, con);
+
+
                 break;
             case R.id.tv_login_forget_password:
-                intent=new Intent(this,RegisteredActivity.class);
-                intent.putExtra("name",2);
+                intent = new Intent(this, RegisteredActivity.class);
+                intent.putExtra("name", 2);
                 break;
             case R.id.tv_login_weixin:
                 loginToWeiXin();
                 break;
             case R.id.tv_login_xieyi:
+                iszc = false;
                 getN_findClause("4");
                 break;
             case R.id.tv_login_zhengce:
+                iszc = false;
                 getN_findClause("5");
                 break;
         }
-        if (intent!=null){
+        if (intent != null) {
             startActivity(intent);
         }
     }
-    private void getLogin(String phone ,String pw) {
 
-        OkGo.<String>post(NetData.N_login)
+    public void showdg(Context context, String title_str, String con_str) {
+        final BaseDialog rxDialog = new BaseDialog(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_login, null);
+
+        TextView cancel = view.findViewById(R.id.tv_cancel_login);
+        TextView title = view.findViewById(R.id.tv_title_login);
+        TextView con = view.findViewById(R.id.tv_content_login);
+        TextView suer = view.findViewById(R.id.tv_sure_login);
+        TextView xy = view.findViewById(R.id.tv_log_xy);
+        TextView zc = view.findViewById(R.id.tv_log_zc);
+//        title.setText(""+title_str);
+//        con.setText(""+con_str);
+
+        xy.setOnClickListener(new OnRepeatClickListener() {
+            @Override
+            public void onRepeatClick(View v) {
+                getN_findClause("4");
+            }
+        });
+        zc.setOnClickListener(new OnRepeatClickListener() {
+            @Override
+            public void onRepeatClick(View v) {
+                getN_findClause("5");
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rxDialog.cancel();
+            }
+        });
+        suer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEtLoginMobile.setText("");
+                mEtLoginPassword.setText("");
+                Intent intent;
+                intent = new Intent(mContext, RegisteredActivity.class);
+                intent.putExtra("name", 1);
+                startActivity(intent);
+                rxDialog.cancel();
+            }
+        });
+
+
+        rxDialog.setContentView(view);
+        rxDialog.getLayoutParams();
+        rxDialog.mLayoutParams.gravity = Gravity.CENTER;
+
+        rxDialog.show();
+        rxDialog.setFullScreen();
+    }
+    private void getLoginyzm(String phone, String pw) {
+
+        OkGo.<String>post(NetData.N_loginByPhoneAndCode)
                 .tag(this)
-                .params("phone",phone)
-                .params("password",pw)
+                .params("phone", phone)
+                .params("code", pw)
 
                 .execute(new StringCallback() {
                     @Override
-                    public void onSuccess(com.lzy.okgo.model.Response<String> response) {
+                    public void onSuccess(Response<String> response) {
                         final String data = response.body();//这个就是返回来的结果
                         Log.d("RegisteredActivity", data);
 
@@ -368,35 +613,35 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
                         try {
                             jsonObject = new JSONObject(data);
                             final String msg = jsonObject.getString("msg");
-                            final int code=jsonObject.getInt("code");
-                         mMyHandler.post(new Runnable() {
-                             @Override
-                             public void run() {
-                                 if (code==0){
-                                     LoginBean loginBean= new Gson().fromJson(data, LoginBean.class);
-                                     String token= loginBean.getData().getToken();
-                                     Log.d("LoginActivity", token);
-                                     SPTool.putString(LoginActivity.this,"token",token);
-                                     SPTool.putString(LoginActivity.this,"phone",loginBean.getData().getUser().getPhone());
-                                     SPTool.putString(LoginActivity.this,"name",loginBean.getData().getUser().getNickName());
-                                     SPTool.putString(LoginActivity.this,"user_code",loginBean.getData().getUser().getUserCode());
+                            final int code = jsonObject.getInt("code");
+                            mMyHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (code == 0) {
+                                        LoginBean loginBean = new Gson().fromJson(data, LoginBean.class);
+                                        String token = loginBean.getData().getToken();
+                                        Log.d("LoginActivity", token);
+                                        SPTool.putString(LoginActivity.this, "token", token);
+                                        SPTool.putString(LoginActivity.this, "phone", loginBean.getData().getUser().getPhone());
+                                        SPTool.putString(LoginActivity.this, "name", loginBean.getData().getUser().getNickName());
+                                        SPTool.putString(LoginActivity.this, "user_code", loginBean.getData().getUser().getUserCode());
 
-                                     //BaseToast.success(msg);
-                                     startActivity(new Intent(LoginActivity.this,HomeActivity.class));
-                                     finish();
-                                 }else if (code==1004){
-                                     ActivityTool.finishAllActivity();
-                                     SPTool.remove(LoginActivity.this,"token");
-                                     startActivity(new Intent(LoginActivity.this,LoginActivity.class));
-                                     BaseToast.error("登录过期，请重新登录");
+                                        //BaseToast.success(msg);
+                                        ActivityTool.finishAllActivity();
+                                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 
-                                 }else {
-                                     BaseToast.success(msg);
+                                    } else if (code == 1004) {
+                                        ActivityTool.finishAllActivity();
+                                        SPTool.remove(LoginActivity.this, "token");
+                                        startActivity(new Intent(LoginActivity.this, LoginActivity.class));
+                                        BaseToast.error("登录过期，请重新登录");
 
-                                 }
-                             }
-                         });
+                                    } else {
+                                        BaseToast.success(msg);
 
+                                    }
+                                }
+                            });
 
 
                         } catch (JSONException e) {
@@ -404,63 +649,127 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
                         }
 
 
-
                     }
 
                     @Override
-                    public void onError(com.lzy.okgo.model.Response<String> response) {
+                    public void onError(Response<String> response) {
                         super.onError(response);
                     }
                 });
     }
-    private void loginToWeiXin(){
+
+    private void getLogin(String phone, String pw) {
+
+        OkGo.<String>post(NetData.N_login)
+                .tag(this)
+                .params("phone", phone)
+                .params("password", pw)
+
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        final String data = response.body();//这个就是返回来的结果
+                        Log.d("RegisteredActivity", data);
+
+
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(data);
+                            final String msg = jsonObject.getString("msg");
+                            final int code = jsonObject.getInt("code");
+                            mMyHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (code == 0) {
+                                        LoginBean loginBean = new Gson().fromJson(data, LoginBean.class);
+                                        String token = loginBean.getData().getToken();
+                                        Log.d("LoginActivity", token);
+                                        SPTool.putString(LoginActivity.this, "token", token);
+                                        SPTool.putString(LoginActivity.this, "phone", loginBean.getData().getUser().getPhone());
+                                        SPTool.putString(LoginActivity.this, "name", loginBean.getData().getUser().getNickName());
+                                        SPTool.putString(LoginActivity.this, "user_code", loginBean.getData().getUser().getUserCode());
+
+                                        //BaseToast.success(msg);
+                                        ActivityTool.finishAllActivity();
+                                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+
+                                    } else if (code == 1004) {
+                                        ActivityTool.finishAllActivity();
+                                        SPTool.remove(LoginActivity.this, "token");
+                                        startActivity(new Intent(LoginActivity.this, LoginActivity.class));
+                                        BaseToast.error("登录过期，请重新登录");
+
+                                    } else {
+                                        BaseToast.success(msg);
+
+                                    }
+                                }
+                            });
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                    }
+                });
+    }
+
+    private void loginToWeiXin() {
 
 
         if (wxAPI != null && wxAPI.isWXAppInstalled()) {
             login();
 
-        } else{
+        } else {
             Toast.makeText(this, "用户未安装微信", Toast.LENGTH_SHORT).show();
 
         }
     }
+
     private void getN_loginByWx(String code) {
 
-        OkGo.<String>get(NetData.N_loginByWx+code)
+        OkGo.<String>get(NetData.N_loginByWx + code)
                 .tag(this)
 
                 .execute(new StringCallback() {
                     @Override
-                    public void onSuccess(com.lzy.okgo.model.Response<String> response) {
+                    public void onSuccess(Response<String> response) {
                         String data = response.body();//这个就是返回来的结果
                         Log.d("RegisteredActivity", data);
                         JSONObject jsonObject = null;
                         try {
                             jsonObject = new JSONObject(data);
                             String msg = jsonObject.getString("msg");
-                            int code=jsonObject.getInt("code");
-                            if (code==0){
-                                LoginBean loginBean= new Gson().fromJson(data, LoginBean.class);
-                                String token= loginBean.getData().getToken();
+                            int code = jsonObject.getInt("code");
+                            if (code == 0) {
+                                LoginBean loginBean = new Gson().fromJson(data, LoginBean.class);
+                                String token = loginBean.getData().getToken();
                                 Log.d("LoginActivity", token);
-                                SPTool.putString(LoginActivity.this,"token",token);
-                                SPTool.putString(LoginActivity.this,"phone",loginBean.getData().getUser().getPhone());
-                                SPTool.putString(LoginActivity.this,"name",loginBean.getData().getUser().getNickName());
-                                SPTool.putString(LoginActivity.this,"user_code",loginBean.getData().getUser().getUserCode());
+                                SPTool.putString(LoginActivity.this, "token", token);
+                                SPTool.putString(LoginActivity.this, "phone", loginBean.getData().getUser().getPhone());
+                                SPTool.putString(LoginActivity.this, "name", loginBean.getData().getUser().getNickName());
+                                SPTool.putString(LoginActivity.this, "user_code", loginBean.getData().getUser().getUserCode());
                                 //BaseToast.success(msg);
-                                startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                 finish();
 
-                            }else if (code==1){
-                                JSONObject object=new JSONObject(String.valueOf(jsonObject.getJSONObject("data")));
+                            } else if (code == 1) {
+                                JSONObject object = new JSONObject(String.valueOf(jsonObject.getJSONObject("data")));
                                 Log.d("LoginActivity", object.getString("openId"));
                                 Log.d("LoginActivity", object.getString("access_token"));
 
-                                Intent intent=null;
-                                intent=new Intent(LoginActivity.this,RegisteredActivity.class);
-                                intent.putExtra("name",3);
-                                intent.putExtra("openId",object.getString("openId"));
-                                intent.putExtra("access_token",object.getString("access_token"));
+                                Intent intent = null;
+                                intent = new Intent(LoginActivity.this, RegisteredActivity.class);
+                                intent.putExtra("name", 3);
+                                intent.putExtra("openId", object.getString("openId"));
+                                intent.putExtra("access_token", object.getString("access_token"));
 
                                 startActivity(intent);
                                 BaseToast.success("微信登录成功后需要你绑定手机号");
@@ -474,11 +783,10 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
                         }
 
 
-
                     }
 
                     @Override
-                    public void onError(com.lzy.okgo.model.Response<String> response) {
+                    public void onError(Response<String> response) {
                         super.onError(response);
                     }
                 });
@@ -486,19 +794,20 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
 
     /**
      * 这里用到的了EventBus框架
+     *
      * @param weiXin
      */
     @Subscribe
-    public void onEventMainThread(WeiXin weiXin){
-        Log.i("ansen","收到eventbus请求 type:"+weiXin.getType());
-        if(weiXin.getType()==1){//登录
-            Log.d("LoginActivity", ""+weiXin.getCode());
+    public void onEventMainThread(WeiXin weiXin) {
+        Log.i("ansen", "收到eventbus请求 type:" + weiXin.getType());
+        if (weiXin.getType() == 1) {//登录
+            Log.d("LoginActivity", "" + weiXin.getCode());
 
-            getN_loginByWx(""+weiXin.getCode());
+            getN_loginByWx("" + weiXin.getCode());
 
 
-        }else if(weiXin.getType()==2){//分享
-            switch (weiXin.getErrCode()){
+        } else if (weiXin.getType() == 2) {//分享
+            switch (weiXin.getErrCode()) {
                 case BaseResp.ErrCode.ERR_OK:
                     Log.i("ansen", "微信分享成功.....");
                     break;
@@ -509,19 +818,20 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
                     Log.i("ansen", "微信分享被拒绝.....");
                     break;
             }
-        }else if(weiXin.getType()==3){//微信支付
-            if(weiXin.getErrCode()==BaseResp.ErrCode.ERR_OK){//成功
-                Log.i("ansen", "微信支付成功.....");
+        } else if (weiXin.getType() == 3) {//微信充值
+            if (weiXin.getErrCode() == BaseResp.ErrCode.ERR_OK) {//成功
+                Log.i("ansen", "微信充值成功.....");
             }
         }
     }
+
     /**
      * 微信登陆(三个步骤)
      * 1.微信授权登陆
      * 2.根据授权登陆code 获取该用户token
      * 3.根据token获取用户资料
      */
-    public void login(){
+    public void login() {
         SendAuth.Req req = new SendAuth.Req();
         req.scope = "snsapi_userinfo";
         req.state = String.valueOf(System.currentTimeMillis());
@@ -537,44 +847,49 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
 //            return;
 //        }
 //1：法律声明 2：车助保服务协议 3：服务合作协议 4：关于我们 5：客服电话
-        OkGo.<String>get(NetData.N_findClause+"?type="+type)
+        OkGo.<String>get(NetData.N_findClause + "?type=" + type)
                 .tag(this)
 //                .headers("token",s_token)
 
 
                 .execute(new StringCallback() {
                     @Override
-                    public void onSuccess(com.lzy.okgo.model.Response<String> response) {
+                    public void onSuccess(Response<String> response) {
                         String data = response.body();//这个就是返回来的结果
                         Log.d("RegisteredActivity", data);
                         JSONObject jsonObject = null;
                         try {
                             jsonObject = new JSONObject(data);
                             String msg = jsonObject.getString("msg");
-                            int code=jsonObject.getInt("code");
-                            if (code==0){
+                            int code = jsonObject.getInt("code");
+                            if (code == 0) {
                                 //BaseToast.success(msg);
-                                String d=jsonObject.getString("data");
-                                JSONObject jsonObject1=new JSONObject(d);
-                                con=  jsonObject1.getString("content");
-                                title=  jsonObject1.getString("name");
+                                String d = jsonObject.getString("data");
+                                JSONObject jsonObject1 = new JSONObject(d);
+                                con = jsonObject1.getString("content");
+                                title = jsonObject1.getString("name");
                                 mMyHandler.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        showview(LoginActivity.this,con,title);
+                                        if (iszc) {
+
+
+                                        } else {
+                                            showview(LoginActivity.this, con, title);
+                                        }
+
 
                                     }
                                 });
 
 
-
-                            } else if (code==1004){
+                            } else if (code == 1004) {
                                 ActivityTool.finishAllActivity();
-                                SPTool.remove(LoginActivity.this,"token");
-                                startActivity(new Intent(LoginActivity.this,LoginActivity.class));
+                                SPTool.remove(LoginActivity.this, "token");
+                                startActivity(new Intent(LoginActivity.this, LoginActivity.class));
                                 BaseToast.error("登录过期，请重新登录");
 
-                            }else {
+                            } else {
                                 BaseToast.success(msg);
 
                             }
@@ -585,16 +900,16 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
                         }
 
 
-
                     }
 
                     @Override
-                    public void onError(com.lzy.okgo.model.Response<String> response) {
+                    public void onError(Response<String> response) {
                         super.onError(response);
                     }
                 });
     }
-    public  void showview(final Context mContext, String str, String title) {
+
+    public void showview(final Context mContext, String str, String title) {
         final DialogSure rxDialogSure = new DialogSure(mContext);
         rxDialogSure.getLogoView().setVisibility(View.GONE);
 
@@ -618,5 +933,8 @@ public class LoginActivity extends ActivityBase implements View.OnClickListener 
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);//取消注册
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+        }
     }
 }

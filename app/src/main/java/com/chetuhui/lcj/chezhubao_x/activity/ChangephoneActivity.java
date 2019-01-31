@@ -161,7 +161,7 @@ public class ChangephoneActivity extends ActivityBase implements View.OnClickLis
                                 isonclick=false;
                             }
 
-                            BaseToast.info(msg);
+//                            BaseToast.info(msg);
 
 
                         } catch (JSONException e) {
@@ -205,10 +205,11 @@ public class ChangephoneActivity extends ActivityBase implements View.OnClickLis
                             if (code==0){
                                 ChangePhoneBean changePhoneBean= new Gson().fromJson(data, ChangePhoneBean.class);
 
-
+                                Log.d("ChangephoneActivity", "phoneToken:"+changePhoneBean.getData().getPhoneToken());
 
                                 Intent intent=new Intent(ChangephoneActivity.this,ReplaceActivity.class);
                                 intent.putExtra("phoneToken",changePhoneBean.getData().getPhoneToken());
+
                                 intent.putExtra("userCode",changePhoneBean.getData().getUserCode());
 
                                 startActivity(intent);

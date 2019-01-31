@@ -25,7 +25,7 @@ import com.chetuhui.lcj.chezhubao_x.activity.IHelpActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.LoginActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.MutualRecordActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.MyMutualHelpActivity;
-import com.chetuhui.lcj.chezhubao_x.activity.SelectCarActivity;
+
 import com.chetuhui.lcj.chezhubao_x.adapter.GszAdapter;
 import com.chetuhui.lcj.chezhubao_x.adapter.YhzAdapter;
 import com.chetuhui.lcj.chezhubao_x.model.GszBean;

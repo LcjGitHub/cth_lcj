@@ -25,8 +25,8 @@
             app:leftTextColor="@color/white"
             app:leftTextSize="@dimen/dp_20"
             app:leftType="textView"
-            app:rightCustomView="@layout/find_title_right"
-            app:rightType="customView"
+            app:rightImageResource="@drawable/home_message"
+            app:rightType="imageButton"
             app:showBottomLine="false"
             app:titleBarColor="@color/transparent" />
 
@@ -65,7 +65,7 @@
             android:layout_weight="1"
             android:drawableTop="@drawable/huzhu_icon2"
             android:gravity="center"
-            android:text="我要互助"
+            android:text="我要救助"
             android:textColor="@color/_6" />
 
         <TextView
@@ -113,12 +113,12 @@
         <RelativeLayout
 
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_80"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_5"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -137,28 +137,31 @@
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/iv_amc_sqt"
-                android:layout_width="@dimen/dp_50"
-                android:layout_height="@dimen/dp_50"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:src="@drawable/sqt"
-                android:visibility="gone"
-
-                />
 
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_find_huzhucheliang"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_10"
                 android:layout_toLeftOf="@+id/tv_find_tianjiacheliang"
                 android:background="@color/white"
                 android:visibility="visible">
 
             </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/tv_find_tianjiacheliang1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_43"
+                android:paddingTop="@dimen/dp_43"
+                android:drawableTop="@drawable/find_tianjia"
+                android:gravity="center"
+                android:text="添加互助车辆"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tv_find_tianjiacheliang"

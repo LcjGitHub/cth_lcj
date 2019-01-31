@@ -1,23 +1,37 @@
 package com.chetuhui.lcj.chezhubao_x.activity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chetuhui.lcj.chezhubao_x.R;
 import com.chetuhui.lcj.chezhubao_x.adapter.City3Adapter;
-import com.chetuhui.lcj.chezhubao_x.adapter.CityAdapter2;
+
 import com.chetuhui.lcj.chezhubao_x.model.CityBean;
 import com.chetuhui.lcj.chezhubao_x.tool.ActivityTool;
 import com.chetuhui.lcj.chezhubao_x.tool.DataTool;
 import com.chetuhui.lcj.chezhubao_x.tool.SPTool;
+import com.chetuhui.lcj.chezhubao_x.tool.interfaces.OnRepeatClickListener;
 import com.chetuhui.lcj.chezhubao_x.utils.NetData;
 import com.chetuhui.lcj.chezhubao_x.view.BaseToast;
 import com.chetuhui.lcj.chezhubao_x.view.sort.PinyinComparator;
@@ -32,6 +46,7 @@ import com.lzy.okgo.model.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +57,7 @@ public class CityActivity extends ActivityBase {
 
     private RecyclerView mRvCityRecyclerView;
     //    private WaveSideBarView mSbvsideView;
-    private CityAdapter2 mAdapterContactCity;
+
 
     private WaveSideBar mSideBar;
     private City3Adapter mAdapter;
@@ -58,30 +73,92 @@ public class CityActivity extends ActivityBase {
     private PinyinComparator mComparator;
     private CommonTitleBar mTitlebarCity;
 
-    private MyHandler mHandler =new MyHandler(CityActivity.this);
+    private MyHandler mHandler = new MyHandler(CityActivity.this);
+
     private static class MyHandler extends Handler {
-            private WeakReference<CityActivity> activityWeakReference;
+        private WeakReference<CityActivity> activityWeakReference;
 
-            public MyHandler(CityActivity activity) {
-                activityWeakReference = new WeakReference<CityActivity>(activity);
-            }
+        public MyHandler(CityActivity activity) {
+            activityWeakReference = new WeakReference<CityActivity>(activity);
+        }
 
-            @Override
-            public void handleMessage(Message msg) {
-                CityActivity activity = activityWeakReference.get();
-                if (activity != null) {
+        @Override
+        public void handleMessage(Message msg) {
+            CityActivity activity = activityWeakReference.get();
+            if (activity != null) {
 
-                }
             }
         }
+    }
+
+    private TextView positionTextView;
+    private LocationManager locationManager;
+    private String provider;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);
         initView();
+        locationManager = (LocationManager) getSystemService(Context.
+                LOCATION_SERVICE);
+        List<String> providerList = locationManager.getProviders(true);
+        if (providerList.contains(LocationManager.GPS_PROVIDER)) {
+            provider = LocationManager.GPS_PROVIDER;
+        } else if (providerList.contains(LocationManager.NETWORK_PROVIDER)) {
+            provider = LocationManager.NETWORK_PROVIDER;
+        } else {
+            Toast.makeText(this, "请检查网络或GPS是否打开",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
 
+        final Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+        if (location != null) {
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    List<Address> addList = null;
+                    Geocoder ge = new Geocoder(getApplicationContext());
+                    try {
+                        addList = ge.getFromLocation(location.getLatitude(),location.getLongitude(), 1);
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    if (addList != null && addList.size() > 0) {
+                        for (int i = 0; i < addList.size(); i++) {
+                            Address ad = addList.get(i);
+                            provider = ad.getLocality();
+                        }
+                    }
+                    positionTextView.setText(provider);
+                    if (DataTool.isNullString(positionTextView.getText().toString())){
+                        BaseToast.error("自动定位失败，请选择城市");
+
+                    }else {
+                        getN_findCitysAutomatic(positionTextView.getText().toString());
+
+                    }
+
+
+                }
+            });
+            String currentPosition = "latitude is " + location.getLatitude() + "\n"
+                    + "longitude is " + location.getLongitude();
+            Log.d("CityActivity", currentPosition);
+
+        }
     }
+
+
+
+
+
+
+
 
 
     /**
@@ -91,16 +168,16 @@ public class CityActivity extends ActivityBase {
      */
     private void getN_findCitys(String string) {
 
-        String s_token = SPTool.getString(CityActivity.this, "token");
-        Log.d("CityActivity", s_token);
-
-        if (DataTool.isNullString(s_token)) {
-            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        String s_token = SPTool.getString(CityActivity.this, "token");
+//        Log.d("CityActivity", s_token);
+//
+//        if (DataTool.isNullString(s_token)) {
+//            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
         OkGo.<String>get(NetData.N_findCitys + "?city=" + string)
                 .tag(this)
-                .headers("token", s_token)
+//                .headers("token", s_token)
 //                .params("city",string)
                 .execute(new StringCallback() {
                     @Override
@@ -178,6 +255,21 @@ public class CityActivity extends ActivityBase {
 
 
     private void initView() {
+        positionTextView = (TextView) findViewById(R.id.tv_city);
+        positionTextView.setOnClickListener(new OnRepeatClickListener() {
+            @Override
+            public void onRepeatClick(View v) {
+                if (DataTool.isNullString(positionTextView.getText().toString())){
+                    BaseToast.error("自动定位失败，请选择城市");
+
+                }else {
+//                    SPTool.putString(CityActivity.this,"city_name",positionTextView.getText().toString());
+                    finish();
+                }
+
+
+            }
+        });
         mRvCityRecyclerView = (RecyclerView) findViewById(R.id.rv_city_recycler_view);
         mSideBar = (WaveSideBar) findViewById(R.id.sbvside_view);
 
@@ -245,6 +337,78 @@ public class CityActivity extends ActivityBase {
 //            public void afterTextChanged(Editable s) {
 //            }
 //        });
+    }
+    private void getN_findCitysAutomatic(String string) {
+
+//        String s_token = SPTool.getString(CityActivity.this, "token");
+//        Log.d("CityActivity", s_token);
+//
+//        if (DataTool.isNullString(s_token)) {
+//            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+        OkGo.<String>post(NetData.N_findCitysAutomatic)
+                .tag(this)
+//                .headers("token", s_token)
+                .params("cityName",string)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        final String data = response.body();//这个就是返回来的结果
+                        Log.d("RegisteredActivity", data);
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(data);
+                            final String msg = jsonObject.getString("msg");
+                            final int code = jsonObject.getInt("code");
+
+                            final JSONObject finalJsonObject = jsonObject;
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (code == 0) {
+                                         int cityid = 0;
+                                        try {
+                                            cityid = finalJsonObject.getInt("data");
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        SPTool.putString(CityActivity.this,"city_name",positionTextView.getText().toString());
+
+                                        SPTool.putInt(CityActivity.this,"city_id",cityid);
+
+
+
+
+
+                                    } else if (code == 1004) {
+                                        ActivityTool.finishAllActivity();
+                                        SPTool.remove(CityActivity.this, "token");
+                                        startActivity(new Intent(CityActivity.this, LoginActivity.class));
+                                        BaseToast.error("登录过期，请重新登录");
+
+                                    } else {
+                                        BaseToast.success(msg);
+
+                                    }
+                                }
+                            });
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onError(Response<String> response) {
+                        super.onError(response);
+                    }
+                });
+
+
     }
 
 

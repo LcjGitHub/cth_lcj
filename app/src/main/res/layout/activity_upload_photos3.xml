@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/f9"
+    tools:context=".activity.UploadPhotos3Activity">
+    <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
+        android:id="@+id/titlebar_up3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:centerText="上传维修结果"
+        app:centerType="textView"
+        app:fillStatusBar="false"
+        app:leftImageResource="@drawable/back"
+
+        app:leftType="imageButton"
+
+        app:showBottomLine="false"
+        app:titleBarColor="@color/transparent" />
+    <LinearLayout
+        android:layout_below="@+id/titlebar_up3"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_120">
+            <RelativeLayout
+                android:layout_margin="@dimen/dp_1"
+                android:background="@drawable/shape_rectangle_5_f_b"
+                android:layout_weight="1"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_up3_chetou"
+                    android:src="@drawable/up_ct"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_margin="@dimen/dp_1"
+                android:layout_weight="1"
+                android:background="@drawable/shape_rectangle_5_white_b"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_up3_chetou"
+                    android:layout_centerInParent="true"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:drawableTop="@drawable/sczp_pthoto"
+                    android:text="受损车车头45°"
+                    android:textColor="@color/home_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_120">
+            <RelativeLayout
+                android:layout_margin="@dimen/dp_1"
+                android:background="@drawable/shape_rectangle_5_f_b"
+                android:layout_weight="1"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_up3_chewei"
+                    android:src="@drawable/up_cw"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_margin="@dimen/dp_1"
+                android:layout_weight="1"
+                android:background="@drawable/shape_rectangle_5_white_b"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_up3_chewei"
+                    android:layout_centerInParent="true"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:drawableTop="@drawable/sczp_pthoto"
+                    android:text="受损车车尾45°"
+                    android:textColor="@color/home_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_120">
+            <RelativeLayout
+                android:layout_margin="@dimen/dp_1"
+                android:background="@drawable/shape_rectangle_5_f_b"
+                android:layout_weight="1"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:src="@drawable/up_xj"
+                    android:id="@+id/iv_up3_xijie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_margin="@dimen/dp_1"
+                android:layout_weight="1"
+                android:background="@drawable/shape_rectangle_5_white_b"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_up3_xijie"
+                    android:layout_centerInParent="true"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:drawableTop="@drawable/sczp_pthoto"
+                    android:text="受损细节照片"
+                    android:textColor="@color/home_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/tv_up3_xyb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="确认完成"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@color/home_button"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10"
+        />
+
+</RelativeLayout>

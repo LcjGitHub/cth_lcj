@@ -1,7 +1,7 @@
 package com.chetuhui.lcj.chezhubao_x.model;
 
 public class WeiXin {
-    private int type;//1:登录 2.分享 3:微信支付
+    private int type;//1:登录 2.分享 3:微信充值
     private int errCode;//微信返回的错误码
     private String code;//登录成功才会有的code
 

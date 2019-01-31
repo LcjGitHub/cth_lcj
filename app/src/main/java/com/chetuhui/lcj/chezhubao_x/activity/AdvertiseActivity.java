@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +33,7 @@ import java.lang.ref.WeakReference;
 public class AdvertiseActivity extends ActivityBase {
 
     private TextView mStartSkipCountDown;
+    private RelativeLayout rl1,rl2;
     private ImageView mImageView;
     private MyCountDownTimer mCountDownTimer;
     private  AdverBean adverBean;
@@ -42,7 +44,12 @@ public class AdvertiseActivity extends ActivityBase {
         setContentView(R.layout.activity_advertise);
 
         mStartSkipCountDown = (TextView) findViewById(R.id.start_skip_count_down);
+        mStartSkipCountDown.setVisibility(View.GONE);
         mImageView=findViewById(R.id.iv_ad_);
+        rl1=findViewById(R.id.rl1);
+        rl2=findViewById(R.id.rl2);
+        rl1.setVisibility(View.VISIBLE);
+        rl2.setVisibility(View.GONE);
         mImageView.setOnClickListener(new OnRepeatClickListener() {
             @Override
             public void onRepeatClick(View v) {
@@ -67,7 +74,8 @@ public class AdvertiseActivity extends ActivityBase {
                     String token= SPTool.getString(AdvertiseActivity.this,"token");
                     Log.d("Main2Activity", token);
                     if (token.equals("")){
-                        startActivity(new Intent(AdvertiseActivity.this, LoginActivity.class));
+                        startActivity(new Intent(AdvertiseActivity.this, HomeActivity.class));
+                        finish();
                         finish();
                     }else {
                         startActivity(new Intent(AdvertiseActivity.this, HomeActivity.class));
@@ -128,10 +136,12 @@ public class AdvertiseActivity extends ActivityBase {
                         String token= SPTool.getString(AdvertiseActivity.this,"token");
                         Log.d("Main2Activity", token);
                         if (token.equals("")){
-                            startActivity(new Intent(AdvertiseActivity.this, LoginActivity.class));
+                            startActivity(new Intent(AdvertiseActivity.this, HomeActivity.class));
+//                            startActivity(new Intent(AdvertiseActivity.this, BasicInformationActivity.class));
                             finish();
                         }else {
                             startActivity(new Intent(AdvertiseActivity.this, HomeActivity.class));
+//                            startActivity(new Intent(AdvertiseActivity.this, BasicInformationActivity.class));
                             finish();
                         }
                     }
@@ -194,8 +204,17 @@ public class AdvertiseActivity extends ActivityBase {
                                 //BaseToast.success(msg);
                                 adverBean=new Gson().fromJson(data, AdverBean.class);
                                 if(!DataTool.isNullString(String.valueOf(adverBean.getData()))){
+                                    mStartSkipCountDown.setVisibility(View.VISIBLE);
+                                    rl1.setVisibility(View.GONE);
+                                    rl2.setVisibility(View.VISIBLE);
                                     Glide.with(AdvertiseActivity.this).load(adverBean.getData().getImgUrl()).into(mImageView);
+                                    mImageView.setOnClickListener(new OnRepeatClickListener() {
+                                        @Override
+                                        public void onRepeatClick(View v) {
+                                            getN_saveHitCount(String.valueOf(adverBean.getData().getId()));
 
+                                        }
+                                    });
                                 }
 
 

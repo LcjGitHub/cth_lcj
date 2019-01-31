@@ -38,6 +38,17 @@ protected void convert(BaseViewHolder helper, FindFanganBean.DataBean item) {
                 textView.setText("已保障\n" + item.getProtectionDays() + "天");
 
         }
+        else if (item.getState()==2){
+                TextView textView =helper.itemView.findViewById(R.id.tv_find_tianshu);
+                textView.setText("已用完");
+
+        }
+        else if (item.getState()==3){
+                TextView textView =helper.itemView.findViewById(R.id.tv_find_tianshu);
+                textView.setText("已失效");
+
+        }
+
 
 //        .setText(R.id.tv_find_tianshu, "已保障\n" + item.getProtectionDays() + "天");
 

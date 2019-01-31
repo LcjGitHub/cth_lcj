@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class EventDetailsActivity extends ActivityBase {
     private TextView mTvEdJrhz;
     /**  */
     private TextView mTvEdWxjg;
+    private TextView tv_ed_qygt;
     /**  */
     private TextView mTvEdXqTime;
     /**  */
@@ -98,11 +100,23 @@ public class EventDetailsActivity extends ActivityBase {
 
     private void initView() {
         mTitlebarEventdate = (CommonTitleBar) findViewById(R.id.titlebar_eventdate);
+        mTitlebarEventdate.setListener(new CommonTitleBar.OnTitleBarListener() {
+            @Override
+            public void onClicked(View v, int action, String extra) {
+                if (action == CommonTitleBar.ACTION_LEFT_BUTTON) {
+                    finish();
+
+                }
+
+            }
+        });
+
         mIvEdTouxiang = (ImageView) findViewById(R.id.iv_ed_touxiang);
         mTvEdName = (TextView) findViewById(R.id.tv_ed_name);
         mTvEdChepai = (TextView) findViewById(R.id.tv_ed_chepai);
         mTvEdJrhz = (TextView) findViewById(R.id.tv_ed_jrhz);
         mTvEdWxjg = (TextView) findViewById(R.id.tv_ed_wxjg);
+        tv_ed_qygt = (TextView) findViewById(R.id.tv_ed_qygt);
         mTvEdXqTime = (TextView) findViewById(R.id.tv_ed_xq_time);
         mTvEdXqContent = (TextView) findViewById(R.id.tv_ed_xq_content);
         mIvEdXqImg1 = (ImageView) findViewById(R.id.iv_ed_xq_img1);
@@ -183,6 +197,7 @@ public class EventDetailsActivity extends ActivityBase {
                                         mTvEdDsSscd.setText(eventDetailsBean.getData().getDegreeDamage());
                                         mTvEdDsSsbw.setText(eventDetailsBean.getData().getDamagedPart());
                                         mTvEdJgTime.setText(eventDetailsBean.getData().getFinishTime());
+                                        tv_ed_qygt.setText("全员公摊："+eventDetailsBean.getData().getPublicStall()+"元");
 
 
                                     }

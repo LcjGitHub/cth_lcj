@@ -91,8 +91,8 @@ public class MutualRecordDetailsActivity extends ActivityBase {
     private String code;
     int num=1;
     private MrdBean bean;
-    private String miaoshu;
-    private boolean isxyg = false;
+    private String miaoshu,type_djz;;
+
     private MyHandler mHandler=new MyHandler(MutualRecordDetailsActivity.this);
     private static class MyHandler extends Handler {
             private WeakReference<MutualRecordDetailsActivity> activityWeakReference;
@@ -115,6 +115,7 @@ public class MutualRecordDetailsActivity extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mutual_record_details);
         code = getIntent().getStringExtra("code");
+        type_djz = getIntent().getStringExtra("type_djz");
         getN_findMutualRecord(code);
         initView();
     }
@@ -130,10 +131,7 @@ public class MutualRecordDetailsActivity extends ActivityBase {
 
                 }
                 if (action == CommonTitleBar.ACTION_RIGHT_TEXT) {
-                    if (isxyg) {
-                        num=2;
-                        getdata(num);
-                    }
+
 
 
                 }
@@ -161,7 +159,7 @@ public class MutualRecordDetailsActivity extends ActivityBase {
         mTvMrdDjck.setOnClickListener(new OnRepeatClickListener() {
             @Override
             public void onRepeatClick(View v) {
-                shouck(MutualRecordDetailsActivity.this,bean.getData().get(num).getDetail());
+                shouck(MutualRecordDetailsActivity.this,bean.getData().getDetail());
             }
         });
         mTvMrdJzdmc = (TextView) findViewById(R.id.tv_mrd_jzdmc);
@@ -179,6 +177,8 @@ public class MutualRecordDetailsActivity extends ActivityBase {
         mIvMrdImg3 = (ImageView) findViewById(R.id.iv_mrd_img3);
         mIvMrdImg4 = (ImageView) findViewById(R.id.iv_mrd_img4);
         mTvMrdGhwxsj = (TextView) findViewById(R.id.tv_mrd_ghwxsj);
+        Log.d("MutualRecordDetailsActi", type_djz);
+
     }
     public static void shouck(final Context mContext, String str) {
         final DialogSure rxDialogSure = new DialogSure(mContext);
@@ -208,7 +208,7 @@ public class MutualRecordDetailsActivity extends ActivityBase {
             Toast.makeText(MutualRecordDetailsActivity.this, "获取token失败", Toast.LENGTH_SHORT).show();
             return;
         }
-        OkGo.<String>get(NetData.N_findMutualRecord + "?billCode=" + code)
+        OkGo.<String>get(NetData.N_findMutualRecord + "?salvationCode=" + code)
                 .tag(this)
                 .headers("token", s_token)
                 .cacheKey("mutualAidEvent1")       //由于该fragment会被复用,必须保证key唯一,否则数据会发生覆盖
@@ -232,13 +232,10 @@ public class MutualRecordDetailsActivity extends ActivityBase {
 
 
                                         bean = new Gson().fromJson(data, MrdBean.class);
-                                        if (bean.getData().size() == 1) {
-                                            num=1;
-                                            getdata(num);
-                                        } else if (bean.getData().size() == 2) {
-                                            isxyg = true;
 
-                                        }
+                                            getdata();
+
+
 
 
                                         //BaseToast.success(msg);
@@ -272,56 +269,83 @@ public class MutualRecordDetailsActivity extends ActivityBase {
 
     }
 
-    private void getdata(int i) {
+    private void getdata() {
 
-        if (bean.getData().get(i).getState() == 0) {
+        if (bean.getData().getState() == 0) {
             mTvMrdHzzt.setText("待确认");
             mTvMrdGhwxsj.setVisibility(View.GONE);
         } else {
             //1：救助完成 2：等待救助 3：商家拒绝
-            if (bean.getData().get(i).getHelpState() == 1) {
+            if (bean.getData().getHelpState() == 1) {
                 mTvMrdHzzt.setText("互助完成");
                 mTvMrdGhwxsj.setVisibility(View.GONE);
-            } else if (bean.getData().get(i).getHelpState() == 2) {
+            } else if (bean.getData().getHelpState() == 2) {
                 mTvMrdHzzt.setText("等待救助");
                 mTvMrdGhwxsj.setVisibility(View.VISIBLE);
-            } else if (bean.getData().get(i).getHelpState() == 3) {
+            } else if (bean.getData().getHelpState() == 3) {
                 mTvMrdHzzt.setText("商家拒绝");
                 mTvMrdGhwxsj.setVisibility(View.VISIBLE);
             }
-            else if (bean.getData().get(i).getHelpState() == 4) {
+            else if (bean.getData().getHelpState() == 4) {
                 mTvMrdHzzt.setText("已取消");
                 mTvMrdGhwxsj.setVisibility(View.VISIBLE);
             }
 
         }
 
-        mTvMrdHzdsqr.setText("" + bean.getData().get(i).getUserName());
-        mTvMrdHzcph.setText("" + bean.getData().get(i).getCarNum());
-        mTvMrdLxdh.setText("" + bean.getData().get(i).getPhone());
-        mTvMrdPp.setText("" + bean.getData().get(i).getCarBrand());
-        mTvMrdClshwz.setText("" + bean.getData().get(i).getDamageLocation());
-        mTvMrdYjwxsj.setText("" + bean.getData().get(i).getReadyFixTime());
-        mTvMrdYjwxsjd.setText("" + bean.getData().get(i).getReadyFixTimeQuantum());
-        mTvMrdYjwxsjd.setText("" + bean.getData().get(i).getReadyFixTimeQuantum());
-        miaoshu = bean.getData().get(i).getDetail();
-        mTvMrdJzdmc.setText("" + bean.getData().get(i).getProgramName());
-        mTvMrdBh.setText("" + bean.getData().get(i).getBillCode());
-        mTvMrdDchzsx.setText("" + bean.getData().get(i).getLimitMoney());
-        mTvMrdHzdfy.setText("" + bean.getData().get(i).getMpMoney());
-        mTvMrdBzkssj.setText("" + bean.getData().get(i).getEffectiveTime());
-        mTvMrdBzjssj.setText("" + bean.getData().get(i).getEndTime());
-        mTvMrdBzqx.setText("" + bean.getData().get(i).getProgramTime());
-        mTvMrdSjmc.setText("" + bean.getData().get(i).getBusinessName());
-        mTvMrdSjdh.setText("" + bean.getData().get(i).getBusinessPhone());
-        mTvMrdSjdz.setText("" + bean.getData().get(i).getDetailAd());
-        mTvMrdSjdz.setText("" + bean.getData().get(i).getDetailAd());
-        ShowImageUtils.showImageViewToCircle(MutualRecordDetailsActivity.this, bean.getData().get(i).getCarHeadimg(), mIvMrdImg1, 5);
-        ShowImageUtils.showImageViewToCircle(MutualRecordDetailsActivity.this, bean.getData().get(i).getCarEndimg(), mIvMrdImg2, 5);
-        ShowImageUtils.showImageViewToCircle(MutualRecordDetailsActivity.this, bean.getData().get(i).getCarInjuredimg(), mIvMrdImg3, 5);
-        ShowImageUtils.showImageViewToCircle(MutualRecordDetailsActivity.this, bean.getData().get(i).getCarDetailimg(), mIvMrdImg4, 5);
+        mTvMrdHzdsqr.setText("" + bean.getData().getUserName());
+        mTvMrdHzcph.setText("" + bean.getData().getCarNum());
+        mTvMrdLxdh.setText("" + bean.getData().getPhone());
+        mTvMrdPp.setText("" + bean.getData().getCarBrand());
+        mTvMrdClshwz.setText("" + bean.getData().getDamageLocation());
+        mTvMrdYjwxsj.setText("" + bean.getData().getReadyFixTime());
+        mTvMrdYjwxsjd.setText("" + bean.getData().getReadyFixTimeQuantum());
+        mTvMrdYjwxsjd.setText("" + bean.getData().getReadyFixTimeQuantum());
+        miaoshu = bean.getData().getDetail();
+        mTvMrdJzdmc.setText("" + bean.getData().getProgramName());
+        mTvMrdBh.setText("" + bean.getData().getBillCode());
+        mTvMrdDchzsx.setText("" + bean.getData().getLimitMoney());
+        mTvMrdHzdfy.setText("" + bean.getData().getMpMoney());
+        mTvMrdBzkssj.setText("" + bean.getData().getEffectiveTime());
+        mTvMrdBzjssj.setText("" + bean.getData().getEndTime());
+        mTvMrdBzqx.setText("" + bean.getData().getProgramTime());
+        mTvMrdSjmc.setText("" + bean.getData().getBusinessName());
+        mTvMrdSjdh.setText("" + bean.getData().getBusinessPhone());
+        mTvMrdSjdz.setText("" + bean.getData().getDetailAd());
+        mTvMrdSjdz.setText("" + bean.getData().getDetailAd());
+        ShowImageUtils.showImageViewToCircle(MutualRecordDetailsActivity.this, bean.getData().getCarHeadimg(), mIvMrdImg1, 5);
+        ShowImageUtils.showImageViewToCircle(MutualRecordDetailsActivity.this, bean.getData().getCarEndimg(), mIvMrdImg2, 5);
+        ShowImageUtils.showImageViewToCircle(MutualRecordDetailsActivity.this, bean.getData().getCarInjuredimg(), mIvMrdImg3, 5);
+        ShowImageUtils.showImageViewToCircle(MutualRecordDetailsActivity.this, bean.getData().getCarDetailimg(), mIvMrdImg4, 5);
 
+        if (type_djz.equals("1")){
+            mTvMrdGhwxsj.setVisibility(View.VISIBLE);
+            mTvMrdGhwxsj.setText("上传维修结果");
+            mTvMrdGhwxsj.setOnClickListener(new OnRepeatClickListener() {
+                @Override
+                public void onRepeatClick(View v) {
+                    Intent intent=new Intent(mContext,UploadPhotos3Activity.class);
+                    intent.putExtra("code",""+bean.getData().getsalvationCode());
+                    startActivity(intent);
 
+                }
+            });
+        }else if (type_djz.equals("2")){
+            mTvMrdGhwxsj.setVisibility(View.VISIBLE);
+            mTvMrdGhwxsj.setText("更换维修商家");
+            mTvMrdGhwxsj.setOnClickListener(new OnRepeatClickListener() {
+                @Override
+                public void onRepeatClick(View v) {
+                    SPTool.putString(mContext,"ih_carnum",""+bean.getData().getCarNum());
+                    SPTool.putString(mContext,"sa_code",""+bean.getData().getBillCode());
+                    startActivity(new Intent(mContext,BasicInformationActivity.class));
+
+                }
+            });
+
+        }else if (type_djz.equals("3")){
+            mTvMrdGhwxsj.setVisibility(View.GONE);
+        }
     }
 
 

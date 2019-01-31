@@ -17,11 +17,11 @@ import android.widget.Toast;
 
 import com.chetuhui.lcj.chezhubao_x.R;
 import com.chetuhui.lcj.chezhubao_x.adapter.AccountFormulaAdapter;
-import com.chetuhui.lcj.chezhubao_x.adapter.CarAdapter;
+
 import com.chetuhui.lcj.chezhubao_x.model.AccountFormulaBean;
-import com.chetuhui.lcj.chezhubao_x.model.CarBean;
+
 import com.chetuhui.lcj.chezhubao_x.tool.ActivityTool;
-import com.chetuhui.lcj.chezhubao_x.tool.DataTool;
+
 import com.chetuhui.lcj.chezhubao_x.tool.SPTool;
 import com.chetuhui.lcj.chezhubao_x.utils.NetData;
 import com.chetuhui.lcj.chezhubao_x.view.BaseToast;
@@ -104,17 +104,17 @@ public class AccountFormulaActivity extends ActivityBase {
     }
 
     private void getN_acountDisclosure() {
-        String s_token = SPTool.getString(AccountFormulaActivity.this, "token");
-        Log.d("CityActivity", s_token);
-
-        if (DataTool.isNullString(s_token)) {
-            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        String s_token = SPTool.getString(AccountFormulaActivity.this, "token");
+//        Log.d("CityActivity", s_token);
+//
+//        if (DataTool.isNullString(s_token)) {
+//            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         OkGo.<String>post(NetData.N_acountDisclosure)
                 .tag(this)
-                .headers("token",s_token)
+//                .headers("token",s_token)
 
                 .execute(new StringCallback() {
                     @Override

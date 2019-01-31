@@ -14,9 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chetuhui.lcj.chezhubao_x.MainActivity;
 import com.chetuhui.lcj.chezhubao_x.R;
 import com.chetuhui.lcj.chezhubao_x.activity.AuditStationActivity;
+import com.chetuhui.lcj.chezhubao_x.activity.BasicInformationActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.LoginActivity;
+import com.chetuhui.lcj.chezhubao_x.activity.SelectAidActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.UserListActivity;
 import com.chetuhui.lcj.chezhubao_x.adapter.MessageAdapter;
 
@@ -92,6 +96,7 @@ public class MessageFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRvFragmentMsg.setLayoutManager(layoutManager);
 
+
     }
     private void getfindJiGuangMessage() {
 
@@ -99,8 +104,9 @@ public class MessageFragment extends Fragment {
         Log.d("CityActivity", s_token);
 
         if (DataTool.isNullString(s_token)) {
-            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
-            return;
+
+//            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
         }
         OkGo.<String>get(NetData.N_findJiGuangMessage)
                 .tag(this)
@@ -127,13 +133,23 @@ public class MessageFragment extends Fragment {
 
                                     //给RecyclerView设置适配器
                                     mRvFragmentMsg.setAdapter(mMessageAdapter);
+                                    mMessageAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+                                        @Override
+                                        public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+
+                                            SPTool.putString(getContext(),"sa_code",""+mBeanList.get(position).getJumpParam().getBillCode());
+                                            SPTool.putString(getContext(),"ih_carnum",""+mBeanList.get(position).getJumpParam().getCarNum());
+
+                                            startActivity(new Intent(getContext(), BasicInformationActivity.class));
+
+                                        }
+                                    });
+
+
                                     //BaseToast.success(msg);
 
                                 }else if (code==1004){
-                                    ActivityTool.finishAllActivity();
-                                    SPTool.remove(getContext(),"token");
-                                    startActivity(new Intent(getContext(),LoginActivity.class));
-                                    BaseToast.error("登录过期，请重新登录");
+
 
                                 }else {
                                     BaseToast.success(msg);

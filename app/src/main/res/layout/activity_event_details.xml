@@ -95,7 +95,13 @@
                         android:text=""
                         android:textColor="@color/_6"
                         android:textSize="@dimen/dp_13" />
-
+                    <TextView
+                        android:id="@+id/tv_ed_qygt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/_6"
+                        android:textSize="@dimen/dp_13" />
 
                 </LinearLayout>
 
@@ -141,7 +147,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_100"
                 android:layout_marginLeft="@dimen/dp_30"
                 android:layout_marginRight="@dimen/dp_30"
                 android:background="@color/white"
@@ -290,6 +296,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_5">
@@ -344,7 +351,7 @@
                     android:layout_marginTop="@dimen/dp_10"
                     android:background="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dp_100"
                     android:orientation="horizontal"
                     android:padding="@dimen/dp_5">
 
@@ -407,7 +414,7 @@
                 android:layout_marginTop="@dimen/dp_10"
                 android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_100"
                 android:orientation="horizontal"
                 android:padding="@dimen/dp_5">
 

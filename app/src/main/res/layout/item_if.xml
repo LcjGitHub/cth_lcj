@@ -35,7 +35,7 @@
     android:id="@+id/tv_item_if_is"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="11"
+    android:text=""
     android:textSize="@dimen/dp_11"
     android:textColor="@color/_6"
 

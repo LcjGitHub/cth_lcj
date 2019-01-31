@@ -61,6 +61,9 @@ public class AllMutualCarsActivity extends ActivityBase implements View.OnClickL
      * 确定
      */
     private TextView mTvAmcQueding;
+
+    private TextView tv_sswg;
+    private boolean isss=false;
     private  ImageView iv_amc_sqt;
     private LinearLayoutManager mLayoutManager;
     private List<AmcBean.DataBean> mBeanList=new ArrayList<>();
@@ -115,12 +118,16 @@ public class AllMutualCarsActivity extends ActivityBase implements View.OnClickL
         });
 
         mEtAmcSousuo = (EditText) findViewById(R.id.et_amc_sousuo);
+        tv_sswg = (TextView) findViewById(R.id.tv_sswg);
+        tv_sswg.setVisibility(View.GONE);
         mEtAmcSousuo.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if ((i==0||i==3)&&keyEvent!=null){
                     if (!DataTool.isNullString(mEtAmcSousuo.getText().toString())){
+                        isss=true;
                         getN_allMutualCars(mEtAmcSousuo.getText().toString());
+
                     }else {
                         BaseToast.success("搜索为空");
                     }
@@ -138,6 +145,7 @@ public class AllMutualCarsActivity extends ActivityBase implements View.OnClickL
         mSlAmc = (SwipeRefreshLayout) findViewById(R.id.sl_amc);
         mTvAmcQueding = (TextView) findViewById(R.id.tv_amc_queding);
         mTvAmcQueding.setOnClickListener(this);
+
     }
 
     @Override
@@ -183,9 +191,20 @@ public class AllMutualCarsActivity extends ActivityBase implements View.OnClickL
                                         mBeanList=bean.getData();
                                         mTvAmcAiche.setText("我的爱车："+mBeanList.size());
                                         if (mBeanList.size()==0){
-                                            iv_amc_sqt.setVisibility(View.VISIBLE);
-                                            mRvAmc.setVisibility(View.GONE);
+                                            if (isss){
+                                                iv_amc_sqt.setVisibility(View.GONE);
+                                                mRvAmc.setVisibility(View.GONE);
+                                                tv_sswg.setVisibility(View.VISIBLE);
+                                            }else {
+                                                iv_amc_sqt.setVisibility(View.VISIBLE);
+                                                mRvAmc.setVisibility(View.GONE);
+                                                tv_sswg.setVisibility(View.GONE);
+                                            }
+
+
                                         }else {
+                                            isss=false;
+                                            tv_sswg.setVisibility(View.GONE);
                                             iv_amc_sqt.setVisibility(View.GONE);
                                             mRvAmc.setVisibility(View.VISIBLE);
                                         }
@@ -258,6 +277,7 @@ public class AllMutualCarsActivity extends ActivityBase implements View.OnClickL
                 bean.setCarCode(mBeanList.get(position).getCarCode());
                 bean.setEngineNum(mBeanList.get(position).getEngineNum());
                 bean.setLicensePicture(mBeanList.get(position).getLicensePicture());
+                bean.setlicensePictureNew(mBeanList.get(position).getlicensePictureNew());
                 bean.setOwner(mBeanList.get(position).getOwner());
 
                 Intent intent =new Intent(AllMutualCarsActivity.this,VehicleDetailsActivity.class);

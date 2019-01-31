@@ -127,6 +127,7 @@
                     android:textColor="@color/_6"
                     />
                 <TextView
+                    android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="保障期限：2018-09-21 至2019-09-21"

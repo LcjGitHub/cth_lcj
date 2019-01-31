@@ -81,7 +81,7 @@ public class FananBean {
         private String programName;
         private String content;
         private String description;
-        private double mpMoney;
+        private String mpMoney;
         private String imgUrl1;
         private String imgUrl2;
         private String imgUrl3;
@@ -132,11 +132,11 @@ public class FananBean {
             this.description = description;
         }
 
-        public double getMpMoney() {
+        public String getMpMoney() {
             return mpMoney;
         }
 
-        public void setMpMoney(double mpMoney) {
+        public void setMpMoney(String mpMoney) {
             this.mpMoney = mpMoney;
         }
 

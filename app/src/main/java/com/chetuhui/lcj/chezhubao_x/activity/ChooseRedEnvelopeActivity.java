@@ -98,6 +98,7 @@ public class ChooseRedEnvelopeActivity extends ActivityBase {
         });
 
         mCbCreBsyhb = (CheckBox) findViewById(R.id.cb_cre_bsyhb);
+        mCbCreBsyhb.setChecked(true);
         mRvCre = (RecyclerView) findViewById(R.id.rv_cre);
         mCbCreBsyhb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -105,6 +106,7 @@ public class ChooseRedEnvelopeActivity extends ActivityBase {
                 if (b){
                     Intent intent = new Intent();
                     intent.putExtra("hb", "0.00"); //放置要传出的数据
+                    intent.putExtra("hb_id", "0"); //放置要传出的数据
                     //这里是在Recycleview的适配器里，传了一个Activity才能用方法setResult
                     mContext.setResult(Activity.RESULT_OK,intent);
                     mContext.finish(); //关闭活动
@@ -199,6 +201,7 @@ public class ChooseRedEnvelopeActivity extends ActivityBase {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (mBeanList.get(position).getIsUse().equals("1")){
+
                     Intent intent = new Intent();
                     intent.putExtra("hb", ""+mBeanList.get(position).getTicketMoney()); //放置要传出的数据
                     intent.putExtra("hb_id", ""+mBeanList.get(position).getId()); //放置要传出的数据

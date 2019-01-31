@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -49,22 +50,23 @@ public class RedEnvelopeFragment extends Fragment {
     private RedAdapter mAdapter;
     private List<RedBean.DataBean> mBeanList=new ArrayList<>();
     private LinearLayoutManager mLayoutManager;
+    private LinearLayout picNull;
     private  MyHandler mHandler =new MyHandler(RedEnvelopeFragment.this);
     private static class MyHandler extends Handler {
-            private WeakReference<RedEnvelopeFragment> activityWeakReference;
+        private WeakReference<RedEnvelopeFragment> activityWeakReference;
 
-            public MyHandler(RedEnvelopeFragment activity) {
-                activityWeakReference = new WeakReference<RedEnvelopeFragment>(activity);
-            }
+        public MyHandler(RedEnvelopeFragment activity) {
+            activityWeakReference = new WeakReference<RedEnvelopeFragment>(activity);
+        }
 
-            @Override
-            public void handleMessage(Message msg) {
-                RedEnvelopeFragment activity = activityWeakReference.get();
-                if (activity != null) {
+        @Override
+        public void handleMessage(Message msg) {
+            RedEnvelopeFragment activity = activityWeakReference.get();
+            if (activity != null) {
 
-                }
             }
         }
+    }
 
 
     public static RedEnvelopeFragment newInstance() {
@@ -81,7 +83,7 @@ public class RedEnvelopeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-         view = inflater.inflate(R.layout.fragment_red_layout, null);
+        view = inflater.inflate(R.layout.fragment_red_layout, null);
 
 
         initView(view);
@@ -98,6 +100,7 @@ public class RedEnvelopeFragment extends Fragment {
 
         String s_token = SPTool.getString(getContext(), "token");
         Log.d("CityActivity", s_token);
+        picNull = view.findViewById(R.id.pic_null);
 
         if (DataTool.isNullString(s_token)) {
             Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
@@ -117,30 +120,37 @@ public class RedEnvelopeFragment extends Fragment {
                             jsonObject = new JSONObject(data);
                             final String msg = jsonObject.getString("msg");
                             final int code=jsonObject.getInt("code");
-                        mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (code==0){
-                                    mBeanList.clear();
-                                    RedBean bean= new Gson().fromJson(data, RedBean.class);
-                                    mBeanList=bean.getData();
-                                 initRecylerView();
-                                    //BaseToast.success(msg);
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (code==0){
+                                        mBeanList.clear();
+                                        RedBean bean= new Gson().fromJson(data, RedBean.class);
+                                        mBeanList=bean.getData();
+                                        if (mBeanList.size()==0){
+                                            picNull.setVisibility(View.VISIBLE);
+                                            mRvFragmentMsg.setVisibility(View.GONE);
+                                        }else {
+                                            picNull.setVisibility(View.GONE);
+                                            mRvFragmentMsg.setVisibility(View.VISIBLE);
+                                            initRecylerView();
+                                        }
+                                        //BaseToast.success(msg);
 
-                                }else if (code==1004){
-                                    ActivityTool.finishAllActivity();
-                                    SPTool.remove(getContext(),"token");
-                                    startActivity(new Intent(getContext(),LoginActivity.class));
-                                    BaseToast.error("登录过期，请重新登录");
+                                    }else if (code==1004){
+                                        ActivityTool.finishAllActivity();
+                                        SPTool.remove(getContext(),"token");
+                                        startActivity(new Intent(getContext(),LoginActivity.class));
+                                        BaseToast.error("登录过期，请重新登录");
 
-                                }else {
-                                    BaseToast.success(msg);
+                                    }else {
+                                        BaseToast.success(msg);
+
+                                    }
+
 
                                 }
-
-
-                            }
-                        });
+                            });
 
                         } catch (JSONException e) {
                             e.printStackTrace();

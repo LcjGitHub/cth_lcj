@@ -17,6 +17,7 @@ import com.chetuhui.lcj.chezhubao_x.model.ChangePhoneBean;
 import com.chetuhui.lcj.chezhubao_x.tool.ActivityTool;
 import com.chetuhui.lcj.chezhubao_x.tool.BaseTool;
 import com.chetuhui.lcj.chezhubao_x.tool.DataTool;
+import com.chetuhui.lcj.chezhubao_x.tool.RegTool;
 import com.chetuhui.lcj.chezhubao_x.tool.SPTool;
 import com.chetuhui.lcj.chezhubao_x.utils.NetData;
 import com.chetuhui.lcj.chezhubao_x.view.BaseToast;
@@ -112,7 +113,12 @@ public class ReplaceActivity extends ActivityBase implements View.OnClickListene
             case R.id.tv_replace_hqyzm:
                 if (isonclick){
                     if (!DataTool.isNullString(mEtReplaceSjh.getText().toString())){
-                        getSmsCode(mEtReplaceSjh.getText().toString());
+                        if (RegTool.isMobile(mEtReplaceSjh.getText().toString())){
+                            getSmsCode(mEtReplaceSjh.getText().toString());
+
+                        }else {
+                            BaseToast.error("请输入正确的手机号");
+                        }
                     }else {
                         BaseToast.error("手机号不能空");
                     }
@@ -122,6 +128,7 @@ public class ReplaceActivity extends ActivityBase implements View.OnClickListene
                 break;
             case R.id.tv_replace_ghsjh:
                 if (!DataTool.isNullString(mEtReplaceSjh.getText().toString())&&!DataTool.isNullString(mEtReplaceYzm.getText().toString())){
+                    Log.d("ChangephoneActivity", "phoneToken:"+phoneToken);
                     getN_updatePhoneSecond(mEtReplaceSjh.getText().toString(),mEtReplaceYzm.getText().toString(),userCode,phoneToken);
                 }else {
                     BaseToast.error("请检查手机号或者验证码");
@@ -161,7 +168,7 @@ public class ReplaceActivity extends ActivityBase implements View.OnClickListene
                                 isonclick=false;
                             }
 
-                            BaseToast.info(msg);
+//                            BaseToast.info(msg);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

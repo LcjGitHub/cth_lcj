@@ -65,6 +65,7 @@
                     android:textColor="@color/_6"
                     />
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_item_mmh_bzqx"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

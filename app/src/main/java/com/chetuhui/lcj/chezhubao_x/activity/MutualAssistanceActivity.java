@@ -31,6 +31,8 @@ public class MutualAssistanceActivity extends ActivityBase implements View.OnCli
                 if (action == CommonTitleBar.ACTION_LEFT_BUTTON) {
                     finish();
 
+                }else  if (action==CommonTitleBar.ACTION_RIGHT_TEXT){
+                    startActivity(new Intent(mContext,MutualRecordActivity.class));
                 }
             }
         });

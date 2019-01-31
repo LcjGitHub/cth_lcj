@@ -20,7 +20,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chetuhui.lcj.chezhubao_x.MainActivity;
 import com.chetuhui.lcj.chezhubao_x.R;
 import com.chetuhui.lcj.chezhubao_x.adapter.AuditStationAdapter;
-import com.chetuhui.lcj.chezhubao_x.adapter.CarAdapter;
+
 import com.chetuhui.lcj.chezhubao_x.adapter.PopularAdapter;
 import com.chetuhui.lcj.chezhubao_x.model.AuditStationBean;
 import com.chetuhui.lcj.chezhubao_x.model.PopularBean;
@@ -53,6 +53,7 @@ public class PopularActivity extends ActivityBase implements View.OnClickListene
     private CommonTitleBar mTitlebarPopular;
     private RecyclerView mRvPoppular;
     private ImageView iv_amc_sqt;
+     BaseDialog rxDialog;
     /**
      * 联系客服
      */
@@ -121,17 +122,17 @@ public class PopularActivity extends ActivityBase implements View.OnClickListene
     }
 
     private void getN_findQuestions() {
-        String s_token = SPTool.getString(PopularActivity.this, "token");
-        Log.d("PopularActivity", s_token);
-
-        if (DataTool.isNullString(s_token)) {
-            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        String s_token = SPTool.getString(PopularActivity.this, "token");
+//        Log.d("PopularActivity", s_token);
+//
+//        if (DataTool.isNullString(s_token)) {
+//            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         OkGo.<String>post(NetData.N_findQuestions)
                 .tag(this)
-                .headers("token",s_token)
+//                .headers("token",s_token)
 
                 .execute(new StringCallback() {
                     @Override
@@ -213,7 +214,7 @@ public class PopularActivity extends ActivityBase implements View.OnClickListene
 
     }
     public void showView(Context context, String title, String cont, final int id) {
-        final BaseDialog rxDialog = new BaseDialog(context);
+        rxDialog = new BaseDialog(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_popular_show, null);
         final TextView mcontent=view.findViewById(R.id.tv_dg_popular_content);
         final TextView mtitle=view.findViewById(R.id.tv_dg_popular_title);
@@ -258,8 +259,11 @@ public class PopularActivity extends ActivityBase implements View.OnClickListene
         Log.d("PopularActivity", s_token);
 
         if (DataTool.isNullString(s_token)) {
-            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
-            return;
+
+            ActivityTool.finishAllActivity();
+            startActivity(new Intent(mContext,LoginActivity.class));
+//            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
         }
 
         OkGo.<String>post(NetData.N_clickQuestions+"?id="+id+"&type="+type)
@@ -277,9 +281,9 @@ public class PopularActivity extends ActivityBase implements View.OnClickListene
                             String msg = jsonObject.getString("msg");
                             int code=jsonObject.getInt("code");
                             if (code==0){
-                                //BaseToast.success(msg);
+                                BaseToast.success("提交成功");
 
-
+                                rxDialog.cancel();
 
 
 
@@ -342,10 +346,10 @@ public class PopularActivity extends ActivityBase implements View.OnClickListene
         Log.d("CityActivity", s_token);
 
         if (DataTool.isNullString(s_token)) {
-            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "获取token失败", Toast.LENGTH_SHORT).show();
             return;
         }
-//1：法律声明 2：车助保服务协议 3：服务合作协议 4：关于我们 5：客服电话
+
         OkGo.<String>get(NetData.N_findClause+"?type=6")
                 .tag(this)
                 .headers("token",s_token)

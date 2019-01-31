@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -28,8 +29,10 @@ import com.chetuhui.lcj.chezhubao_x.model.QuyuBean;
 import com.chetuhui.lcj.chezhubao_x.tool.ActivityTool;
 import com.chetuhui.lcj.chezhubao_x.tool.BaseTool;
 import com.chetuhui.lcj.chezhubao_x.tool.DataTool;
+import com.chetuhui.lcj.chezhubao_x.tool.RegTool;
 import com.chetuhui.lcj.chezhubao_x.tool.SPTool;
 import com.chetuhui.lcj.chezhubao_x.utils.NetData;
+import com.chetuhui.lcj.chezhubao_x.utils.SizeFilterWithTextAndLetter;
 import com.chetuhui.lcj.chezhubao_x.view.BaseToast;
 import com.chetuhui.lcj.chezhubao_x.view.dialog.BaseDialog;
 import com.chetuhui.lcj.chezhubao_x.view.dialog.DialogSure;
@@ -77,7 +80,7 @@ public class AuditorActivity extends ActivityBase implements View.OnClickListene
     private QuyuAdapter mAdapter;
     private  BaseDialog rxDialog;
     private LinearLayoutManager mLayoutManager;
-    private int cityid = 510100;
+    private int cityid = 0;
     private String tt="审核流程",con="1、在平台收到您提交的资料后" +
             "审核员或维修站会接收您提交的信息，内容包括:" +
             "行驶证主页照片、车牌号、所有人、品牌型号、车辆识别代号、发动机号\n" +
@@ -137,6 +140,7 @@ public class AuditorActivity extends ActivityBase implements View.OnClickListene
         });
 
         mEtAuditorName = (EditText) findViewById(R.id.et_auditor_name);
+        mEtAuditorName.setFilters(new InputFilter[]{new SizeFilterWithTextAndLetter(12,6)});
         mEtAuditorName.setOnClickListener(this);
         mEtAuditorPh = (EditText) findViewById(R.id.et_auditor_ph);
         mEtAuditorPh.setOnClickListener(this);
@@ -172,10 +176,15 @@ public class AuditorActivity extends ActivityBase implements View.OnClickListene
                         BaseToast.error("填写不能为空");
                     } else {
                         if (isonclick){
-                            SPTool.putString(AuditorActivity.this, "auditor_name", mEtAuditorName.getText().toString());
-                            SPTool.putString(AuditorActivity.this, "auditor_ph", mEtAuditorPh.getText().toString());
-                            SPTool.putString(AuditorActivity.this, "auditor_xxdz", mEtAuditorXxdz.getText().toString());
-                            intent = new Intent(AuditorActivity.this, ConfirmActivity.class);
+                            if (RegTool.isMobile(mEtAuditorPh.getText().toString())){
+                                SPTool.putString(AuditorActivity.this, "auditor_name", mEtAuditorName.getText().toString());
+                                SPTool.putString(AuditorActivity.this, "auditor_ph", mEtAuditorPh.getText().toString());
+                                SPTool.putString(AuditorActivity.this, "auditor_xxdz", mEtAuditorXxdz.getText().toString());
+                                intent = new Intent(AuditorActivity.this, ConfirmActivity.class);
+                            }else {
+                                BaseToast.error("请输入正确的手机号");
+                            }
+
                         }else {
                             BaseToast.error("选择区域");
                         }

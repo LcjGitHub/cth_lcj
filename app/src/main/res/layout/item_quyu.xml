@@ -14,6 +14,19 @@
         android:textSize="@dimen/dp_15"
 
         />
+    <ImageView
+
+        android:id="@+id/iv_item_quyu"
+        android:layout_centerVertical="true"
+     android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginRight="@dimen/dp_20"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:src="@drawable/xzcar_gou"
+        android:visibility="gone"
+
+
+        />
 
 
 </RelativeLayout>

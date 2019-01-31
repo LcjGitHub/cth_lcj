@@ -14,15 +14,15 @@
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/iv_item_myacr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_50"
             android:src="@drawable/car"/>
         <TextView
             android:id="@+id/tv_item_myacr_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/dp_10"
-            android:text=""/>
+            android:text="111111"/>
 
 
     </LinearLayout>

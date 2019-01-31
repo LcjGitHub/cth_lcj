@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.chetuhui.lcj.chezhubao_x.MainActivity;
 import com.chetuhui.lcj.chezhubao_x.R;
 import com.chetuhui.lcj.chezhubao_x.activity.AboutusActivity;
+import com.chetuhui.lcj.chezhubao_x.activity.AccountActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.AddCarActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.CardCouponActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.ChangephoneActivity;
@@ -30,6 +31,7 @@ import com.chetuhui.lcj.chezhubao_x.activity.HomeActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.InviteFriendsActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.LoginActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.MessageActivity;
+import com.chetuhui.lcj.chezhubao_x.activity.MutualHelpAccountActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.PersonalInformationActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.PopularActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.RegisteredActivity;
@@ -128,11 +130,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     /**
      * 关于我们
      */
-    private TextView mTvMeAbout;
+    private RelativeLayout mTvMeAbout;
     /**
      * 邀请好友
      */
     private TextView mTvMeHaoyou;
+    private TextView tv_me_yue;
     private RelativeLayout mRlMeZhanghao;
     private RelativeLayout mRlMeLianxi;
     private RelativeLayout mRlMeYijian;
@@ -141,9 +144,11 @@ public class MeFragment extends Fragment implements View.OnClickListener {
      * 退出登录
      */
     private SuperTextView mTvMeTuichu;
+    private TextView tv_me_hzzh;
     private static String name;
     private static String ph;
-    private static String headimgurl;
+    private static String headimgurl,helpPeopleNum;
+    private static String yue;
     private String con;
     private static String day;
 
@@ -177,6 +182,16 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String s_token = SPTool.getString(getContext(), "token");
+        if (DataTool.isNullString(s_token)) {
+            ActivityTool.finishAllActivity();
+//            SPTool.remove(getContext(),"token");
+            startActivity(new Intent(getContext(),LoginActivity.class));
+
+//            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
+        }
+
 
     }
 
@@ -230,6 +245,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
         mTitlebarMe.setOnClickListener(this);
         mTvMeName = (TextView) view.findViewById(R.id.tv_me_name);
+        tv_me_yue = (TextView) view.findViewById(R.id.tv_me_yue);
         mTvMeName.setOnClickListener(this);
         mTvMePh = (TextView) view.findViewById(R.id.tv_me_ph);
         mTvMePh.setOnClickListener(this);
@@ -247,7 +263,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         mTvMeGrxx.setOnClickListener(this);
         mTvMeKajuan = (TextView) view.findViewById(R.id.tv_me_kajuan);
         mTvMeKajuan.setOnClickListener(this);
-        mTvMeAbout = (TextView) view.findViewById(R.id.tv_me_about);
+        mTvMeAbout = (RelativeLayout) view.findViewById(R.id.rl_me_about);
         mTvMeAbout.setOnClickListener(this);
         mTvMeHaoyou = (TextView) view.findViewById(R.id.tv_me_haoyou);
         mTvMeHaoyou.setOnClickListener(this);
@@ -260,11 +276,14 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         mRlMeJiancha = (RelativeLayout) view.findViewById(R.id.rl_me_jiancha);
         mRlMeJiancha.setOnClickListener(this);
         mTvMeTuichu = (SuperTextView) view.findViewById(R.id.tv_me_tuichu);
+        tv_me_hzzh = (TextView) view.findViewById(R.id.tv_me_hzzh);
         mTvMeTuichu.setOnClickListener(this);
+        tv_me_hzzh.setOnClickListener(this);
+
 mImageView.setOnClickListener(new OnRepeatClickListener() {
     @Override
     public void onRepeatClick(View v) {
-        Intent intent =new Intent( getContext(), TxActivity.class);
+        Intent  intent=new Intent(getContext(), PersonalInformationActivity.class);
         intent .putExtra("imgurl",headimgurl);
         startActivity(intent);
     }
@@ -299,13 +318,14 @@ mImageView.setOnClickListener(new OnRepeatClickListener() {
                 break;
             case R.id.tv_me_grxx:
                 intent=new Intent(getContext(), PersonalInformationActivity.class);
+                intent .putExtra("imgurl",headimgurl);
 
                 break;
             case R.id.tv_me_kajuan:
                 intent=new Intent(getContext(), CardCouponActivity.class);
 
                 break;
-            case R.id.tv_me_about:
+            case R.id.rl_me_about:
                 intent=new Intent(getContext(), AboutusActivity.class);
 
                 break;
@@ -313,7 +333,11 @@ mImageView.setOnClickListener(new OnRepeatClickListener() {
                 intent=new Intent(getContext(), InviteFriendsActivity.class);
                 break;
             case R.id.rl_me_zhanghao:
-                intent=new Intent(getContext(), ChangephoneActivity.class);
+                intent=new Intent(getContext(), AccountActivity.class);
+                break;
+            case R.id.tv_me_hzzh:
+                intent=new Intent(getContext(), MutualHelpAccountActivity.class);
+
                 break;
             case R.id.rl_me_lianxi:
                 showkf();
@@ -426,10 +450,7 @@ mImageView.setOnClickListener(new OnRepeatClickListener() {
         String s_token = SPTool.getString(getContext(), "token");
         Log.d("CityActivity", s_token);
 
-        if (DataTool.isNullString(s_token)) {
-            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
-            return;
-        }
+
 //1：法律声明 2：车助保服务协议 3：服务合作协议 4：关于我们 5：客服电话
         OkGo.<String>get(NetData.N_findClause+"?type=6")
                 .tag(this)
@@ -456,10 +477,10 @@ mImageView.setOnClickListener(new OnRepeatClickListener() {
 
 
                             } else if (code==1004){
-                                ActivityTool.finishAllActivity();
-                                SPTool.remove(getContext(),"token");
-                                startActivity(new Intent(getContext(),LoginActivity.class));
-                                BaseToast.error("登录过期，请重新登录");
+//                                ActivityTool.finishAllActivity();
+//                                SPTool.remove(getContext(),"token");
+//                                startActivity(new Intent(getContext(),LoginActivity.class));
+//                                BaseToast.error("登录过期，请重新登录");
 
                             }else {
                                 BaseToast.success(msg);
@@ -487,8 +508,8 @@ mImageView.setOnClickListener(new OnRepeatClickListener() {
         Log.d("CityActivity", s_token);
 
         if (DataTool.isNullString(s_token)) {
-            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
-            return;
+//            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
         }
         OkGo.<String>get(NetData.N_personalInformation)
                 .tag(this)
@@ -512,14 +533,17 @@ mImageView.setOnClickListener(new OnRepeatClickListener() {
                                name=jsonObject1.getString("nickName");
                                ph=jsonObject1.getString("phone");
                                 headimgurl=jsonObject1.getString("headimgurl");
+                                helpPeopleNum=jsonObject1.getString("helpPeopleNum");
                                day= String.valueOf(jsonObject1.getInt("joinDays"));
+                               yue= String.valueOf(jsonObject1.getDouble("money"));
                                myHandler.post(new Runnable() {
                                    @Override
                                    public void run() {
                                        mTvMeName.setText(name);
                                        mTvMePh.setText(ph);
+                                       tv_me_yue.setText(yue);
                                        ShowImageUtils.showImageViewToCrop(getContext(),headimgurl,mImageView);
-                                       mTvMeDay.setText("已加入 "+day+" 天");
+                                       mTvMeDay.setText("已加入 "+day+" 天,"+"帮助"+helpPeopleNum+"人");
                                    }
                                });
 
@@ -528,10 +552,10 @@ mImageView.setOnClickListener(new OnRepeatClickListener() {
 
 
                             } else if (code==1004){
-                                ActivityTool.finishAllActivity();
-                                SPTool.remove(getContext(),"token");
-                                startActivity(new Intent(getContext(),LoginActivity.class));
-                                BaseToast.error("登录过期，请重新登录");
+//                                ActivityTool.finishAllActivity();
+//                                SPTool.remove(getContext(),"token");
+//                                startActivity(new Intent(getContext(),LoginActivity.class));
+//                                BaseToast.error("登录过期，请重新登录");
 
                             }else {
                                 BaseToast.success(msg);

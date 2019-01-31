@@ -166,14 +166,14 @@ android:layout_marginTop="@dimen/dp_25"
                         android:layout_marginRight="@dimen/dp_5"
                         android:layout_marginLeft="@dimen/dp_5"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/dp_150"
                         android:background="@drawable/if_hb_3">
                     </RelativeLayout>
                     <RelativeLayout
                         android:layout_marginLeft="@dimen/dp_30"
                         android:layout_marginRight="@dimen/dp_30"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/dp_180"
                         android:background="@drawable/if_hb_2">
                         <LinearLayout
                             android:layout_marginTop="@dimen/dp_10"
@@ -191,7 +191,7 @@ android:layout_marginTop="@dimen/dp_25"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/dp_10"
-                        android:text="每成功邀请10名好友，你可获得"/>
+                        android:text="每成功邀请名好友，你可获得"/>
                         <TextView
                         android:layout_marginTop="@dimen/dp_5"
                         android:layout_width="wrap_content"
@@ -208,7 +208,7 @@ android:layout_marginTop="@dimen/dp_25"
                         android:textSize="@dimen/dp_35"
                         android:textColor="@color/fb64"
                         android:textStyle="bold"
-                        android:text="￥5"/>
+                        android:text=""/>
 
 
                         </LinearLayout>
@@ -219,7 +219,7 @@ android:layout_marginTop="@dimen/dp_25"
                     <RelativeLayout
                         android:layout_alignParentBottom="true"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/dp_80"
                         android:background="@drawable/if_hb1">
                         <TextView
 
@@ -327,7 +327,7 @@ android:layout_marginTop="@dimen/dp_25"
                         android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TA注册APP\n并登录成功"
+                        android:text="TA注册APP\n并购买互助方案"
                         />
                     <TextView
                         android:layout_margin="@dimen/dp_10"
@@ -374,7 +374,7 @@ android:layout_marginTop="@dimen/dp_25"
                     android:layout_height="wrap_content"
                     android:textColor="@color/home_button"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:text="您已邀请7位好友"/>
+                    android:text="您已邀请位好友"/>
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_if"
 

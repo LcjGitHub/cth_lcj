@@ -73,14 +73,14 @@ public class UploadPhotosActivity extends ActivityBase implements View.OnClickLi
      * 受损细节照片
      */
     private TextView mTvUpXijie;
-    private String img_src, imgurl, url_ct, url_cypzw, url_xj,url_cw;
-    private int num = 0;
+
     private ImageView mIvUpChewei;
     /**
      * 受损车车尾45°
      */
     private TextView mTvUpChewei;
-
+    private String img_src, imgurl, url_ct, url_cypzw, url_xj,url_cw;
+    private int num = 0;
     private Uri resultUri;
 
     private MyHandler mHandler=new MyHandler(UploadPhotosActivity.this);

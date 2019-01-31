@@ -58,12 +58,16 @@
 
 
     </LinearLayout>
-    <ImageView
+    <TextView
+        android:id="@+id/tv_item_yhz_ftan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/arrowgo"
+        android:drawableRight="@drawable/arrowgo"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:text="111"
+        android:textColor="@color/_3"
+        android:textSize="@dimen/dp_13"
         android:layout_marginRight="@dimen/sp_20"/>
     <View
         android:layout_width="match_parent"

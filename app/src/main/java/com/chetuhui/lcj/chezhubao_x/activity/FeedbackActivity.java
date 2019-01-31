@@ -157,6 +157,7 @@ public class FeedbackActivity extends ActivityBase implements View.OnClickListen
                                 mHandler.post(new Runnable() {
                                     @Override
                                     public void run() {
+                                        BaseToast.success("提交成功");
                                         mEtFbCon.setText("");
                                         mEtFbLxfs.setText("");
                                     }

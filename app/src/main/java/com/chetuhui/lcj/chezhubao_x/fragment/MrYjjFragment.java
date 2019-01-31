@@ -271,6 +271,7 @@ private ImageView iv_amc_sqt;
 
                 Intent intent =new Intent(getContext(), MutualRecordDetailsActivity.class);
                 intent.putExtra("code",""+mBeanList.get(pos).getSalvationCode());
+                intent.putExtra("type_djz","2");
                 startActivity(intent);
             }
         });

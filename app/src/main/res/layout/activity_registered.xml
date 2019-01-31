@@ -117,7 +117,7 @@
             android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="设置新密码"
+            android:hint="设置6-20位字母或数字的新密码"
             android:padding="@dimen/dp_10"
 
             android:inputType="textPassword"

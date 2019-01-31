@@ -120,7 +120,7 @@ public class JoinActivity extends ActivityBase implements View.OnClickListener {
     private RelativeLayout mRlJoinR2;
     private String con, title;
     private String fanan_name, fanan_code;
-    private double fanan_jine;
+    private String fanan_jine;
     private boolean isonclick_cb = true;
     private List<FananBean.DataBean> mBeanList = new ArrayList<>();
     private double je;
@@ -293,7 +293,7 @@ public class JoinActivity extends ActivityBase implements View.OnClickListener {
         mTvJoinFangan99.setMovementMethod(LinkMovementMethod.getInstance());
         TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
 
-                .append("99元/年\n").setForegroundColor(getResources().getColor(R.color.ff73)).append("一年两次，一次不超过\n")
+                .append("99元\n").setForegroundColor(getResources().getColor(R.color.ff73)).append("一年两次，一次不超过\n")
                 .append("800元").setForegroundColor(getResources().getColor(R.color.ff73)).append("的维修机会")
 
                 .into(mTvJoinFangan99);
@@ -350,6 +350,7 @@ public class JoinActivity extends ActivityBase implements View.OnClickListener {
         mTvJoinXuanze799.setStrokeColor(getResources().getColor(R.color.a));
 
 
+
     }
 
     @Override
@@ -360,13 +361,34 @@ public class JoinActivity extends ActivityBase implements View.OnClickListener {
                 default:
                     break;
 
-                case R.id.tv_join_xuanze99:
-                    getDefault();
+                case R.id.tv_join_fangan99:
+                    getdata();
+
                     mTvJoinXuanze99.setSolid(getResources().getColor(R.color.d6f3));
                     mTvJoinXuanze99.setTextColor(getResources().getColor(R.color.home_button));
                     mTvJoinXuanze99.setStrokeColor(getResources().getColor(R.color.home_button));
-                    mTvJoinYixuanjine.setText("￥" + mBeanList.get(0).getMpMoney());
-                    tv_yue.setText("/" + mBeanList.get(0).getProgramTime()+"月");
+                    mTvJoinYixuanjine.setText("￥" + mBeanList.get(0).getMpMoney()+"元");
+                    Log.d("JoinActivity", " getProgramTime:"+mBeanList.get(0).getProgramTime());
+                    if (mBeanList.get(0).getProgramTime()>=12){
+                        Log.d("JoinActivity", " getProgramTime 年:"+mBeanList.get(0).getProgramTime());
+
+                    }else {
+                        Log.d("JoinActivity", " getProgramTime 月:"+mBeanList.get(0).getProgramTime());
+
+                    }
+                    mTvJoinFangan99.setBackground(getResources().getDrawable(R.drawable.shape_rectangle_5_f4a));
+                    mTvJoinFangan99.setMovementMethod(LinkMovementMethod.getInstance());
+                    if (mBeanList.get(0).getProgramTime()>=12){
+                        TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                                .append("" + mBeanList.get(0).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.white)).append(mBeanList.get(0).getDescription()).setForegroundColor(getResources().getColor(R.color.black))
+                                .into(mTvJoinFangan99);
+
+                    }else {
+                        TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                                .append("" + mBeanList.get(0).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.white)).append(mBeanList.get(0).getDescription()).setForegroundColor(getResources().getColor(R.color.black))
+                                .into(mTvJoinFangan99);
+
+                    }
 
                     fanan_name = mBeanList.get(0).getProgramName();
                     fanan_jine = mBeanList.get(0).getMpMoney();
@@ -377,49 +399,87 @@ public class JoinActivity extends ActivityBase implements View.OnClickListener {
 
 
                     break;
-                case R.id.tv_join_xuanze199:
-                    getDefault();
+                case R.id.tv_join_fangan199:
+                    getdata();
                     mTvJoinXuanze199.setSolid(getResources().getColor(R.color.d6f3));
                     mTvJoinXuanze199.setTextColor(getResources().getColor(R.color.home_button));
                     mTvJoinXuanze199.setStrokeColor(getResources().getColor(R.color.home_button));
-                    mTvJoinYixuanjine.setText("￥" + mBeanList.get(1).getMpMoney());
-                    tv_yue.setText("/" + mBeanList.get(1).getProgramTime()+"月");
+                    mTvJoinYixuanjine.setText("￥" + mBeanList.get(1).getMpMoney()+"元");
+                    mTvJoinFangan199.setBackground(getResources().getDrawable(R.drawable.shape_rectangle_5_f4a));
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(1).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.white)).append(mBeanList.get(1).getDescription()).setForegroundColor(getResources().getColor(R.color.black))
+                            .into(mTvJoinFangan199);
+
+                    Log.d("JoinActivity", " getProgramTime:"+mBeanList.get(1).getProgramTime());
+                    if (mBeanList.get(1).getProgramTime()>=12){
+                        Log.d("JoinActivity", " getProgramTime 年:"+mBeanList.get(1).getProgramTime());
+                    }else {
+                        Log.d("JoinActivity", " getProgramTime 月:"+mBeanList.get(1).getProgramTime());
+
+                    }
                     fanan_name = mBeanList.get(1).getProgramName();
                     fanan_jine = mBeanList.get(1).getMpMoney();
                     fanan_code = mBeanList.get(1).getProgramCode();
                     getimg(1);
                     break;
-                case R.id.tv_join_xuanze399:
-                    getDefault();
+                case R.id.tv_join_fangan399:
+                    getdata();
                     mTvJoinXuanze399.setSolid(getResources().getColor(R.color.d6f3));
                     mTvJoinXuanze399.setTextColor(getResources().getColor(R.color.home_button));
                     mTvJoinXuanze399.setStrokeColor(getResources().getColor(R.color.home_button));
-                    mTvJoinYixuanjine.setText("￥" + mBeanList.get(2).getMpMoney());
-                    tv_yue.setText("/" + mBeanList.get(2).getProgramTime()+"月");
+                    mTvJoinYixuanjine.setText("￥" + mBeanList.get(2).getMpMoney()+"元");
+                    mTvJoinFangan399.setBackground(getResources().getDrawable(R.drawable.shape_rectangle_5_f4a));
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(2).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.white)).append(mBeanList.get(2).getDescription()).setForegroundColor(getResources().getColor(R.color.black))
+                            .into(mTvJoinFangan399);
+
+                    if (mBeanList.get(2).getProgramTime()>=12){
+
+                    }else {
+
+                    }
                     fanan_name = mBeanList.get(2).getProgramName();
                     fanan_jine = mBeanList.get(2).getMpMoney();
                     fanan_code = mBeanList.get(2).getProgramCode();
                     getimg(2);
                     break;
-                case R.id.tv_join_xuanze599:
-                    getDefault();
+                case R.id.tv_join_fangan599:
+                    getdata();
                     mTvJoinXuanze599.setSolid(getResources().getColor(R.color.d6f3));
                     mTvJoinXuanze599.setTextColor(getResources().getColor(R.color.home_button));
                     mTvJoinXuanze599.setStrokeColor(getResources().getColor(R.color.home_button));
-                    mTvJoinYixuanjine.setText("￥" + mBeanList.get(3).getMpMoney());
-                    tv_yue.setText("/" + mBeanList.get(3).getProgramTime()+"月");
+                    mTvJoinYixuanjine.setText("￥" + mBeanList.get(3).getMpMoney()+"元");
+                    mTvJoinFangan599.setBackground(getResources().getDrawable(R.drawable.shape_rectangle_5_f4a));
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(3).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.white)).append(mBeanList.get(3).getDescription()).setForegroundColor(getResources().getColor(R.color.black))
+                            .into(mTvJoinFangan599);
+
+                    if (mBeanList.get(3).getProgramTime()>=12){
+
+                    }else {
+
+                    }
                     fanan_name = mBeanList.get(3).getProgramName();
                     fanan_jine = mBeanList.get(3).getMpMoney();
                     fanan_code = mBeanList.get(3).getProgramCode();
                     getimg(3);
                     break;
-                case R.id.tv_join_xuanze799:
-                    getDefault();
+                case R.id.tv_join_fangan799:
+                    getdata();
                     mTvJoinXuanze799.setSolid(getResources().getColor(R.color.d6f3));
                     mTvJoinXuanze799.setTextColor(getResources().getColor(R.color.home_button));
                     mTvJoinXuanze799.setStrokeColor(getResources().getColor(R.color.home_button));
-                    mTvJoinYixuanjine.setText("￥" + mBeanList.get(4).getMpMoney());
-                    tv_yue.setText("/" + mBeanList.get(4).getProgramTime()+"月");
+                    mTvJoinYixuanjine.setText("￥" + mBeanList.get(4).getMpMoney()+"元");
+                    mTvJoinFangan799.setBackground(getResources().getDrawable(R.drawable.shape_rectangle_5_f4a));
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(4).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.white)).append(mBeanList.get(4).getDescription()).setForegroundColor(getResources().getColor(R.color.black))
+                            .into(mTvJoinFangan799);
+
+                    if (mBeanList.get(4).getProgramTime()>=12){
+
+                    }else {
+
+                    }
                     fanan_name = mBeanList.get(4).getProgramName();
                     fanan_jine = mBeanList.get(4).getMpMoney();
                     fanan_code = mBeanList.get(4).getProgramCode();
@@ -427,7 +487,7 @@ public class JoinActivity extends ActivityBase implements View.OnClickListener {
                     break;
 
                 case R.id.tv_join_xuzhi:
-                    getN_findClause("1");
+                    getN_findClause("4");
                     break;
                 case R.id.tv_join_tiaokuan:
                     getN_findClause("2");
@@ -493,82 +553,25 @@ public class JoinActivity extends ActivityBase implements View.OnClickListener {
                                         mBeanList.clear();
                                         FananBean bean = new Gson().fromJson(data, FananBean.class);
                                         mBeanList = bean.getData();
-                                        for (int i = 0; i < mBeanList.size(); i++) {
-                                            if (i == 0) {
-                                                mTvJoinXuanze99.setVisibility(View.VISIBLE);
-                                                mTvJoinFangan99.setVisibility(View.VISIBLE);
-                                                mTvJoinXuanze99.setText("" + mBeanList.get(i).getMpMoney() + "/年");
-                                                mTvJoinFangan99.setMovementMethod(LinkMovementMethod.getInstance());
-                                                TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                                        getdata();
+                                        mTvJoinFangan99.setBackground(getResources().getDrawable(R.drawable.shape_rectangle_5_f4a));
+                                        mTvJoinFangan99.setMovementMethod(LinkMovementMethod.getInstance());
+                                        if (mBeanList.get(0).getProgramTime()>=12){
+                                            TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                                                    .append("" + mBeanList.get(0).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.white)).append(mBeanList.get(0).getDescription()).setForegroundColor(getResources().getColor(R.color.black))
+                                                    .into(mTvJoinFangan99);
 
-                                                        .append("" + mBeanList.get(i).getMpMoney() + "/"+mBeanList.get(i).getProgramTime()+"月\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
-
-
-                                                        .into(mTvJoinFangan99);
-//                                                mTvJoinFangan99.setText(""+mBeanList.get(i).getMpMoney()+"/年\n"+mBeanList.get(i).getDescription());
-                                                mTvJoinXuanze99.setSolid(getResources().getColor(R.color.d6f3));
-                                                mTvJoinXuanze99.setTextColor(getResources().getColor(R.color.home_button));
-                                                mTvJoinXuanze99.setStrokeColor(getResources().getColor(R.color.home_button));
-                                                mTvJoinYixuanjine.setText("￥" + mBeanList.get(0).getMpMoney());
-                                                tv_yue.setText("/" + mBeanList.get(0).getProgramTime()+"月");
-                                                fanan_name = mBeanList.get(0).getProgramName();
-                                                fanan_jine = mBeanList.get(0).getMpMoney();
-                                                fanan_code = mBeanList.get(0).getProgramCode();
-                                                getimg(0);
-                                            } else if (i == 1) {
-                                                mTvJoinXuanze199.setVisibility(View.VISIBLE);
-                                                mTvJoinFangan199.setVisibility(View.VISIBLE);
-                                                mTvJoinXuanze199.setText("" + mBeanList.get(i).getMpMoney() + "/年");
-                                                TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
-
-                                                        .append("" + mBeanList.get(i).getMpMoney() + "/"+mBeanList.get(i).getProgramTime()+"月\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
-
-
-                                                        .into(mTvJoinFangan199);
-//                                                mTvJoinFangan199.setText(""+mBeanList.get(i).getMpMoney()+"/年\n"+mBeanList.get(i).getDescription());
-                                            } else if (i == 2) {
-                                                mTvJoinXuanze399.setVisibility(View.VISIBLE);
-                                                mTvJoinFangan399.setVisibility(View.VISIBLE);
-                                                mTvJoinXuanze399.setText("" + mBeanList.get(i).getMpMoney() + "/年");
-                                                TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
-
-                                                        .append("" + mBeanList.get(i).getMpMoney() + "/"+mBeanList.get(i).getProgramTime()+"月\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
-
-
-                                                        .into(mTvJoinFangan399);
-//                                                mTvJoinFangan399.setText(""+mBeanList.get(i).getMpMoney()+"/年\n"+mBeanList.get(i).getDescription());
-                                            } else if (i == 3) {
-                                                mTvJoinXuanze599.setVisibility(View.VISIBLE);
-                                                mTvJoinFangan599.setVisibility(View.VISIBLE);
-                                                mTvJoinXuanze599.setText("" + mBeanList.get(i).getMpMoney() + "/年");
-                                                TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
-
-                                                        .append("" + mBeanList.get(i).getMpMoney() + "/"+mBeanList.get(i).getProgramTime()+"月\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
-
-
-                                                        .into(mTvJoinFangan599);
-//                                                mTvJoinFangan599.setText(""+mBeanList.get(i).getMpMoney()+"/年\n"+mBeanList.get(i).getDescription());
-                                            } else if (i == 4) {
-                                                mTvJoinXuanze799.setVisibility(View.VISIBLE);
-                                                mTvJoinFangan799.setVisibility(View.VISIBLE);
-                                                mTvJoinXuanze799.setText("" + mBeanList.get(i).getMpMoney() + "/年");
-                                                TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
-
-                                                        .append("" + mBeanList.get(i).getMpMoney() + "/"+mBeanList.get(i).getProgramTime()+"月\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
-
-
-                                                        .into(mTvJoinFangan799);
-//                                                mTvJoinFangan799.setText(""+mBeanList.get(i).getMpMoney()+"/年\n"+mBeanList.get(i).getDescription());
-                                            }
-
+                                        }else {
+                                            TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                                                    .append("" + mBeanList.get(0).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.white)).append(mBeanList.get(0).getDescription()).setForegroundColor(getResources().getColor(R.color.black))
+                                                    .into(mTvJoinFangan99);
 
                                         }
-
 
 //
 
 
-                                        BaseToast.success(msg);
+//                                        BaseToast.success(msg);
 
                                     } else if (code == 1004) {
                                         ActivityTool.finishAllActivity();
@@ -597,6 +600,124 @@ public class JoinActivity extends ActivityBase implements View.OnClickListener {
                     }
                 });
 
+    }
+
+    private void getdata() {
+        for (int i = 0; i < mBeanList.size(); i++) {
+            if (i == 0) {
+
+                mTvJoinFangan99.setVisibility(View.VISIBLE);
+
+//                                                mTvJoinXuanze99.setText("" + mBeanList.get(i).getMpMoney() + "元/"+mBeanList.get(i).getProgramTime()+"月");
+                mTvJoinXuanze99.setText("" + mBeanList.get(i).getProgramName());
+                mTvJoinFangan99.setMovementMethod(LinkMovementMethod.getInstance());
+                mTvJoinFangan99.setBackground(getResources().getDrawable(R.drawable.shape_rectangle_5_fff));
+                if (mBeanList.get(i).getProgramTime()>=12){
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(i).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
+                            .into(mTvJoinFangan99);
+
+                }else {
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(i).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
+                            .into(mTvJoinFangan99);
+
+                }
+
+//                                                mTvJoinFangan99.setText(""+mBeanList.get(i).getMpMoney()+"/年\n"+mBeanList.get(i).getDescription());
+                mTvJoinXuanze99.setSolid(getResources().getColor(R.color.d6f3));
+                mTvJoinXuanze99.setTextColor(getResources().getColor(R.color.home_button));
+                mTvJoinXuanze99.setStrokeColor(getResources().getColor(R.color.home_button));
+                mTvJoinYixuanjine.setText("￥" + mBeanList.get(0).getMpMoney()+"元");
+                if (mBeanList.get(0).getProgramTime()>=12){
+                    tv_yue.setText("/" + (mBeanList.get(0).getProgramTime())+"");
+                }else {
+                    tv_yue.setText("/" + (mBeanList.get(0).getProgramTime())+"");
+                }
+                fanan_name = mBeanList.get(0).getProgramName();
+                fanan_jine = mBeanList.get(0).getMpMoney();
+                fanan_code = mBeanList.get(0).getProgramCode();
+                getimg(0);
+            } else if (i == 1) {
+
+                mTvJoinFangan199.setVisibility(View.VISIBLE);
+//                                                mTvJoinXuanze199.setText("" + mBeanList.get(i).getMpMoney() + "元/"+mBeanList.get(i).getProgramTime()+"月");
+                mTvJoinXuanze199.setText("" + mBeanList.get(i).getProgramName());
+                mTvJoinFangan199.setBackground(getResources().getDrawable(R.drawable.shape_rectangle_5_fff));
+                mTvJoinFangan199.setMovementMethod(LinkMovementMethod.getInstance());
+                if (mBeanList.get(i).getProgramTime()>=12){
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(i).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
+                            .into(mTvJoinFangan199);
+
+                }else {
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(i).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
+                            .into(mTvJoinFangan199);
+
+                }
+//                                                mTvJoinFangan199.setText(""+mBeanList.get(i).getMpMoney()+"/年\n"+mBeanList.get(i).getDescription());
+            } else if (i == 2) {
+
+                mTvJoinFangan399.setVisibility(View.VISIBLE);
+//                                                mTvJoinXuanze399.setText("" + mBeanList.get(i).getMpMoney() + "元/"+mBeanList.get(i).getProgramTime()+"月");
+                mTvJoinXuanze399.setText("" + mBeanList.get(i).getProgramName());
+                mTvJoinFangan399.setMovementMethod(LinkMovementMethod.getInstance());
+                mTvJoinFangan399.setBackground(getResources().getDrawable(R.drawable.shape_rectangle_5_fff));
+                if (mBeanList.get(i).getProgramTime()>=12){
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(i).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
+                            .into(mTvJoinFangan399);
+
+                }else {
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(i).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
+                            .into(mTvJoinFangan399);
+
+                }
+//                                                mTvJoinFangan399.setText(""+mBeanList.get(i).getMpMoney()+"/年\n"+mBeanList.get(i).getDescription());
+            } else if (i == 3) {
+
+                mTvJoinFangan599.setVisibility(View.VISIBLE);
+                mTvJoinXuanze599.setText("" + mBeanList.get(i).getProgramName());
+                mTvJoinFangan599.setBackground(getResources().getDrawable(R.drawable.shape_rectangle_5_fff));
+//                                                mTvJoinXuanze599.setText("" + mBeanList.get(i).getMpMoney() + "元/"+mBeanList.get(i).getProgramTime()+"月");
+                mTvJoinFangan599.setMovementMethod(LinkMovementMethod.getInstance());
+                if (mBeanList.get(i).getProgramTime()>=12){
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(i).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
+                            .into(mTvJoinFangan599);
+
+                }else {
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(i).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
+                            .into(mTvJoinFangan599);
+
+                }
+//                                                mTvJoinFangan599.setText(""+mBeanList.get(i).getMpMoney()+"/年\n"+mBeanList.get(i).getDescription());
+            } else if (i == 4) {
+
+                mTvJoinFangan799.setVisibility(View.VISIBLE);
+                mTvJoinXuanze799.setText("" + mBeanList.get(i).getProgramName());
+                mTvJoinFangan799.setBackground(getResources().getDrawable(R.drawable.shape_rectangle_5_fff));
+//                                                mTvJoinXuanze799.setText("" + mBeanList.get(i).getMpMoney() + "元/"+mBeanList.get(i).getProgramTime()+"月");
+                mTvJoinFangan799.setMovementMethod(LinkMovementMethod.getInstance());
+                if (mBeanList.get(i).getProgramTime()>=12){
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(i).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
+                            .into(mTvJoinFangan799);
+
+                }else {
+                    TextTool.getBuilder("").setBold().setAlign(Layout.Alignment.ALIGN_CENTER)
+                            .append("" + mBeanList.get(i).getMpMoney() + "元"+"\n").setForegroundColor(getResources().getColor(R.color.ff73)).append(mBeanList.get(i).getDescription())
+                            .into(mTvJoinFangan799);
+
+                }
+//                                                mTvJoinFangan799.setText(""+mBeanList.get(i).getMpMoney()+"/年\n"+mBeanList.get(i).getDescription());
+            }
+
+
+        }
     }
 
     private void getN_findClause(String type) {
@@ -738,11 +859,12 @@ public class JoinActivity extends ActivityBase implements View.OnClickListener {
                                         if (isonclick_cb) {
                                             SPTool.putString(JoinActivity.this, "fanan_name", fanan_name);
                                             SPTool.putString(JoinActivity.this, "fanan_code", fanan_code);
-                                            SPTool.putString(JoinActivity.this, "fanan_jine", String.valueOf(fanan_jine));
+                                            SPTool.putString(JoinActivity.this, "fanan_jine", fanan_jine);
 
 
                                          Intent   intent = new Intent(JoinActivity.this, SelectCarActivity.class);
                                          intent.putExtra("fanan_code",fanan_code);
+                                            intent.putExtra("tz_type","1");
                                          startActivity(intent);
                                         } else {
                                             BaseToast.error("还没同意协议");

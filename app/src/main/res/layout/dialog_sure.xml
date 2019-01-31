@@ -26,7 +26,7 @@
             android:layout_marginRight="30dp"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
-            android:text="Android的起源"
+            android:text=""
             android:textColor="@color/home_button"
             android:textSize="18dp"
             android:textStyle="bold"/>
@@ -39,6 +39,7 @@
             android:gravity="center"
             android:maxHeight="200dp"
             android:text=""
+            android:textSize="12dp"
             android:textColor="@color/black"/>
 
         <TextView

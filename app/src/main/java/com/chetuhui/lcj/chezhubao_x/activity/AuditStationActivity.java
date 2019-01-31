@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.chetuhui.lcj.chezhubao_x.R;
 import com.chetuhui.lcj.chezhubao_x.adapter.AuditStationAdapter;
-import com.chetuhui.lcj.chezhubao_x.adapter.CarAdapter;
+
 import com.chetuhui.lcj.chezhubao_x.model.AuditStationBean;
 import com.chetuhui.lcj.chezhubao_x.model.CarBean;
 import com.chetuhui.lcj.chezhubao_x.model.UserlistBean;
@@ -78,7 +78,7 @@ public class AuditStationActivity extends ActivityBase implements View.OnClickLi
     private LinearLayoutManager mLayoutManager;
     private int num=1;
     private  boolean issoll=true;
-    private int cityid = 510100;
+    private int cityid = 0;
     private String tt="审核流程",con="1、在平台收到您提交的资料后" +
             "审核员或维修站会接收您提交的信息，内容包括:" +
             "行驶证主页照片、车牌号、所有人、品牌型号、车辆识别代号、发动机号\n" +

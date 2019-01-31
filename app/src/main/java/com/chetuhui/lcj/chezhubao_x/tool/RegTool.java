@@ -1,5 +1,11 @@
 package com.chetuhui.lcj.chezhubao_x.tool;
 
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.widget.Toast;
+
+import com.chetuhui.lcj.chezhubao_x.MainActivity;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,6 +50,8 @@ public class RegTool {
      * 提取信息中的中文字符串：[\u4e00-\u9fa5]*
      * 提取信息中的双字节字符串 (汉字)：[^\x00-\xff]*
      */
+
+
 
 
     /**

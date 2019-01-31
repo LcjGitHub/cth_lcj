@@ -18,6 +18,20 @@
         android:textStyle="bold"
 
         />
+    <CheckBox
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:id="@+id/cb_item_cre"
+        style="@style/CustomCheckBoxTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+      android:layout_marginTop="@dimen/dp_10"
+
+
+        android:padding="@dimen/dp_10" />
+
     <LinearLayout
         android:layout_marginTop="@dimen/dp_5"
         android:id="@+id/ll_item_cre"
@@ -47,6 +61,7 @@
 
 
     </LinearLayout>
+
     <LinearLayout
 
         android:id="@+id/ll_item_cre2"

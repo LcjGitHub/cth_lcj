@@ -270,6 +270,8 @@ mHandler.post(new Runnable() {
 
                 Intent intent =new Intent(getContext(), MutualRecordDetailsActivity.class);
                 intent.putExtra("code",""+mBeanList.get(pos).getSalvationCode());
+                intent.putExtra("type_djz","1");
+
                 startActivity(intent);
             }
         });

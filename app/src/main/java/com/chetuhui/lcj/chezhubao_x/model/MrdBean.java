@@ -1,21 +1,19 @@
 package com.chetuhui.lcj.chezhubao_x.model;
 
-import java.util.List;
-
 public class MrdBean {
     /**
      * total : 0
-     * data : [{"state":1,"helpState":2,"userName":"林成均","carNum":"川A123456","phone":"18228131219","carBrand":"接近","damageLocation":"车灯","readyFixTime":"2018-11-23T15:12:00.000+0000","readyFixTimeQuantum":"12：:00-45:00","detail":"sfddfdfdfdfdfdf","programName":"99元基础互助","billCode":"cc1f825c79a94030aa00bf9978b917bb","limitMoney":800.36,"mpMoney":99.23,"effectiveTime":"2018-02-03","endTime":"2018-05-06","programTime":1,"businessName":"环球修理厂","businessPhone":"15520449937","detailAd":"中国,四川省,成都市,武侯区环球中心","carHeadimg":"http://fdfdfdfdf","carEndimg":"http://fdfdfdfdf","carInjuredimg":"http://fdfdfdfdf","carDetailimg":"http://fdfdfdfdf","businessReason":"dfdfdfdfdfdfd"},{"state":1,"helpState":0,"userName":"林成均","carNum":"川A123456","phone":"18228131219","carBrand":"接近","damageLocation":null,"readyFixTime":"2018-11-26T15:25:19.000+0000","readyFixTimeQuantum":"8:00-18:00","detail":null,"programName":"99元基础互助","billCode":"cc1f825c79a94030aa00bf9978b917bb","limitMoney":800,"mpMoney":99,"effectiveTime":null,"endTime":null,"programTime":1,"businessName":"环球修理厂","businessPhone":"15520449937","detailAd":"中国,四川省,成都市,武侯区环球中心","carHeadimg":null,"carEndimg":null,"carInjuredimg":null,"carDetailimg":null,"businessReason":null}]
+     * data : {"state":1,"helpState":2,"userName":"林成均","carNum":"川A123456","phone":"18228131219","carBrand":"接近","damageLocation":"车灯","readyFixTime":"2018-11-23T15:12:00.000+0000","readyFixTimeQuantum":"12：:00-45:00","detail":"sfddfdfdfdfdfdf","programName":"99元基础互助","billCode":"cc1f825c79a94030aa00bf9978b917bb","limitMoney":800,"mpMoney":99,"effectiveTime":"2018-02-03","endTime":"2018-05-06","programTime":1,"businessName":"环球修理厂","businessPhone":"15520449937","detailAd":"中国,四川省,成都市,武侯区环球中心","carHeadimg":"http://fdfdfdfdf","carEndimg":"http://fdfdfdfdf","carInjuredimg":"http://fdfdfdfdf","carDetailimg":"http://fdfdfdfdf","businessReason":"dfdfdfdfdfdfd"}
      * code : 0
      * msg : 成功
      * pageNum : 0
      */
 
     private int total;
+    private DataBean data;
     private String code;
     private String msg;
     private int pageNum;
-    private List<DataBean> data;
 
     public int getTotal() {
         return total;
@@ -23,6 +21,14 @@ public class MrdBean {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
     }
 
     public String getCode() {
@@ -49,14 +55,6 @@ public class MrdBean {
         this.pageNum = pageNum;
     }
 
-    public List<DataBean> getData() {
-        return data;
-    }
-
-    public void setData(List<DataBean> data) {
-        this.data = data;
-    }
-
     public static class DataBean {
         /**
          * state : 1
@@ -71,8 +69,8 @@ public class MrdBean {
          * detail : sfddfdfdfdfdfdf
          * programName : 99元基础互助
          * billCode : cc1f825c79a94030aa00bf9978b917bb
-         * limitMoney : 800.36
-         * mpMoney : 99.23
+         * limitMoney : 800
+         * mpMoney : 99
          * effectiveTime : 2018-02-03
          * endTime : 2018-05-06
          * programTime : 1
@@ -111,6 +109,7 @@ public class MrdBean {
         private String carInjuredimg;
         private String carDetailimg;
         private String businessReason;
+        private String salvationCode;
 
         public int getState() {
             return state;
@@ -136,6 +135,13 @@ public class MrdBean {
             this.userName = userName;
         }
 
+        public String getsalvationCode() {
+            return salvationCode;
+        }
+
+        public void setsalvationCode(String salvationCode) {
+            this.salvationCode = salvationCode;
+        }
         public String getCarNum() {
             return carNum;
         }

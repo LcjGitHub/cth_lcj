@@ -28,13 +28,13 @@ protected void convert(BaseViewHolder helper, IfBean.DataBean.InviterVoListBean 
         helper
         .setText(R.id.tv_item_if_ph,item.getFriendPhone() )
         .setText(R.id.tv_item_if_time,item.getGetDate() );
-        if (item.getGetDate().equals("1")){
+        if (item.getIsGetTicket().equals("1")){
                 TextView textView =helper.itemView.findViewById(R.id.tv_item_if_is);
-                textView.setText("得到");
+                textView.setText("加入");
 
-        }else  if (item.getGetDate().equals("2")){
+        }else  if (item.getIsGetTicket().equals("2")){
                 TextView textView =helper.itemView.findViewById(R.id.tv_item_if_is);
-                textView.setText("未得到");
+                textView.setText("未加入");
                 textView.setTextColor(mContext.getResources().getColor(R.color.fb64));
         }
 

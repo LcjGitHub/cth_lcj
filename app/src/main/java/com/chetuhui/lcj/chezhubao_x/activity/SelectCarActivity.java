@@ -28,7 +28,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chetuhui.lcj.chezhubao_x.MainActivity;
 import com.chetuhui.lcj.chezhubao_x.R;
-import com.chetuhui.lcj.chezhubao_x.adapter.CarAdapter;
+
 import com.chetuhui.lcj.chezhubao_x.model.CarBean;
 import com.chetuhui.lcj.chezhubao_x.tool.ActivityTool;
 import com.chetuhui.lcj.chezhubao_x.tool.BaseTool;
@@ -86,9 +86,12 @@ public class SelectCarActivity extends ActivityBase implements View.OnClickListe
      * 确定
      */
     private TextView mTvSelectQueding;
+    private TextView tv_sswg;
+    private boolean isss=false;
     private RelativeLayout mRlSelectCentent;
     private boolean isonclick=false;
     private String fanan_code="";
+    private String tz_type="";
 
 
     private List<CarBean.DataBean> mBeanList=new ArrayList<>();
@@ -119,6 +122,7 @@ public class SelectCarActivity extends ActivityBase implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_car);
         fanan_code=getIntent().getStringExtra("fanan_code");
+        tz_type=getIntent().getStringExtra("tz_type");
 
         initView();
         initPullRefresh();
@@ -127,11 +131,19 @@ public class SelectCarActivity extends ActivityBase implements View.OnClickListe
 
     private void initView() {
         mTitlebarSelect = (CommonTitleBar) findViewById(R.id.titlebar_select);
+
         mTitlebarSelect.setListener(new CommonTitleBar.OnTitleBarListener() {
             @Override
             public void onClicked(View v, int action, String extra) {
                 if (action == CommonTitleBar.ACTION_LEFT_BUTTON) {
-                    finish();
+                    if (tz_type.equals("1")){
+                        finish();
+                    }else if (tz_type.equals("2")){
+                        Intent  intent =new Intent(SelectCarActivity.this,ConfirmActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
 
                 }
                 if (action == CommonTitleBar.ACTION_RIGHT_TEXT) {
@@ -154,6 +166,8 @@ public class SelectCarActivity extends ActivityBase implements View.OnClickListe
 
 
         mTvSelectTianjiachengliang = (TextView) findViewById(R.id.tv_select_tianjiachengliang);
+        tv_sswg = (TextView) findViewById(R.id.tv_sswg);
+        tv_sswg.setVisibility(View.GONE);
         mTvSelectTianjiachengliang.setOnClickListener(this);
         mLlSelectNull = (LinearLayout) findViewById(R.id.ll_select_null);
         mLlSelectNull.setOnClickListener(this);
@@ -164,6 +178,7 @@ public class SelectCarActivity extends ActivityBase implements View.OnClickListe
                 if ((i==0||i==3)&&keyEvent!=null){
                     if (!DataTool.isNullString(mEtSelectSousuo.getText().toString())){
                         getN_findCarByCode(mEtSelectSousuo.getText().toString(),1);
+                        isss=true;
                     }else {
                         BaseToast.success("搜索为空");
                     }
@@ -287,6 +302,7 @@ public class SelectCarActivity extends ActivityBase implements View.OnClickListe
                     Gson g = new Gson();
                     String jsonString = g.toJson(mStringList);
                     Log.d("SelectCarActivity", content);
+                SPTool.putString(SelectCarActivity.this,"carjosn",content);
                     Log.d("SelectCarActivity", ">>>>>>>>>>>>"+jsonString);
 
                     if (isonclick){
@@ -353,12 +369,23 @@ public class SelectCarActivity extends ActivityBase implements View.OnClickListe
                                             mSlSelectCar.setRefreshing(false);
                                             if (a==0){
                                                 if (mBeanList.size()==0){
-                                                    mLlSelectNull.setVisibility(View.VISIBLE);
-                                                    mRlSelectCentent.setVisibility(View.GONE);
-                                                    mTitlebarSelect.getRightTextView().setVisibility(View.GONE);
+                                                    if (isss){
+                                                        mLlSelectNull.setVisibility(View.GONE);
+                                                        mRlSelectCentent.setVisibility(View.GONE);
+                                                        mTitlebarSelect.getRightTextView().setVisibility(View.GONE);
+                                                        tv_sswg.setVisibility(View.VISIBLE);
+                                                    }else {
+                                                        mLlSelectNull.setVisibility(View.VISIBLE);
+                                                        mRlSelectCentent.setVisibility(View.GONE);
+                                                        mTitlebarSelect.getRightTextView().setVisibility(View.GONE);
+                                                        tv_sswg.setVisibility(View.GONE);
+                                                    }
+
 
                                                 }else {
+                                                    isss=false;
                                                     mLlSelectNull.setVisibility(View.GONE);
+                                                    tv_sswg.setVisibility(View.GONE);
                                                     mRlSelectCentent.setVisibility(View.VISIBLE);
                                                     mTitlebarSelect.getRightTextView().setVisibility(View.VISIBLE);
                                                 }
@@ -592,10 +619,18 @@ public class SelectCarActivity extends ActivityBase implements View.OnClickListe
                                     public void run() {
                                         SPTool.putString(SelectCarActivity.this,"car_jsonString",list);
                                         SPTool.putInt(SelectCarActivity.this,"car_size",mStringList.size());
+                                        if (tz_type.equals("1")){
+//                                            SPTool.putInt(SelectCarActivity.this,"or_shenhe",1);
+                                            Intent intent=new Intent(SelectCarActivity.this,SelectReviewActivity.class);
 
-                                       Intent  intent =new Intent(SelectCarActivity.this,SelectReviewActivity.class);
-                                       startActivity(intent);
-                                       finish();
+                                            startActivity(intent);
+                                            finish();
+                                        }else if (tz_type.equals("2")){
+                                            Intent  intent =new Intent(SelectCarActivity.this,ConfirmActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+
 
 
                                     }

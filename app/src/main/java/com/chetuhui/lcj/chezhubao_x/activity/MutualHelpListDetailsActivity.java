@@ -16,9 +16,11 @@ import com.chetuhui.lcj.chezhubao_x.model.MhldBean;
 import com.chetuhui.lcj.chezhubao_x.tool.ActivityTool;
 import com.chetuhui.lcj.chezhubao_x.tool.DataTool;
 import com.chetuhui.lcj.chezhubao_x.tool.SPTool;
+import com.chetuhui.lcj.chezhubao_x.tool.interfaces.OnRepeatClickListener;
 import com.chetuhui.lcj.chezhubao_x.utils.NetData;
 import com.chetuhui.lcj.chezhubao_x.utils.ShowImageUtils;
 import com.chetuhui.lcj.chezhubao_x.view.BaseToast;
+import com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView;
 import com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
@@ -53,7 +55,7 @@ public class MutualHelpListDetailsActivity extends ActivityBase implements View.
     /**  */
     private TextView mTvMhldHometime;
     /**
-     * 保障结束时间：
+     *
      */
     private TextView mTvMhldEndtime;
     /**  */
@@ -64,6 +66,7 @@ public class MutualHelpListDetailsActivity extends ActivityBase implements View.
     private TextView mTvMhldChakan;
     /**  */
     private TextView mTvMhldCph;
+    private SuperTextView tv_mhl_zcgm;
     private  String coed;
     private MyHandler mHandler=new MyHandler(MutualHelpListDetailsActivity.this);
     private static class MyHandler extends Handler {
@@ -92,6 +95,7 @@ public class MutualHelpListDetailsActivity extends ActivityBase implements View.
 
     private void initView() {
         mTitlebarMhld = (CommonTitleBar) findViewById(R.id.titlebar_mhld);
+        tv_mhl_zcgm = (SuperTextView) findViewById(R.id.tv_mhl_zcgm);
         mTitlebarMhld.setListener(new CommonTitleBar.OnTitleBarListener() {
             @Override
             public void onClicked(View v, int action, String extra) {
@@ -158,19 +162,50 @@ public class MutualHelpListDetailsActivity extends ActivityBase implements View.
                                 @Override
                                 public void run() {
                                     if (code == 0) {
-                                        MhldBean bean=new Gson().fromJson(data, MhldBean.class);
+                                        final MhldBean bean=new Gson().fromJson(data, MhldBean.class);
                                         mTvMhldTitle.setText(bean.getData().getProgramName());
                                         mTvMhldDdh.setText(bean.getData().getBillCode());
                                         //0：待生效 1：保障中 2：已用完 3：已失效
                                         if (bean.getData().getBillState()==0){
+                                            tv_mhl_zcgm.setVisibility(View.GONE);
                                             ShowImageUtils.showImageView(MutualHelpListDetailsActivity.this,R.drawable.hzdxq_dsx,mIvMhld);
                                         }else  if (bean.getData().getBillState()==1){
+                                            tv_mhl_zcgm.setVisibility(View.VISIBLE);
+                                            tv_mhl_zcgm.setText("申请救助");
+                                            tv_mhl_zcgm.setOnClickListener(new OnRepeatClickListener() {
+                                                @Override
+                                                public void onRepeatClick(View v) {
+                                                    SPTool.putString(mContext,"ih_carnum",""+bean.getData().getCarNum());
+                                                    SPTool.putString(mContext,"sa_code",""+bean.getData().getBillCode());
+                                                    startActivity(new Intent(mContext,BasicInformationActivity.class));
+                                                }
+                                            });
                                             ShowImageUtils.showImageView(MutualHelpListDetailsActivity.this,R.drawable.hzdxq_bzz,mIvMhld);
                                         }else  if (bean.getData().getBillState()==2){
+                                            tv_mhl_zcgm.setVisibility(View.VISIBLE);
+                                            tv_mhl_zcgm.setText("再次购买");
+                                            tv_mhl_zcgm.setOnClickListener(new OnRepeatClickListener() {
+                                                @Override
+                                                public void onRepeatClick(View v) {
+
+                                                    startActivity(new Intent(mContext,JoinActivity.class));
+                                                }
+                                            });
+
                                             ShowImageUtils.showImageView(MutualHelpListDetailsActivity.this,R.drawable.hzdxq_yyw,mIvMhld);
                                         }else  if (bean.getData().getBillState()==3){
+                                            tv_mhl_zcgm.setVisibility(View.VISIBLE);
+                                            tv_mhl_zcgm.setText("再次购买");
+                                            tv_mhl_zcgm.setOnClickListener(new OnRepeatClickListener() {
+                                                @Override
+                                                public void onRepeatClick(View v) {
+
+                                                    startActivity(new Intent(mContext,JoinActivity.class));
+                                                }
+                                            });
                                             ShowImageUtils.showImageView(MutualHelpListDetailsActivity.this,R.drawable.hzdxq_ysx,mIvMhld);
                                         }else  if (bean.getData().getBillState()==4){
+                                            tv_mhl_zcgm.setVisibility(View.GONE);
                                             ShowImageUtils.showImageView(MutualHelpListDetailsActivity.this,R.drawable.hzdxq_yqx,mIvMhld);
                                         }
                                         mTvMhldCishu.setText(""+bean.getData().getMutualSize());

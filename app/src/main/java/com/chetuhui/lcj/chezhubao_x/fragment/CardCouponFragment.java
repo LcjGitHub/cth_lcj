@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.chetuhui.lcj.chezhubao_x.R;
@@ -40,6 +41,7 @@ public class CardCouponFragment extends Fragment {
     private View view;
     private RecyclerView mRvFragmentMsg;
     private MessageAdapter mMessageAdapter;
+    private LinearLayout picNull;
     private List<MessageBean.DataBean> mBeanList;
     private  MyHandler mHandler =new MyHandler(CardCouponFragment.this);
     private static class MyHandler extends Handler {
@@ -82,6 +84,7 @@ public class CardCouponFragment extends Fragment {
     }
 
     private void initView(View view) {
+        picNull = view.findViewById(R.id.pic_null);
         mRvFragmentMsg = (RecyclerView) view.findViewById(R.id.rv_fragment_cc);
         //创建布局管理
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -123,6 +126,14 @@ public class CardCouponFragment extends Fragment {
 
                                     //给RecyclerView设置适配器
                                     mRvFragmentMsg.setAdapter(mMessageAdapter);
+                                    if (mBeanList.size()==0){
+                                        picNull.setVisibility(View.VISIBLE);
+                                        mRvFragmentMsg.setVisibility(View.GONE);
+                                    }else {
+                                        picNull.setVisibility(View.GONE);
+                                        mRvFragmentMsg.setVisibility(View.VISIBLE);
+
+                                    }
                                     //BaseToast.success(msg);
 
                                 }else if (code==1004){

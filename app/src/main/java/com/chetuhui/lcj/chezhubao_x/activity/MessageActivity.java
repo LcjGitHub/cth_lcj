@@ -44,16 +44,17 @@ public class MessageActivity extends ActivityBase {
         mViewpagerMessg.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
 
             String[] titles = new String[]{
-                    "公告消息", "系统通知"
+                     "系统通知","公告消息"
             };
 
             @Override
             public Fragment getItem(int position) {
                 if (position == 0) {
-                    return NoticeFragment.newInstance();
+                    return MessageFragment.newInstance();
 
                 } else {
-                    return MessageFragment.newInstance();
+
+                    return NoticeFragment.newInstance();
                 }
             }
 

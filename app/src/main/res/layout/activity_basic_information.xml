@@ -113,11 +113,14 @@
                 android:textColor="@color/_3"
                 />
             <TextView
+                android:gravity="right"
                 android:id="@+id/tv_bi_weizhi"
                 android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp_200"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_10"
+                android:maxLines="1"
+                android:ellipsize="end"
 
                 android:text="请选择"
                 android:background="@color/transparent"
@@ -240,8 +243,9 @@
                 android:background="@color/transparent"
                 android:textSize="@dimen/dp_13"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:text=""
+                android:gravity="top"
                 android:hint="请详细填写车辆当前状况,不超过200字"
                 />
 

@@ -38,7 +38,7 @@
 
                 <ImageView
                     android:id="@+id/iv_up_chetou"
-
+                    android:src="@drawable/up_ct"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -76,7 +76,7 @@
 
                 <ImageView
                     android:id="@+id/iv_up_chewei"
-
+                    android:src="@drawable/up_cw"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -114,6 +114,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:src="@drawable/up_cypzw"
                     android:id="@+id/iv_up_cypzw"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -151,6 +152,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:src="@drawable/up_xj"
                     android:id="@+id/iv_up_xijie"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />

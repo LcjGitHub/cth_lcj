@@ -1,6 +1,10 @@
 package com.chetuhui.lcj.chezhubao_x.fragment;
 
 import android.content.Intent;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -83,12 +87,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
      * 申请互助
      */
     private TextView mTvHomeShenqinghuzhu;
+    private TextView tv_home_yhz;
     /**
      * 成都
      */
     private TextView mTvHomeCity;
-    private  double je= 0;
+    private  double je= 0,helpMoney=0;
         private String city_name;
+
+
+
+
     public static Handler mhandler = new  Handler(){
         // 通过复写handlerMessage()从而确定更新UI的操作
         @Override
@@ -140,6 +149,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             startActivity(new Intent(getContext(),CityActivity.class));
         }
 
+
     }
 
     @Override
@@ -189,6 +199,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
         mTvHomeMoney = (TextView) view.findViewById(R.id.tv_home_money_);
+        tv_home_yhz = (TextView) view.findViewById(R.id.tv_home_yhz);
         mTvHomeMoney.setOnClickListener(this);
         mTvHomeLiangche = (TextView) view.findViewById(R.id.tv_home_liangche);
         mTvHomeLiangche.setOnClickListener(this);
@@ -221,6 +232,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (!BaseTool.isFastClick(MIN_CLICK_DELAY_TIME)) {
             Intent intent = null;
+            String s_token = SPTool.getString(getContext(), "token");
             switch (v.getId()) {
                 default:
                     break;
@@ -240,18 +252,43 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     intent = new Intent(getContext(), AccountFormulaActivity.class);
                     break;
                 case R.id.tv_home_huzhushijian:
-                    intent = new Intent(getContext(), MutualEventsActivity.class);
+
+                    if (DataTool.isNullString(s_token)) {
+                        ActivityTool.finishAllActivity();
+                        startActivity(new Intent(getContext(),LoginActivity.class));
+
+                    }else {
+                        intent = new Intent(getContext(), MutualEventsActivity.class);
+
+                    }
+
                     break;
                 case R.id.tv_home_yonghuliebiao:
-                    intent = new Intent(getContext(), UserListActivity.class);
+                    if (DataTool.isNullString(s_token)) {
+                        ActivityTool.finishAllActivity();
+                        startActivity(new Intent(getContext(),LoginActivity.class));
+
+                    }else {
+                        intent = new Intent(getContext(), UserListActivity.class);
+
+                    }
+
                     break;
                 case R.id.tv_home_remenshijian:
                     intent = new Intent(getContext(), PopularActivity.class);
 
                     break;
                 case R.id.tv_home_shenqinghuzhu:
-                    intent = new Intent(getContext(), JoinActivity.class);
-                    intent.putExtra("je",je);
+                    if (DataTool.isNullString(s_token)) {
+                        ActivityTool.finishAllActivity();
+                        startActivity(new Intent(getContext(),LoginActivity.class));
+
+                    }else {
+                        intent = new Intent(getContext(), JoinActivity.class);
+                        intent.putExtra("je",je);
+
+                    }
+
                     break;
             }
             if (intent != null) {
@@ -265,17 +302,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void N_home() {
-        String s_token = SPTool.getString(getContext(), "token");
-        Log.d("CityActivity", s_token);
-
-        if (DataTool.isNullString(s_token)) {
-            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        String s_token = SPTool.getString(getContext(), "token");
+//        Log.d("CityActivity", s_token);
+//
+//        if (DataTool.isNullString(s_token)) {
+//            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         OkGo.<String>get(NetData.N_home)
                 .tag(this)
-                .headers("token", s_token)
+//                .headers("token", s_token)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
@@ -314,11 +351,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                        int  cl= 0;
                                        try {
                                            cl = jsonObject1.getInt("carJoinNum");
+                                           helpMoney = jsonObject1.getInt("helpMoney");
                                        } catch (JSONException e) {
                                            e.printStackTrace();
                                        }
                                        mTvHomeMoney.setText("￥"+DataTool.getAmountValue(je));
-                                       mTvHomeLiangche.setText("已有"+DataTool.getIntValue(""+cl)+"辆车加入");
+                                       tv_home_yhz.setText("￥"+DataTool.getAmountValue(helpMoney));
+                                       mTvHomeLiangche.setText(""+DataTool.getIntValue(""+cl)+"辆");
 
 
 
@@ -349,6 +388,5 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     }
                 });
     }
-
 
 }

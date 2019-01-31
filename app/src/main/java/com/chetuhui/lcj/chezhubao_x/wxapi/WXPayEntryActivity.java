@@ -55,15 +55,15 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler{
 	public void onResp(BaseResp resp) {
 		Log.d(">>>>>>>>>>>>>", "onPayFinish, errCode = " + resp.errCode);
 		if(resp.errCode==0){
-			Toast.makeText(this,"支付成功!",Toast.LENGTH_SHORT).show();
+			Toast.makeText(this,"充值成功!",Toast.LENGTH_SHORT).show();
 			startActivity(new Intent(WXPayEntryActivity.this,PaySuccessActivity.class));
 
 
 		}else if(resp.errCode==-1){
-			Toast.makeText(this,"支付失败!",Toast.LENGTH_SHORT).show();
+			Toast.makeText(this,"充值失败!",Toast.LENGTH_SHORT).show();
 
 		}else if(resp.errCode==-2){
-			Toast.makeText(this,"取消支付!",Toast.LENGTH_SHORT).show();
+			Toast.makeText(this,"取消充值!",Toast.LENGTH_SHORT).show();
 
 		}
 		finish();

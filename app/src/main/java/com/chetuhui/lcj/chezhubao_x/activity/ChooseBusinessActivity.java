@@ -54,7 +54,7 @@ public class ChooseBusinessActivity extends ActivityBase implements View.OnClick
     private CommonTitleBar mTitlebarCb;
     private ImageView iv_amc_sqt;
     private RelativeLayout mRlCb;
-    private int cityid = 510100;
+    private int cityid = 0;
     private SwipeRefreshLayout mSlCb;
     private RecyclerView mRvCb;
     private LinearLayoutManager mLinearLayoutManager;

@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chetuhui.lcj.chezhubao_x.R;
@@ -49,6 +50,8 @@ import static com.chetuhui.lcj.chezhubao_x.application.MyApplication.getAppConte
 public class MmhAllFragment extends Fragment {
 
     private static ImageView iv_amc_sqt;
+    private static TextView tv_sswg;
+    private static boolean isss=false;
     private View view;
     private static RecyclerView mRvGsz;
     private static SwipeRefreshLayout mSlGsz;
@@ -65,6 +68,7 @@ public class MmhAllFragment extends Fragment {
                 case 1:
                     String mg= String.valueOf(msg.obj);
                     getN_findMyMutualbills(""+num,""+mg);
+                    isss=true;
 
                     break;
 
@@ -120,7 +124,10 @@ public class MmhAllFragment extends Fragment {
 
 
     private void initView(View view) {
+        tv_sswg = (TextView) view.findViewById(R.id.tv_sswg);
+        tv_sswg.setVisibility(View.GONE);
         iv_amc_sqt = (ImageView) view.findViewById(R.id.iv_amc_sqt);
+
         mRvGsz = (RecyclerView) view.findViewById(R.id.rv_gsz);
         mSlGsz = (SwipeRefreshLayout) view.findViewById(R.id.sl_gsz);
     }
@@ -159,9 +166,20 @@ public class MmhAllFragment extends Fragment {
                                             MmhBean bean= new Gson().fromJson(data, MmhBean.class);
                                             mBeanList=bean.getData();
                                             if (mBeanList.size()==0){
-                                                iv_amc_sqt.setVisibility(View.VISIBLE);
-                                                mRvGsz.setVisibility(View.GONE);
+                                                if (isss){
+                                                    iv_amc_sqt.setVisibility(View.GONE);
+                                                    mRvGsz.setVisibility(View.GONE);
+                                                    tv_sswg.setVisibility(View.VISIBLE);
+                                                }else{
+                                                    iv_amc_sqt.setVisibility(View.VISIBLE);
+                                                    mRvGsz.setVisibility(View.GONE);
+                                                    tv_sswg.setVisibility(View.GONE);
+                                                }
+
+
                                             }else {
+                                                isss=false;
+                                                tv_sswg.setVisibility(View.GONE);
                                                 iv_amc_sqt.setVisibility(View.GONE);
                                                 mRvGsz.setVisibility(View.VISIBLE);
                                             }

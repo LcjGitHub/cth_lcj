@@ -22,6 +22,7 @@ import com.chetuhui.lcj.chezhubao_x.model.LoginBean;
 import com.chetuhui.lcj.chezhubao_x.tool.ActivityTool;
 import com.chetuhui.lcj.chezhubao_x.tool.AppTool;
 import com.chetuhui.lcj.chezhubao_x.tool.DataTool;
+import com.chetuhui.lcj.chezhubao_x.tool.RegTool;
 import com.chetuhui.lcj.chezhubao_x.tool.SPTool;
 import com.chetuhui.lcj.chezhubao_x.utils.NetData;
 import com.chetuhui.lcj.chezhubao_x.view.BaseToast;
@@ -235,7 +236,13 @@ public class RegisteredActivity extends ActivityBase implements View.OnClickList
             case R.id.tv_registered_code:
                 if (isonclick){
                     if (!DataTool.isNullString(mEtRegisteredPh.getText().toString())){
-                        getSmsCode(mEtRegisteredPh.getText().toString());
+                        if (RegTool.isMobile(mEtRegisteredPh.getText().toString())){
+
+                            getSmsCode(mEtRegisteredPh.getText().toString());
+
+                        }else {
+                            BaseToast.error("请输入正确的手机号");
+                        }
                     }else {
                         BaseToast.error("请输入电话号码");
                     }
@@ -327,7 +334,7 @@ public class RegisteredActivity extends ActivityBase implements View.OnClickList
                         isonclick=false;
                     }
 
-                    BaseToast.info(msg);
+//                    BaseToast.info(msg);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

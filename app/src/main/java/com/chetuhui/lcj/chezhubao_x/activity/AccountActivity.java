@@ -74,7 +74,7 @@ public class AccountActivity extends ActivityBase implements View.OnClickListene
                 intent=new Intent(AccountActivity.this,ChangePasswordActivity.class);
                 break;
             case R.id.rl_account_sfbd:
-                intent=new Intent(AccountActivity.this,HomeActivity.class);
+                intent=new Intent(AccountActivity.this,BindingActivity.class);
                 break;
         }
             if (intent!=null){

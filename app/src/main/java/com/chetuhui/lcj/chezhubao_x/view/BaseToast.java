@@ -42,7 +42,7 @@ public class BaseToast {
     private static final int INFO_COLOR = Color.parseColor("#3F51B5");
 
     @ColorInt
-    private static final int SUCCESS_COLOR = Color.parseColor("#388E3C");
+    private static final int SUCCESS_COLOR = Color.parseColor("#55000000");
 
     @ColorInt
     private static final int WARNING_COLOR = Color.parseColor("#FFA900");
@@ -387,6 +387,11 @@ public class BaseToast {
             mToast.setText(msg);
         }
         mToast.show();
+    }
+    public static void cancelToast() {
+        if (mToast != null) {
+            mToast.cancel();
+        }
     }
 
     public static boolean doubleClickExit() {

@@ -3,7 +3,7 @@ package com.chetuhui.lcj.chezhubao_x.model;
 public class EventDetailsBean {
     /**
      * total : 0
-     * data : {"nickName":"林成均","headimgurl":"http://img2.woyaogexing.com/2018/10/01/a8ecf04a1de04dafb0a850f064bf916e!400x400.jpeg","carNum":"川A4545","joinNum":22,"rescue_money":566,"detail":"fdfdfdfdfd","user_carHeadimg":"http://sdfdfd","user_carEndimg":"http://sdfdfd","user_carInjuredimg":"http://sdfdfd","user_carDetailimg":"http://sdfdfd","businessName":"万达修车中心","salvationCode":"eeeeeee","degreeDamage":"定损程度","damagedPart":"受损部位","business_carHeadimg":"商户车头照片","business_carEndimg":"商户车尾照片","business_carInjuredimg":"车辆与碰撞物照片","business_carDetailimg":"受损细节照片","finish_carHeadimg":"修好 车头照片","finish_carEndimg":"修好 车尾照片","finish_carInjuredimg":"修好 碰撞照片","finish_carDetailimg":"修好 受损细节照片","applyTime":"2018-01-02","fixedTime":"2018-01-06","finishTime":"2018-01-22"}
+     * data : {"nickName":"林成均","headimgurl":"http://img2.woyaogexing.com/2018/10/01/a8ecf04a1de04dafb0a850f064bf916e!400x400.jpeg","carNum":"川A4545","joinNum":22,"rescue_money":566,"detail":"fdfdfdfdfd","user_carHeadimg":"http://sdfdfd","user_carEndimg":"http://sdfdfd","user_carInjuredimg":"http://sdfdfd","user_carDetailimg":"http://sdfdfd","businessName":"万达修车中心","salvationCode":"eeeeeee","degreeDamage":"定损程度","damagedPart":"受损部位","business_carHeadimg":"商户车头照片","business_carEndimg":"商户车尾照片","business_carDetailimg":"商户受损细节照片","finish_carHeadimg":"修好 车头照片","finish_carEndimg":"修好 车尾照片","finish_carDetailimg":"修好 受损细节照片","applyTime":"2018-01-02","fixedTime":"2018-01-06","finishTime":"2018-01-22","publicStall":0.3}
      * code : 0
      * msg : 成功
      * pageNum : 0
@@ -73,15 +73,14 @@ public class EventDetailsBean {
          * damagedPart : 受损部位
          * business_carHeadimg : 商户车头照片
          * business_carEndimg : 商户车尾照片
-         * business_carInjuredimg : 车辆与碰撞物照片
-         * business_carDetailimg : 受损细节照片
+         * business_carDetailimg : 商户受损细节照片
          * finish_carHeadimg : 修好 车头照片
          * finish_carEndimg : 修好 车尾照片
-         * finish_carInjuredimg : 修好 碰撞照片
          * finish_carDetailimg : 修好 受损细节照片
          * applyTime : 2018-01-02
          * fixedTime : 2018-01-06
          * finishTime : 2018-01-22
+         * publicStall : 0.3
          */
 
         private String nickName;
@@ -100,15 +99,14 @@ public class EventDetailsBean {
         private String damagedPart;
         private String business_carHeadimg;
         private String business_carEndimg;
-        private String business_carInjuredimg;
         private String business_carDetailimg;
         private String finish_carHeadimg;
         private String finish_carEndimg;
-        private String finish_carInjuredimg;
         private String finish_carDetailimg;
         private String applyTime;
         private String fixedTime;
         private String finishTime;
+        private double publicStall;
 
         public String getNickName() {
             return nickName;
@@ -238,14 +236,6 @@ public class EventDetailsBean {
             this.business_carEndimg = business_carEndimg;
         }
 
-        public String getBusiness_carInjuredimg() {
-            return business_carInjuredimg;
-        }
-
-        public void setBusiness_carInjuredimg(String business_carInjuredimg) {
-            this.business_carInjuredimg = business_carInjuredimg;
-        }
-
         public String getBusiness_carDetailimg() {
             return business_carDetailimg;
         }
@@ -268,14 +258,6 @@ public class EventDetailsBean {
 
         public void setFinish_carEndimg(String finish_carEndimg) {
             this.finish_carEndimg = finish_carEndimg;
-        }
-
-        public String getFinish_carInjuredimg() {
-            return finish_carInjuredimg;
-        }
-
-        public void setFinish_carInjuredimg(String finish_carInjuredimg) {
-            this.finish_carInjuredimg = finish_carInjuredimg;
         }
 
         public String getFinish_carDetailimg() {
@@ -308,6 +290,14 @@ public class EventDetailsBean {
 
         public void setFinishTime(String finishTime) {
             this.finishTime = finishTime;
+        }
+
+        public double getPublicStall() {
+            return publicStall;
+        }
+
+        public void setPublicStall(double publicStall) {
+            this.publicStall = publicStall;
         }
     }
 }

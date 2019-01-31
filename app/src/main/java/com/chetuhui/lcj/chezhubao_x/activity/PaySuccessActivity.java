@@ -14,7 +14,7 @@ public class PaySuccessActivity extends ActivityBase implements View.OnClickList
 
     private CommonTitleBar mTitlebarPaySuccess;
     /**
-     * 恭喜您，支付成功！
+     * 恭喜您，充值成功！
      */
     private TextView mTvPsCg;
     /**

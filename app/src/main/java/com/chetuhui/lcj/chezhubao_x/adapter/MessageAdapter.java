@@ -2,7 +2,7 @@ package com.chetuhui.lcj.chezhubao_x.adapter;
 
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-
+import android.view.View;
 
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -10,7 +10,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import com.chetuhui.lcj.chezhubao_x.R;
 import com.chetuhui.lcj.chezhubao_x.model.MessageBean;
-
+import com.chetuhui.lcj.chezhubao_x.view.supertextview.SuperTextView;
 
 
 import java.util.List;
@@ -27,7 +27,15 @@ public class MessageAdapter extends BaseQuickAdapter<MessageBean.DataBean, BaseV
     protected void convert(BaseViewHolder helper, MessageBean.DataBean item) {
         //可链式调用赋值
         helper.setText(R.id.tv_item_msg_time, item.getCreateTime())
+                .addOnClickListener(R.id.tv_item_msg_sj)
         .setText(R.id.tv_item_msg_title, item.getContent());
+        SuperTextView textView =helper.itemView.findViewById(R.id.tv_item_msg_sj);
+        if (item.getJumpType()==1){
+            textView.setVisibility(View.VISIBLE);
+
+
+        }
+
 
 
 //                .setText(R.id.tv_item_userlist_ph, DataTool.hideMobilePhone4(item.getPhone()))

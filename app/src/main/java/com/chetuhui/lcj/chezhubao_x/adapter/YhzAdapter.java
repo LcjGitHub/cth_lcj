@@ -73,6 +73,7 @@ public class YhzAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.tv_item_yhz_chepai.setText(mDatas.get(position).getCarNum());
             itemViewHolder.tv_item_yhz_name.setText(mDatas.get(position).getUserName());
+            itemViewHolder.tv_item_yhz_ftan.setText("全员分摊："+mDatas.get(position).getPublicStall()+"元");
             itemViewHolder.tv_item_yhz_ph.setText(DataTool.hideMobilePhone4(mDatas.get(position).getPhone()));
             itemViewHolder.tv_item_yhz_time.setText("维修价格："+mDatas.get(position).getEndOfferMoney());
 //            Glide.with(mContext).load(mDatas.get(position).getUserUrl()).apply(bitmapTransform(new CropCircleTransformation())).into((ImageView) itemViewHolder.iv_item_userlist);
@@ -126,12 +127,13 @@ public class YhzAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_item_yhz_name,tv_item_yhz_chepai,tv_item_yhz_ph,tv_item_yhz_time;
+        TextView tv_item_yhz_name,tv_item_yhz_chepai,tv_item_yhz_ph,tv_item_yhz_time,tv_item_yhz_ftan;
         ImageView iv_item_yhz;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             tv_item_yhz_name=itemView.findViewById(R.id.tv_item_yhz_name);
+            tv_item_yhz_ftan=itemView.findViewById(R.id.tv_item_yhz_ftan);
             tv_item_yhz_chepai=itemView.findViewById(R.id.tv_item_yhz_chepai);
             tv_item_yhz_ph=itemView.findViewById(R.id.tv_item_yhz_ph);
             tv_item_yhz_time=itemView.findViewById(R.id.tv_item_yhz_time);

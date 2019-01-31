@@ -270,6 +270,7 @@ private ImageView iv_amc_sqt;
             public void OnItemClickListener(int pos) {
                 Intent intent =new Intent(getContext(), MutualRecordDetailsActivity.class);
                 intent.putExtra("code",""+mBeanList.get(pos).getSalvationCode());
+                intent.putExtra("type_djz","3");
                 startActivity(intent);
 
             }

@@ -97,8 +97,11 @@ public class NoticeFragment extends Fragment {
         Log.d("CityActivity", s_token);
 
         if (DataTool.isNullString(s_token)) {
-            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
-            return;
+
+//            SPTool.remove(getContext(),"token");
+
+//            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
         }
         OkGo.<String>get(NetData.N_findAnnouncement)
                 .tag(this)

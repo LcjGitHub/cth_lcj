@@ -21,11 +21,13 @@ import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chetuhui.lcj.chezhubao_x.R;
+import com.chetuhui.lcj.chezhubao_x.activity.AddCarActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.AllMutualCarsActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.IHelpActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.JoinActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.LoginActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.MessageActivity;
+import com.chetuhui.lcj.chezhubao_x.activity.MutualHelpListDetailsActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.MutualRecordActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.MyMutualHelpActivity;
 import com.chetuhui.lcj.chezhubao_x.activity.SelectCarActivity;
@@ -77,6 +79,7 @@ public class FindFragment extends Fragment implements View.OnClickListener {
      */
     private TextView mTvFindQbcl;
     private TextView mTvFindTjhzcl;
+    private TextView mTvFindTjhzcl1;
     private LinearLayout mLlHome2;
     private  ImageView iv_amc_sqt;
     private RecyclerView mRvFindHuzhucheliang;
@@ -121,6 +124,12 @@ public class FindFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getN_findMyCars();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -139,7 +148,7 @@ public class FindFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClicked(View v, int action, String extra) {
                 if (action == CommonTitleBar.ACTION_RIGHT_BUTTON) {
-                   startActivity(new Intent(getContext(), MessageActivity.class));
+                    startActivity(new Intent(getContext(), MessageActivity.class));
 
                 }
                 // CommonTitleBar.ACTION_LEFT_TEXT;        // 左边TextView被点击
@@ -165,6 +174,8 @@ public class FindFragment extends Fragment implements View.OnClickListener {
         mTvFindQbcl.setOnClickListener(this);
         mTvFindTjhzcl = (TextView) view.findViewById(R.id.tv_find_tianjiacheliang);
         mTvFindTjhzcl.setOnClickListener(this);
+        mTvFindTjhzcl1 = (TextView) view.findViewById(R.id.tv_find_tianjiacheliang1);
+        mTvFindTjhzcl1.setOnClickListener(this);
         mLlHome2 = (LinearLayout) view.findViewById(R.id.ll_home_2);
         mLlHome2.setOnClickListener(this);
         mRvFindHuzhucheliang = (RecyclerView) view.findViewById(R.id.rv_find_huzhucheliang);
@@ -203,7 +214,14 @@ public class FindFragment extends Fragment implements View.OnClickListener {
                 case R.id.rv_find_huzhucheliang:
                     break;
                 case R.id.tv_find_tianjiacheliang:
-                    intent = new Intent(getContext(), SelectCarActivity.class);
+
+//                    Intent   intent1 = new Intent(getContext(), SelectCarActivity.class);
+//                    intent1.putExtra("tz_type","1");
+//                    startActivity(intent1);
+                    startActivity(new Intent(getContext(), AddCarActivity.class));
+                    break;
+                case R.id.tv_find_tianjiacheliang1:
+                    startActivity(new Intent(getContext(), AddCarActivity.class));
                     break;
                 case R.id.tv_find_title:
                     break;
@@ -228,8 +246,11 @@ public class FindFragment extends Fragment implements View.OnClickListener {
         Log.d("CityActivity", s_token);
 
         if (DataTool.isNullString(s_token)) {
-            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
-            return;
+            ActivityTool.finishAllActivity();
+//            SPTool.remove(getContext(),"token");
+            startActivity(new Intent(getContext(),LoginActivity.class));
+//            Toast.makeText(getContext(), "获取token失败", Toast.LENGTH_SHORT).show();
+//            return;
         }
 
         OkGo.<String>get(NetData.N_findMyCars)
@@ -255,13 +276,19 @@ public class FindFragment extends Fragment implements View.OnClickListener {
                                         MycarBean bean = new Gson().fromJson(data, MycarBean.class);
                                         mBeanList = bean.getData();
                                         if (mBeanList.size()==0){
-                                            iv_amc_sqt.setVisibility(View.VISIBLE);
+                                            mTvFindTjhzcl1.setVisibility(View.VISIBLE);
+                                            mTvFindTjhzcl.setVisibility(View.GONE);
                                             mRvFindHuzhucheliang.setVisibility(View.GONE);
                                         }else {
-                                            iv_amc_sqt.setVisibility(View.GONE);
+                                            mTvFindTjhzcl1.setVisibility(View.GONE);
+                                            mTvFindTjhzcl.setVisibility(View.VISIBLE);
                                             mRvFindHuzhucheliang.setVisibility(View.VISIBLE);
                                         }
                                         initRecylerView();
+                                        if (mBeanList.size()>0){
+                                            getN_findMutualbillListByCarNum(mBeanList.get(0).getCarNum());
+
+                                        }
 
 
                                     } else if (code == 1004) {
@@ -338,6 +365,11 @@ public class FindFragment extends Fragment implements View.OnClickListener {
         mFindfanganAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+                Intent intent =new Intent(getContext(), MutualHelpListDetailsActivity.class);
+
+                intent.putExtra("code",""+mBeanList1.get(position).getBillCode());
+                startActivity(intent);
 
 
             }

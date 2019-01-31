@@ -8,7 +8,8 @@
     android:background="@color/f9"
     tools:context=".activity.BindingActivity">
     <com.chetuhui.lcj.chezhubao_x.view.titlebar.CommonTitleBar
-        android:id="@+id/titlebar_changepw"
+        android:id="@+id/titlebar_bind"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -24,6 +25,7 @@
         app:showBottomLine="false"
         app:titleBarColor="@color/transparent" />
     <RelativeLayout
+        android:layout_below="@+id/titlebar_bind"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

@@ -70,6 +70,7 @@ public class CardCouponActivity extends ActivityBase {
                 return titles[position];
             }
         });
+
         mTabsCc.setupWithViewPager(mViewpagerCc);
     }
 

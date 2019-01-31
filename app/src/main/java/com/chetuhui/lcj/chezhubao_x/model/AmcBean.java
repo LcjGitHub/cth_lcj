@@ -62,6 +62,7 @@ public class AmcBean  implements Serializable {
         /**
          * carBrand : 奥迪
          * licensePicture : http://sfdfd
+         *  "licensePictureNew": "http://sfdfd",
          * carNum : 川A12345
          * engineNum : 45454545
          * owner : 王老如
@@ -70,6 +71,7 @@ public class AmcBean  implements Serializable {
 
         private String carBrand;
         private String licensePicture;
+        private String licensePictureNew;
         private String carNum;
         private String engineNum;
         private String owner;
@@ -83,6 +85,13 @@ public class AmcBean  implements Serializable {
             this.carBrand = carBrand;
         }
 
+        public String getlicensePictureNew() {
+            return licensePictureNew;
+        }
+
+        public void setlicensePictureNew(String licensePictureNew) {
+            this.licensePictureNew = licensePictureNew;
+        }
         public String getLicensePicture() {
             return licensePicture;
         }
